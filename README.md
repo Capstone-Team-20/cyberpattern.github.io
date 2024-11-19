@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+# Cyber PATTerN Labs: Front-End Development
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+**Cyber PATTerN Labs** is an educational penetration testing platform that provides students with practical cybersecurity training. This repository focuses on the **front-end development**, created using **React.js, HTML, and CSS**, to deliver an intuitive and responsive user experience.
 
-In the project directory, you can run:
+The project aims to simulate real-world scenarios where users can:
+- Practice ethical hacking skills.
+- Explore secure coding principles.
+- Gain insights into industry-standard cybersecurity tools.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Current Features:
+- **Login and Registration Pages**
+  - Secure user authentication interface.
+- **Main Menu**
+  - Easy navigation to key features and resources.
+- **Skills Page**
+  - Customizable skill development based on user preferences.
 
-### `npm test`
+### Planned Enhancements:
+- Integration with a back-end service for virtual lab access.
+- Connection to the Cyber PATTerN Labs platform for guided labs and challenges.
+- Advanced user profiling for adaptive learning.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Directory Structure
+```CAPSTONE_FRONTEND/
+├── public/
+│   ├── index.html
+├── src/
+│   ├── Assets/
+│   │   ├── Background.jpg
+│   │   ├── HomePage.png
+│   ├── Components/
+│   │   ├── LoginPage.js
+│   │   ├── MainMenu.js
+│   │   ├── RegistrationPage.js
+│   │   ├── Skills.js
+│   ├── Styles/
+│   │   ├── LoginPage.css
+│   │   ├── MainMenu.css
+│   │   ├── RegistrationPage.css
+│   │   ├── Skills.css
+│   ├── App.js
+│   ├── App.css
+│   ├── index.js
+│   ├── index.css
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── README.md
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installation
 
-### `npm run eject`
+To run this project locally, follow these steps:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/pmahesh29/CapstonePage.git
+   cd CapstonePage
+2. Install Dependencies:
+   ```bash
+   npm install
+3. Start the development server:
+   ```bash
+   npm start
+4. Open `http://localhost:3000` to view it in your browser.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Technologies Used
+- **React.js:**
+  - Framework for building the front-end UI.
+- **HTML5:**
+  - Markup language for the web pages.
+- **CSS3:**
+  - Styling and layout design.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
+## TEAM CONTRIBUTORS
+-------------------------------------
+|  Full Name       | Github Username |
+|------------------|-----------------|
+|Adel Barbaravi    |   [Adel](https://github.com/username) |
+|Charles Poolman   |   [Charles](https://github.com/username)               |
+|Nadine Filat      |   [nadinefilat](https://github.com/nadinefilat)     |
+|Pranav Mahesh     |   [pmahesh29](https://github.com/pmahesh29)         |
+|Tessa Kapellar    |   [Tessa](https://github.com/username)         |
+|Tyler Cash        |   [Tyler](https://github.com/username)         |
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+------------------------------------------------------------------------
