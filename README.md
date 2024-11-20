@@ -90,11 +90,11 @@ To run this project locally, follow these steps:
 -------------------------------------
 |  Full Name       | Github Username |
 |------------------|-----------------|
-|Adel Barbaravi    |   [Adel](https://github.com/username) |
+|Adel Barbaravi    |   [Adel-Barbarawi](https://github.com/Adel-Barbarawi) |
 |Charles Poolman   |   [Charles](https://github.com/username)               |
 |Nadine Filat      |   [nadinefilat](https://github.com/nadinefilat)     |
 |Pranav Mahesh     |   [pmahesh29](https://github.com/pmahesh29)         |
-|Tessa Kapellar    |   [Tessa](https://github.com/username)         |
-|Tyler Cash        |   [Tyler](https://github.com/username)         |
+|Tessa Kapellar    |   [tessakapeller](https://github.com/tessakapeller)         |
+|Tyler Cash        |   [Tcash1990](https://github.com/Tcash1990)         |
 
 ------------------------------------------------------------------------
