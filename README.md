@@ -88,13 +88,13 @@ To run this project locally, follow these steps:
 ---
 ## TEAM CONTRIBUTORS
 -------------------------------------
-|  Full Name       | Github Username |
-|------------------|-----------------|
-|Adel Barbaravi    |   [Adel-Barbarawi](https://github.com/Adel-Barbarawi) |
-|Charles Poolman   |   [Charles](https://github.com/username)               |
-|Nadine Filat      |   [nadinefilat](https://github.com/nadinefilat)     |
-|Pranav Mahesh     |   [pmahesh29](https://github.com/pmahesh29)         |
-|Tessa Kapellar    |   [tessakapeller](https://github.com/tessakapeller)         |
-|Tyler Cash        |   [Tcash1990](https://github.com/Tcash1990)         |
+|  Full Name       | Github Username |  Team|
+|------------------|-----------------| -----------------|
+|Adel Barbaravi    |   [Adel-Barbarawi](https://github.com/Adel-Barbarawi) | Infrastructure and DevOps |
+|Charles Poolman   |   [Charles](https://github.com/username)               |Database & Backend Development |
+|Nadine Filat      |   [nadinefilat](https://github.com/nadinefilat)     |Frontend & User Interface |
+|Pranav Mahesh     |   [pmahesh29](https://github.com/pmahesh29)         |Frontend & User Interface |
+|Tessa Kapellar    |   [tessakapeller](https://github.com/tessakapeller)|Database & Backend Development |
+|Tyler Cash        |   [Tcash1990](https://github.com/Tcash1990)         | Infrastructure and DevOps |
 
 ------------------------------------------------------------------------
