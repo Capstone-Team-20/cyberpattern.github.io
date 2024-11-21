@@ -66,7 +66,6 @@ To run this project locally, follow these steps:
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/pmahesh29/CapstonePage.git
-   cd CapstonePage
 2. Install Dependencies:
    ```bash
    npm install
