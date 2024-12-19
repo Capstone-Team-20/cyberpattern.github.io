@@ -6,7 +6,8 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [emailError, setEmailError] = useState(""); // State for email error message
+  const [emailError, setEmailError] = useState("");
+  const [loginError, setLoginError] = useState("");
 
   // Regular expression for basic email validation
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -16,11 +17,10 @@ const LoginPage = () => {
     const emailValue = e.target.value;
     setEmail(emailValue);
 
-    // Check if the email matches the regex pattern
     if (emailValue && !emailRegex.test(emailValue)) {
       setEmailError("Please enter a valid email address.");
     } else {
-      setEmailError(""); // Clear error if email is valid
+      setEmailError("");
     }
   };
 
@@ -35,23 +35,52 @@ const LoginPage = () => {
   };
 
   // Handle sign-in button click
-  const handleSignIn = () => {
-    // If both fields are valid
-    if (email && password && !emailError) {
-      // Proceed to Main Menu
-      window.location.href = "/mainmenu"; // Use path for routing
-    } else {
-      alert("Please fill in both email and password correctly.");
+  const handleSignIn = async () => {
+    try {
+      const response = await fetch("/fakeDatabase.json"); // Adjusted path to public directory
+      if (!response.ok) {
+        throw new Error("Failed to fetch the database.");
+      }
+
+      const users = await response.json();
+
+      // Check for user by email
+      const user = users.find((user) => user.email === email);
+
+      if (!user) {
+        // Email not found
+        setLoginError("There is no such email registered for an account.");
+      } else if (user.password !== password) {
+        // Email found but password incorrect
+        setLoginError("This password is incorrect, please try again!");
+      } else {
+        // Successful login
+        setLoginError(""); // Clear any existing error message
+        window.location.href = "/mainmenu"; // Proceed to main menu
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setLoginError("An error occurred while processing your request.");
     }
   };
 
   // Handle create account button click
   const handleCreateAccount = () => {
-    window.location.href = "/registration"; // Navigate to registration page
+    window.location.href = "/registration";
+  };
+
+  // Handle home icon click
+  const handleHomeClick = () => {
+    window.location.href = "/"; // Go back to the Login page (or adjust the URL path)
   };
 
   return (
     <div className="login-grid">
+      {/* Home icon in the top right */}
+      <div className="home-icon" onClick={handleHomeClick}>
+        <i className="fas fa-home"></i>
+      </div>
+
       <div className="form-container">
         <h1>Let's Get Started!</h1>
         <form>
@@ -60,11 +89,11 @@ const LoginPage = () => {
             type="email"
             id="email"
             placeholder="hello@someemail.com"
-            value={email} // Controlled input for email
+            value={email}
             onChange={handleEmailChange}
             required
           />
-          {emailError && <p className="error-message">{emailError}</p>} {/* Display error if email is invalid */}
+          {emailError && <p className="error-message">{emailError}</p>}
 
           <label htmlFor="password">Password</label>
           <div className="password-field">
@@ -72,7 +101,7 @@ const LoginPage = () => {
               type={passwordVisible ? "text" : "password"}
               id="password"
               placeholder="********"
-              value={password} // Controlled input for password
+              value={password}
               onChange={handlePasswordChange}
               required
             />
@@ -82,18 +111,28 @@ const LoginPage = () => {
               title={passwordVisible ? "Hide Password" : "Show Password"}
             >
               <i
-                className={passwordVisible ? "fas fa-eye-slash" : "fas fa-eye"}
+                className={`fas ${passwordVisible ? "fa-eye-slash" : "fa-eye"}`}
                 aria-hidden="true"
               ></i>
             </span>
           </div>
 
-          {/* Disable the Sign In button if either field is empty or email is invalid */}
+          {/* Forgot Password Button */}
+          <div className="forgot-password-container">
+            <button
+              type="button"
+              className="forgot-password-btn"
+              onClick={() => alert("Redirecting to Forgot Password page...")}
+            >
+              Forgot Password?
+            </button>
+          </div>
+
           <button
             type="button"
             className="btn-primary"
             onClick={handleSignIn}
-            disabled={!email || !password || emailError} // Button is disabled if email, password are empty or email is invalid
+            disabled={!email || !password || emailError}
           >
             SIGN IN
           </button>
@@ -105,6 +144,7 @@ const LoginPage = () => {
             CREATE AN ACCOUNT
           </button>
         </form>
+        {loginError && <p className="error-message">{loginError}</p>}
       </div>
 
       <div className="image-container">

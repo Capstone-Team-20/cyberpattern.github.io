@@ -1,5 +1,4 @@
-/* LoginPage.css */
-
+/* General resets */
 * {
   margin: 0;
   padding: 0;
@@ -16,15 +15,15 @@ body {
   height: 100vh;
 }
 
-/* Error message style */
+/* Error message styling */
 .error-message {
   color: red;
   font-size: 12px;
   margin-top: 5px;
-  margin-bottom: 10px; /* Added space below error */
+  margin-bottom: 10px;
 }
 
-/* Container styling */
+/* Main container */
 .login-container {
   background-color: #1a1a40;
   border-radius: 15px;
@@ -37,11 +36,12 @@ body {
 .platform-title {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #fc82c5; /* Bright pink */
+  color: #fc82c5;
   text-align: center;
   margin-bottom: 20px;
 }
 
+/* Grid layout */
 .login-grid {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Two equal columns */
@@ -64,6 +64,7 @@ label {
   font-size: 0.9rem;
 }
 
+/* Input styling */
 input {
   width: 100%;
   padding: 10px;
@@ -74,19 +75,54 @@ input {
   color: white;
 }
 
-/* Password visibility toggle */
+input[type="password"],
+input[type="text"] {
+  padding-right: 35px; /* Space for icon */
+}
+
+/* Password field with visibility toggle */
 .password-field {
   position: relative;
 }
 
+/* Password visibility toggle icon */
 .show-password {
   position: absolute;
   right: 10px;
-  top: 10px;
+  top: 35%;
+  transform: translateY(-50%);
   cursor: pointer;
+  font-size: 1rem; /* Smaller icon for neatness */
   color: white;
 }
 
+.show-password:hover {
+  color: #fc82c5;
+}
+
+/* Forgot Password button container */
+.forgot-password-container {
+  display: flex;
+  justify-content: flex-end; /* Align to the right */
+  margin-bottom: 10px;
+}
+
+.forgot-password-btn {
+  background: none;
+  color: red;
+  border: none;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 5px; /* Align vertically if needed */
+}
+
+.forgot-password-btn:hover {
+  color: #fc82c5; /* Change color on hover */
+}
+
+
+/* Buttons */
 .btn-primary,
 .btn-secondary {
   width: 100%;
@@ -108,7 +144,21 @@ input {
   color: black;
   font-weight: bold;
 }
+/* Home Icon style */
+.home-icon {
+  position: absolute;
+  top: 10px; /* Adjust the top spacing */
+  right: 10px; /* Adjust the right spacing */
+  font-size: 2rem; /* Adjust icon size */
+  cursor: pointer;
+  color: white;
+}
 
+.home-icon:hover {
+  color: #fc82c5; /* Color change on hover */
+}
+
+/* Image container */
 .image-container {
   display: flex;
   justify-content: center;
@@ -119,32 +169,4 @@ input {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
-}
-
-/* Password field adjustment for visibility icon */
-input[type="password"],
-input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  padding-right: 40px; /* Leave space for the icon */
-  margin-bottom: 15px;
-  border: none;
-  border-radius: 5px;
-  background-color: #28285e;
-  color: white;
-}
-
-/* Password visibility icon styling */
-.show-password {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-size: 1.5rem; /* Adjust size for visibility */
-  color: white;
-}
-
-.show-password:hover {
-  color: #fc82c5; /* Matches the platform title color */
 }

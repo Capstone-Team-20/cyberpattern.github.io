@@ -13,22 +13,49 @@ const RegistrationPage = () => {
       <div className="registration-content">
         <h1>Please Enter Your Details:</h1>
         <form>
-          <label>Which Tools Do you want to use?</label>
-          <input 
-            type="checkbox"
-            name="tools"
-            value="Python"
-            /> Python
-            <input
-            type="checkbox"
-            name = "tools"
-            value="Java"
-            /> Java
-            <input
-            type="checkbox"
-            name = "tools"
-            value="C++"
-            /> C++
+        <label>Which Tools Do you want to use?</label>
+          <div className="tools-section">
+            <div className="tool-option">
+              <input
+                type="checkbox"
+                name="tools"
+                value="CTF"
+                checked={skills.CTF}
+                onChange={() => setSkills({ ...skills, CTF: !skills.CTF })}
+              />
+              <span>CTF Challenges</span>
+            </div>
+            <div className="tool-option">
+              <input
+                type="checkbox"
+                name="tools"
+                value="Vulnerability Simulation"
+                checked={skills["Vulnerability Simulation"]}
+                onChange={() =>
+                  setSkills({
+                    ...skills,
+                    "Vulnerability Simulation": !skills["Vulnerability Simulation"],
+                  })
+                }
+              />
+              <span>Vulnerability Simulation</span>
+            </div>
+            <div className="tool-option">
+              <input
+                type="checkbox"
+                name="tools"
+                value="Penetration Testing"
+                checked={skills["Penetration Testing"]}
+                onChange={() =>
+                  setSkills({
+                    ...skills,
+                    "Penetration Testing": !skills["Penetration Testing"],
+                  })
+                }
+              />
+              <span>Penetration Testing</span>
+            </div>
+          </div>
 
           <label>Password</label>
           <input type="password" required />
