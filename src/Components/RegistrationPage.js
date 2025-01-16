@@ -6,12 +6,6 @@ const RegistrationPage = () => {
   const [password, setPassword] = useState("");
   const [verifyPassword, setVerifyPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [skills, setSkills] = useState({
-    CTF: false,
-    "Vulnerability Simulation": false,
-    "Penetration Testing": false,
-  });
-
   const [emailError, setEmailError] = useState("");
   const [passwordMatchError, setPasswordMatchError] = useState("");
 
@@ -37,13 +31,35 @@ const RegistrationPage = () => {
     }
   };
 
-  const handleSignUp = (e) => {
+  const handleNextClick = (e) => {
     e.preventDefault();
+
+    // Validate Email
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      setEmailError("Please enter a valid email address.");
+      return;
+    } else {
+      setEmailError("");
+    }
+
+    // Validate Password
+    if (password.length < 8) {
+      setPasswordError("Password must be at least 8 characters long.");
+      return;
+    } else {
+      setPasswordError("");
+    }
+
+    // Check if passwords match
     if (password !== verifyPassword) {
       setPasswordMatchError("Passwords do not match.");
       return;
+    } else {
+      setPasswordMatchError("");
     }
-    // Additional form submission logic...
+
+    // If all validations pass, redirect to the Skills page
+    window.location.href = "/skills";
   };
 
   return (
@@ -55,7 +71,7 @@ const RegistrationPage = () => {
 
       <div className="registration-content">
         <h1>Please Enter Your Details:</h1>
-        <form onSubmit={handleSignUp}>
+        <form>
           <label>Email</label>
           <input
             type="email"
@@ -73,6 +89,7 @@ const RegistrationPage = () => {
             onChange={handlePasswordChange}
             required
           />
+          {passwordError && <p className="error-message">{passwordError}</p>}
 
           <label>Verify Password</label>
           <input
@@ -88,13 +105,19 @@ const RegistrationPage = () => {
           <label>Date of Birth</label>
           <input type="date" required />
 
-          <label>What are you using this platform for?(Optional)</label>
+          <label>What are you using this platform for? (Optional)</label>
           <input
             type="text"
             placeholder="e.g. Learning, Training, Fun, etc."
           />
 
-          <button className="btn-primary">NEXT</button>
+          <button
+            type="button"
+            className="btn-secondary"
+            onClick={handleNextClick}
+          >
+            NEXT
+          </button>
         </form>
       </div>
     </div>
