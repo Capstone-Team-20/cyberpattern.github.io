@@ -4,9 +4,6 @@ import "../Styles/RegistrationPage.css";
 const RegistrationPage = () => {
   const [skills, setSkills] = useState(5);
 
-  const passwordMatch = (password, verifyPassword) => {
-    return password === verifyPassword;
-  }
   
   return (
     <div className="registration-container">
