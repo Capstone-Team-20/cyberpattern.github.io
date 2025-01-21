@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.66f1a1da.chunk.css",
-    "main.js": "/static/js/main.47d2ff16.chunk.js",
-    "main.js.map": "/static/js/main.47d2ff16.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
-    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/js/2.ce748eb0.chunk.js": "/static/js/2.ce748eb0.chunk.js",
-    "static/js/2.ce748eb0.chunk.js.map": "/static/js/2.ce748eb0.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.2005d6024617a97f01117a24596935b4.js": "/precache-manifest.2005d6024617a97f01117a24596935b4.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.66f1a1da.chunk.css.map": "/static/css/main.66f1a1da.chunk.css.map",
-    "static/media/HomePage.png": "/static/media/HomePage.d4cf0ad4.png"
+    "main.css": "/cyberpattern.github.io/static/css/main.66f1a1da.chunk.css",
+    "main.js": "/cyberpattern.github.io/static/js/main.47d2ff16.chunk.js",
+    "main.js.map": "/cyberpattern.github.io/static/js/main.47d2ff16.chunk.js.map",
+    "runtime~main.js": "/cyberpattern.github.io/static/js/runtime~main.9c920fcd.js",
+    "runtime~main.js.map": "/cyberpattern.github.io/static/js/runtime~main.9c920fcd.js.map",
+    "static/js/2.ce748eb0.chunk.js": "/cyberpattern.github.io/static/js/2.ce748eb0.chunk.js",
+    "static/js/2.ce748eb0.chunk.js.map": "/cyberpattern.github.io/static/js/2.ce748eb0.chunk.js.map",
+    "index.html": "/cyberpattern.github.io/index.html",
+    "precache-manifest.fe9df610711ca2f5596ac2f7259e8201.js": "/cyberpattern.github.io/precache-manifest.fe9df610711ca2f5596ac2f7259e8201.js",
+    "service-worker.js": "/cyberpattern.github.io/service-worker.js",
+    "static/css/main.66f1a1da.chunk.css.map": "/cyberpattern.github.io/static/css/main.66f1a1da.chunk.css.map",
+    "static/media/HomePage.png": "/cyberpattern.github.io/static/media/HomePage.d4cf0ad4.png"
   }
 }
