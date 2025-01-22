@@ -30,6 +30,8 @@ The project aims to simulate real-world scenarios where users can:
 
 ## Directory Structure
 ```CAPSTONE_FRONTEND/
+├── .github/workflows/
+│   ├── deploy.yml
 ├── public/
 │   ├── index.html
 ├── src/
