@@ -63,9 +63,9 @@ const RegistrationPage = () => {
               <input
                 type="checkbox"
                 name="tools"
-                value="CTF"
-                checked={skills.CTF}
-                onChange={() => setSkills({ ...skills, CTF: !skills.CTF })}
+                value="Kali"
+                checked={skills.Kali}
+                onChange={() => setSkills({ ...skills, Kali: !skills.Kali })}
               />
               <span>Kali Linux</span>
             </div>
@@ -73,31 +73,31 @@ const RegistrationPage = () => {
               <input
                 type="checkbox"
                 name="tools"
-                value="Kali Linux"
-                checked={skills["Kali Linux"]}
+                value="Ubuntu"
+                checked={skills["Ubuntu"]}
                 onChange={() =>
                   setSkills({
                     ...skills,
-                    "Vulnerability Simulation": !skills["Vulnerability Simulation"],
+                    "Ubuntu": !skills["Ubuntu"],
                   })
                 }
               />
-              <span>Vulnerability Simulation</span>
+              <span>Ubuntu</span>
             </div>
             <div className="tool-option">
               <input
                 type="checkbox"
                 name="tools"
-                value="Penetration Testing"
-                checked={skills["Penetration Testing"]}
+                value="SEEDS"
+                checked={skills["SEEDS"]}
                 onChange={() =>
                   setSkills({
                     ...skills,
-                    "Penetration Testing": !skills["Penetration Testing"],
+                    "SEEDS": !skills["SEEDS"],
                   })
                 }
               />
-              <span>Penetration Testing</span>
+              <span>SEEDS Lab</span>
             </div>
           </div>
 
