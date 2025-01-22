@@ -69,17 +69,10 @@ const LoginPage = () => {
     window.location.href = "/registration";
   };
 
-  // Handle home icon click
-  const handleHomeClick = () => {
-    window.location.href = "/"; // Go back to the Login page (or adjust the URL path)
-  };
 
   return (
     <div className="login-grid">
-      {/* Home icon in the top right */}
-      <div className="home-icon" onClick={handleHomeClick}>
-        <i className="fas fa-home"></i>
-      </div>
+
 
       <div className="form-container">
         <h1>Let's Get Started!</h1>

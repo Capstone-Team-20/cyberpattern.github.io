@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import "../Styles/RegistrationPage.css";
 
 const RegistrationPage = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verifyPassword, setVerifyPassword] = useState("");
+  const [firstNameError, setFirstNameError] = useState("");
+  const [lastNameError, setLastNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordMatchError, setPasswordMatchError] = useState("");
@@ -31,8 +35,45 @@ const RegistrationPage = () => {
     }
   };
 
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+    if (e.target.value) {
+      setFirstNameError("");
+    }
+  };
+
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+    if (e.target.value) {
+      setLastNameError("");
+    }
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    if (e.target.value && /\S+@\S+\.\S+/.test(e.target.value)) {
+      setEmailError("");
+    }
+  };
+
   const handleNextClick = (e) => {
     e.preventDefault();
+
+    // Validate First Name
+    if (!firstName) {
+      setFirstNameError("Please enter your first name.");
+      return;
+    } else {
+      setFirstNameError("");
+    }
+
+    // Validate Last Name
+    if (!lastName) {
+      setLastNameError("Please enter your last name.");
+      return;
+    } else {
+      setLastNameError("");
+    }
 
     // Validate Email
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
@@ -72,12 +113,32 @@ const RegistrationPage = () => {
       <div className="registration-content">
         <h1>Please Enter Your Details:</h1>
         <form>
+          <label>First Name</label>
+          <input
+            type="text"
+            placeholder="First Name"
+            value={firstName}
+            onChange={handleFirstNameChange}
+            required
+          />
+          {firstNameError && <p className="error-message">{firstNameError}</p>}
+
+          <label>Last Name</label>
+          <input
+            type="text"
+            placeholder="Last Name"
+            value={lastName}
+            onChange={handleLastNameChange}
+            required
+          />
+          {lastNameError && <p className="error-message">{lastNameError}</p>}
+
           <label>Email</label>
           <input
             type="email"
             placeholder="hello@email.com"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
             required
           />
           {emailError && <p className="error-message">{emailError}</p>}
