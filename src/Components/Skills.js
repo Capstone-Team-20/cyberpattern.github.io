@@ -9,9 +9,9 @@ const RegistrationPage = () => {
   return (
     <div className="registration-container">
       <div className="registration-content">
-        <h1>Please Enter Your Details:</h1>
+        <h1><u>Please Enter Your Details:</u></h1>
         <form>
-        <label><u>Which Tools Do you want to use?</u></label>
+        <label>Which Tools Do you want to use?</label>
           <div className="tools-section">
             <div className="tool-option">
               <input
@@ -88,16 +88,16 @@ const RegistrationPage = () => {
               <input
                 type="checkbox"
                 name="tools"
-                value="SEEDS"
-                checked={skills["SEEDS"]}
+                value="SEEDS LAB"
+                checked={skills["SEEDS LAB"]}
                 onChange={() =>
                   setSkills({
                     ...skills,
-                    "SEEDS": !skills["SEEDS"],
+                    "SEEDS LAB": !skills["SEEDS LAB"],
                   })
                 }
               />
-              <span>SEEDS Lab</span>
+              <span>SEEDS LAB</span>
             </div>
           </div>
 
