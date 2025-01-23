@@ -5,9 +5,11 @@ import RegistrationPage from './Components/RegistrationPage';
 import Skills from './Components/Skills';
 import { MainMenu } from './Components/MainMenu';  // Named import
 
+const basename = process.env.PUBLIC_URL || '/cyberpattern.github.io';
+
 function App() {
   return (
-    <Router basename="/cyberpattern.github.io">
+    <Router basename={basename}>
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/registration" element={<RegistrationPage />} />

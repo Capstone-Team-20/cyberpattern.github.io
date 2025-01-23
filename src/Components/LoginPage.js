@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "../Styles/LoginPage.css";
 import image from "../Assets/HomePage.png"; // Adjust the path as needed
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+  const navigate = useNavigate();  // Hook to programmatically navigate
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -66,7 +68,7 @@ const LoginPage = () => {
 
   // Handle create account button click
   const handleCreateAccount = () => {
-    window.location.href = "/cyberpattern.github.io/registration";
+    navigate("/registration");
   };
 
 
