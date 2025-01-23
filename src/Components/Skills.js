@@ -27,12 +27,12 @@ const SkillsPage = () => {
       // Proceed to the next page or submit the form
       console.log("Form submitted successfully");
       setErrors({ tools: false, vms: false });
-      window.location.href = "/"; // Redirect to Login page
+      window.location.href = "/cyberpattern.github.io"; // Redirect to Login page
     }
   };
 
   const handleBackClick = () => {
-    window.location.href = "/registration"; // Redirect to Registration page
+    window.location.href = "/cyberpattern.github.io/registration"; // Redirect to Registration page
   };
 
   return (

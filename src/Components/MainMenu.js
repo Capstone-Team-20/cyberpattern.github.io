@@ -15,7 +15,7 @@ export const MainMenu = () => {
                 <Link to="/">Login</Link>
                 </li>
                 <li>
-                <Link to="/registration">Registration</Link>
+                <Link to="cyberpattern.github.io/registration">Registration</Link>
                 </li>
 
             </ul>
