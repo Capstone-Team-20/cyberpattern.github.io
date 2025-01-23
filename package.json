@@ -2,7 +2,7 @@
   "name": "capstone-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://capstone-team-20.github.io/cyberpattern.github.io",
+  "homepage": "https://Capstone-Team-20.github.io/cyberpattern.github.io",
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
