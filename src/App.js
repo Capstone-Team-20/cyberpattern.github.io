@@ -7,7 +7,7 @@ import { MainMenu } from './Components/MainMenu';  // Named import
 
 function App() {
   return (
-    <Router>
+    <Router basename="/cyberpattern.github.io">
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/registration" element={<RegistrationPage />} />
