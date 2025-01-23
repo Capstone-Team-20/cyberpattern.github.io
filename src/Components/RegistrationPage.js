@@ -75,9 +75,6 @@ const RegistrationPage = () => {
       setLastNameError("");
     }
 
-  const handleNextClick = (e) => {
-    e.preventDefault();
-
     // Validate Email
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
       setEmailError("Please enter a valid email address.");
