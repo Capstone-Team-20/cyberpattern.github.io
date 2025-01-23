@@ -14,7 +14,7 @@ const RegistrationPage = () => {
   const [passwordMatchError, setPasswordMatchError] = useState("");
 
   const handleHomeClick = () => {
-    window.location.href = "/cyberpattern.github.io"; // Redirect to Login page
+    navigate("/"); // Redirect to Login page
   };
 
   const handlePasswordChange = (e) => {
@@ -100,7 +100,7 @@ const RegistrationPage = () => {
     }
 
     // If all validations pass, redirect to the Skills page
-    window.location.href = "/cyberpattern.github.io/skills";
+    navigate("/skills");
   };
 
   return (
