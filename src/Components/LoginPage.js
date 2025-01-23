@@ -66,7 +66,7 @@ const LoginPage = () => {
 
   // Handle create account button click
   const handleCreateAccount = () => {
-    window.location.href = "/registration";
+    window.location.href = "/cyberpattern.github.io/registration";
   };
 
 
