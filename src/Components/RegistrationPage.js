@@ -75,7 +75,6 @@ const RegistrationPage = () => {
       setLastNameError("");
     }
 
-=======
   const handleNextClick = (e) => {
     e.preventDefault();
 
