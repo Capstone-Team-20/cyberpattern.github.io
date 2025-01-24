@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../Styles/RegistrationPage.css";
 
 const RegistrationPage = () => {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
