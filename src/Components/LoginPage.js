@@ -39,7 +39,7 @@ const LoginPage = () => {
   // Handle sign-in button click
   const handleSignIn = async () => {
     try {
-      const response = await fetch(process.env.PUBLIC_URL + "/fakeDatabase.json"); // Adjusted path to public directory
+      const response = await fetch("https://capstone-team-20.github.io/cyberpattern.github.io/fakeDatabase.json"); // Adjusted path to public directory
       if (!response.ok) {
         throw new Error("Failed to fetch the database.");
       }
