@@ -77,7 +77,7 @@ const LoginPage = () => {
 
 
       <div className="form-container">
-        <h1>Let's Get Started!</h1>
+        <h1>Welcome to Cyber PATTerN Labs</h1>
         <form>
           <label htmlFor="email">Email</label>
           <input
