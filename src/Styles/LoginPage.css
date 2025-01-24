@@ -55,7 +55,9 @@ body {
 
 h1 {
   margin-bottom: 20px;
-  font-size: 1.8rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 label {
