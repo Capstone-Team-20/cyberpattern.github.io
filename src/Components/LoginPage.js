@@ -39,7 +39,7 @@ const LoginPage = () => {
   // Handle sign-in button click
   const handleSignIn = async () => {
     try {
-      const response = await fetch("/fakeDatabase.json"); // Adjusted path to public directory
+      const response = await fetch(process.env.PUBLIC_URL + "/fakeDatabase.json"); // Adjusted path to public directory
       if (!response.ok) {
         throw new Error("Failed to fetch the database.");
       }
