@@ -71,6 +71,7 @@ To run this project locally, follow these steps:
 2. Install Dependencies:
    ```bash
    npm install
+   npm install @supabase/supabase-js
 3. Start the development server:
    ```bash
    npm start

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "../Styles/LoginPage.css";
 import image from "../Assets/HomePage.png"; // Adjust the path as needed
 import { useNavigate } from 'react-router-dom';
+import supabase from '../supabaseClient.js'; // Import your Supabase client
 
 const LoginPage = () => {
-  const navigate = useNavigate();  // Hook to programmatically navigate
+  const navigate = useNavigate(); // Hook to programmatically navigate
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -14,7 +15,6 @@ const LoginPage = () => {
   // Regular expression for basic email validation
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  // Handle email input change
   const handleEmailChange = (e) => {
     const emailValue = e.target.value;
     setEmail(emailValue);
@@ -26,56 +26,64 @@ const LoginPage = () => {
     }
   };
 
-  // Handle password input change
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
-  // Toggle password visibility
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  // Handle sign-in button click
-  const handleSignIn = async () => {
-    try {
-      const response = await fetch("https://capstone-team-20.github.io/cyberpattern.github.io/fakeDatabase.json"); // Adjusted path to public directory
-      if (!response.ok) {
-        throw new Error("Failed to fetch the database.");
+  // Updated sign-in logic using Supabase
+
+  const handleSignIn = async () => 
+  {
+    try 
+    {
+      // Fetch the user from the Supabase "Users" table
+      const { data: users, error } = await supabase
+        .from("Users")
+        .select("*")
+        .eq("email", email);
+
+      if (error) {
+        throw new Error("Failed to fetch user data from Supabase.");
       }
 
-      const users = await response.json();
-
-      // Check for user by email
-      const user = users.find((user) => user.email === email);
-
-      if (!user) {
+      if (users.length === 0) 
+      {
         // Email not found
         setLoginError("There is no such email registered for an account.");
-      } else if (user.password !== password) {
-        // Email found but password incorrect
-        setLoginError("This password is incorrect, please try again!");
-      } else {
-        // Successful login
-        setLoginError(""); // Clear any existing error message
-        window.location.href = "/mainmenu"; // Proceed to main menu
+      } 
+      else 
+      {
+        const user = users[0]; // email is unique so first response should be correct
+        if (user.password !== password) 
+        {
+          // Email found but password incorrect
+          setLoginError("This password is incorrect, please try again!");
+        } 
+          else 
+          {
+            // Successful login
+            setLoginError(""); // Clear any existing error message
+            navigate("/mainmenu"); // Redirect to the main menu
+          }
       }
-    } catch (error) {
+    }
+    catch (error) 
+    {
       console.error("Error:", error);
       setLoginError("An error occurred while processing your request.");
     }
   };
 
-  // Handle create account button click
   const handleCreateAccount = () => {
     navigate("/registration");
   };
 
-
   return (
     <div className="login-grid">
-
-
       <div className="form-container">
         <h1>Welcome to Cyber PATTerN Labs</h1>
         <form>
@@ -112,7 +120,6 @@ const LoginPage = () => {
             </span>
           </div>
 
-          {/* Forgot Password Button */}
           <div className="forgot-password-container">
             <button
               type="button"
