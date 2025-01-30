@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Styles/LoginPage.css";
 import image from "../Assets/HomePage.png"; // Adjust the path as needed
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';  // Make sure to import useNavigate
 import supabase from '../supabaseClient.js'; // Import your Supabase client
 
 const LoginPage = () => {
@@ -35,11 +35,8 @@ const LoginPage = () => {
   };
 
   // Updated sign-in logic using Supabase
-
-  const handleSignIn = async () => 
-  {
-    try 
-    {
+  const handleSignIn = async () => {
+    try {
       // Fetch the user from the Supabase "Users" table
       const { data: users, error } = await supabase
         .from("Users")
@@ -50,29 +47,21 @@ const LoginPage = () => {
         throw new Error("Failed to fetch user data from Supabase.");
       }
 
-      if (users.length === 0) 
-      {
+      if (users.length === 0) {
         // Email not found
         setLoginError("There is no such email registered for an account.");
-      } 
-      else 
-      {
+      } else {
         const user = users[0]; // email is unique so first response should be correct
-        if (user.password !== password) 
-        {
+        if (user.password !== password) {
           // Email found but password incorrect
           setLoginError("This password is incorrect, please try again!");
-        } 
-          else 
-          {
-            // Successful login
-            setLoginError(""); // Clear any existing error message
-            navigate("/mainmenu"); // Redirect to the main menu
-          }
+        } else {
+          // Successful login
+          setLoginError(""); // Clear any existing error message
+          navigate("/mainmenu"); // Redirect to the main menu
+        }
       }
-    }
-    catch (error) 
-    {
+    } catch (error) {
       console.error("Error:", error);
       setLoginError("An error occurred while processing your request.");
     }
@@ -124,7 +113,7 @@ const LoginPage = () => {
             <button
               type="button"
               className="forgot-password-btn"
-              onClick={() => alert("Redirecting to Forgot Password page...")}
+              onClick={() => navigate("/forgot-password")} // This redirects to Forgot Password page
             >
               Forgot Password?
             </button>
