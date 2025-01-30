@@ -60,6 +60,13 @@ h1 {
   text-decoration: underline;
 }
 
+h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
 label {
   display: block;
   margin-bottom: 5px;
@@ -171,4 +178,37 @@ input[type="text"] {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: black;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  border: none;
+  background: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.popup button:hover {
+  background: #0056b3;
 }

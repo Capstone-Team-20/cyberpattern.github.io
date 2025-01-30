@@ -4,6 +4,8 @@ import LoginPage from './Components/LoginPage';
 import RegistrationPage from './Components/RegistrationPage';
 import Skills from './Components/Skills';
 import { MainMenu } from './Components/MainMenu';  // Named import
+import ForgotPassword from './Components/ForgotPassword'; 
+import ResetPassword from './Components/ResetPassword'; 
 
 const basename = process.env.PUBLIC_URL || '/cyberpattern.github.io';
 
@@ -15,6 +17,8 @@ function App() {
         <Route path="/registration" element={<RegistrationPage />} />
         <Route path="/mainmenu" element={<MainMenu />} />
         <Route path="/skills" element={<Skills />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </Router>
   );
