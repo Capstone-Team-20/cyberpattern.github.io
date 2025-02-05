@@ -64,55 +64,42 @@ const RegistrationPage = () => {
     }
   };
 
-  const handleNextClick = async (e) => {
+  const handleNextClick = async (e) => {  // Make it async
     e.preventDefault();
-
+  
     // Validate First Name
     if (!firstName) {
       setFirstNameError("Please enter your first name.");
       return;
-    } else {
-      setFirstNameError("");
     }
-
+  
     // Validate Last Name
     if (!lastName) {
       setLastNameError("Please enter your last name.");
       return;
-    } else {
-      setLastNameError("");
     }
-
+  
     // Validate Email
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
       setEmailError("Please enter a valid email address.");
       return;
-    } else {
-      setEmailError("");
     }
-
+  
     // Validate Password
     if (password.length < 8) {
       setPasswordError("Password must be at least 8 characters long.");
       return;
-    } else {
-      setPasswordError("");
     }
-
+  
     // Check if passwords match
     if (password !== verifyPassword) {
       setPasswordMatchError("Passwords do not match.");
       return;
-    } else {
-      setPasswordMatchError("");
     }
-
-     // Supabase sign-up logic
+  
+    // Supabase sign-up logic
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-      });
+      const { error } = await supabase.auth.signUp({ email, password });
   
       if (error) throw error;
   
