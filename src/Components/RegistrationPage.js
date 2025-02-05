@@ -99,10 +99,11 @@ const RegistrationPage = () => {
   
     try {
     // Supabase sign-up logic
-    const { user, error: signUpError } = await supabase.auth.signUp({
+    const { error: signUpError } = await supabase.auth.signUp({
       email,
       password,
     });
+
 
     if (signUpError) throw signUpError;
 
