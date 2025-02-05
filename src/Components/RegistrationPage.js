@@ -102,7 +102,7 @@ const handleNextClick = async (e) => {
       const { data, error } = await supabase
         .from('Users')
         .insert([
-          { email, password, firstName, lastName, dob, platformUsage }
+          { email, password, firstName, lastName }
         ]);
 
       if (error) {
