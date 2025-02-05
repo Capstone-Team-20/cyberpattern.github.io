@@ -109,7 +109,7 @@ const RegistrationPage = () => {
 
     // After successful signup, insert user details into the custom "users" table
     const { error: insertError } = await supabase
-      .from("users")
+      .from("Users")
       .insert([
         {
           email: email,
