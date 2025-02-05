@@ -97,19 +97,26 @@ const RegistrationPage = () => {
       return;
     }
   
-    // Supabase sign-up logic
     try {
-      const { error } = await supabase.auth.signUp({ email, password });
-  
-      if (error) throw error;
-  
-      alert("Check your email for the verification link!");
-      navigate("/"); // Redirect to login page
-    } catch (error) {
-      console.error("Error signing up:", error.message);
-      alert(error.message);
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (error) {
+      console.error("Signup error:", error);
+      alert(`Signup failed: ${error.message}`);
+      return;
     }
-  };
+
+    console.log("User data:", data);
+    alert("Check your email for the verification link!");
+    navigate("/");
+  } catch (error) {
+    console.error("Unexpected error:", error);
+    alert("An unexpected error occurred.");
+  }
+};
 
   return (
     <div className="registration-container">
