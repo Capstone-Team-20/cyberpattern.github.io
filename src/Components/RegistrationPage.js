@@ -104,14 +104,13 @@ const RegistrationPage = () => {
     });
 
     if (error) {
-      console.error("Signup error:", error);
-      alert(`Signup failed: ${error.message}`);
+      console.error("Signup error details:", error);
+      alert(`Signup failed: ${error.message}`); // This can provide more detailed error messages
       return;
     }
 
-    console.log("User data:", data);
     alert("Check your email for the verification link!");
-    navigate("/");
+    navigate("/"); // Redirect to login page
   } catch (error) {
     console.error("Unexpected error:", error);
     alert("An unexpected error occurred.");
