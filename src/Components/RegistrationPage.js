@@ -98,7 +98,7 @@ const handleNextClick = async (e) => {
     }
 
     // Check for existing email
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from("Users")
       .select("*")
       .eq("email", email);
