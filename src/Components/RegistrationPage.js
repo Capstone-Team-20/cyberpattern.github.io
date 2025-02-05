@@ -97,21 +97,42 @@ const handleNextClick = async (e) => {
       return;
     }
 
+    // Check for existing email
+    const { data, error } = await supabase
+      .from("Users")
+      .select("*")
+      .eq("email", email);
+
+    if (data && data.length > 0) {
+      setEmailError("Email is already in use.");
+      return;
+    }
+
     try {
       // Insert Data into Supabase
-      const { data, error } = await supabase
-        .from('Users')
-        .insert([
-          { email, password, firstName, lastName }
-        ]);
+      const { user, error: insertError } = await supabase.auth.signUp({
+        email,
+        password,
+      });
 
-      if (error) {
-        console.error('Error inserting data:', error);
+      if (insertError) {
+        console.error('Error signing up:', insertError.message);
         alert("Error signing up.");
       } else {
-        console.log('Data inserted:', data);
-        alert("Check your email for the verification link!");
-        navigate("/"); // Redirect to login page
+        console.log('User signed up:', user);
+
+        // Send verification email
+        const { error: verifyError } = await supabase.auth.api.sendVerificationEmail(
+          email
+        );
+
+        if (verifyError) {
+          console.error("Error sending verification email:", verifyError.message);
+          alert("Error sending verification email.");
+        } else {
+          alert("Check your email for the verification link!");
+          navigate("/"); // Redirect to login page
+        }
       }
     } catch (error) {
       console.error("Error signing up:", error.message);
