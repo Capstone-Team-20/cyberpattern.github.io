@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import "../Styles/LoginPage.css";
 import image from "../Assets/HomePage.png"; // Adjust the path as needed
 import { useNavigate } from 'react-router-dom';  // Make sure to import useNavigate
-import supabase from '../supabaseClient.js'; // Import your Supabase client
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
+const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
+
+const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 const LoginPage = () => {
   const navigate = useNavigate(); // Hook to programmatically navigate

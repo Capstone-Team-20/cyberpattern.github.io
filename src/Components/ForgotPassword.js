@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import "../Styles/LoginPage.css";
 import image from "../Assets/HomePage.png";
 import { useNavigate } from 'react-router-dom';
-import supabase from '../supabaseClient.js';
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
+const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
+
+const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
