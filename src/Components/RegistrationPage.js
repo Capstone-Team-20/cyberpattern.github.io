@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createClient } from "@supabase/supabase-js";  // Import Supabase client
 import "../Styles/RegistrationPage.css";
+
+// Initiatlize Supabase Client
+const supabaseUrl = 'https://kdzamdxnnnzodftvjcrh.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkemFtZHhubm56b2RmdHZqY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc2NzA5NzIsImV4cCI6MjA1MzI0Njk3Mn0.0Ml4p6x7VDY2m5_t2ISl0aEYpEum-vD8uFL1BYxBaes';
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
@@ -58,7 +64,7 @@ const RegistrationPage = () => {
     }
   };
 
-  const handleNextClick = (e) => {
+  const handleNextClick = async (e) => {
     e.preventDefault();
 
     // Validate First Name
@@ -101,8 +107,21 @@ const RegistrationPage = () => {
       setPasswordMatchError("");
     }
 
-    // If all validations pass, redirect to the Skills page
-    navigate("/skills");
+     // Supabase sign-up logic
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+  
+      if (error) throw error;
+  
+      alert("Check your email for the verification link!");
+      navigate("/"); // Redirect to login page
+    } catch (error) {
+      console.error("Error signing up:", error.message);
+      alert(error.message);
+    }
   };
 
   return (
