@@ -64,70 +64,61 @@ const RegistrationPage = () => {
     }
   };
 
-  const handleNextClick = async (e) => {  // Make it async
+const handleNextClick = async (e) => {
     e.preventDefault();
-  
+
     // Validate First Name
     if (!firstName) {
       setFirstNameError("Please enter your first name.");
       return;
     }
-  
+
     // Validate Last Name
     if (!lastName) {
       setLastNameError("Please enter your last name.");
       return;
     }
-  
+
     // Validate Email
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
       setEmailError("Please enter a valid email address.");
       return;
     }
-  
+
     // Validate Password
     if (password.length < 8) {
       setPasswordError("Password must be at least 8 characters long.");
       return;
     }
-  
+
     // Check if passwords match
     if (password !== verifyPassword) {
       setPasswordMatchError("Passwords do not match.");
       return;
     }
-  
+
     try {
-    // Supabase sign-up logic
-    const { error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-    });
+      // Insert Data into Supabase
+      const { data, error } = await supabase
+        .from('Users')
+        .insert([
+          { email, password, firstName, lastName, dob, platformUsage }
+        ]);
 
+      if (error) {
+        console.error('Error inserting data:', error);
+        alert("Error signing up.");
+      } else {
+        console.log('Data inserted:', data);
+        alert("Check your email for the verification link!");
+        navigate("/"); // Redirect to login page
+      }
+    } catch (error) {
+      console.error("Error signing up:", error.message);
+      alert(error.message);
+    }
+  };
 
-    if (signUpError) throw signUpError;
-
-    // After successful signup, insert user details into the custom "users" table
-    const { error: insertError } = await supabase
-      .from("Users")
-      .insert([
-        {
-          email: email,
-          first_name: firstName,
-          last_name: lastName,
-          // Add more fields here as needed
-        },
-      ]);
-
-    if (insertError) throw insertError;
-
-    alert("Check your email for the verification link!");
-    navigate("/"); // Redirect to login page
-  } catch (error) {
-    console.error("Error signing up:", error.message);
-    alert(error.message);
-  }
-};
 
   return (
     <div className="registration-container">
