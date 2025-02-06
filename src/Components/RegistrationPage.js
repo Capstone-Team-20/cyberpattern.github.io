@@ -4,8 +4,8 @@ import { createClient } from "@supabase/supabase-js";  // Import Supabase client
 import "../Styles/RegistrationPage.css";
 
 // Initiatlize Supabase Client
-const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
-const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
+const supabase_url = "https://kdzamdxnnnzodftvjcrh.supabase.co";
+const supabase_anon = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkemFtZHhubm56b2RmdHZqY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc2NzA5NzIsImV4cCI6MjA1MzI0Njk3Mn0.0Ml4p6x7VDY2m5_t2ISl0aEYpEum-vD8uFL1BYxBaes";
 const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 const RegistrationPage = () => {
