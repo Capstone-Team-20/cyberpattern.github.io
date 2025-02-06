@@ -84,9 +84,10 @@ const LoginPage = () => {
           <input
             type="email"
             id="email"
-            placeholder="hello@someemail.com"
+            placeholder="HELLO@SOMEEMAIL.COM"
             value={email}
             onChange={handleEmailChange}
+            onInput={(e) => e.target.value = e.target.value.toUpperCase()}
             required
           />
           {emailError && <p className="error-message">{emailError}</p>}
