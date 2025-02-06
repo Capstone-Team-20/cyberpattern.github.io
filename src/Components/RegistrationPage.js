@@ -136,6 +136,7 @@ const handleNextClick = async (e) => {
             placeholder="First Name"
             value={firstName}
             onChange={handleFirstNameChange}
+            onInput={(e) => e.target.value = e.target.value.toUpperCase()}
             required
           />
           {firstNameError && <p className="error-message">{firstNameError}</p>}
@@ -146,6 +147,7 @@ const handleNextClick = async (e) => {
             placeholder="Last Name"
             value={lastName}
             onChange={handleLastNameChange}
+            onInput={(e) => e.target.value = e.target.value.toUpperCase()}
             required
           />
           {lastNameError && <p className="error-message">{lastNameError}</p>}
@@ -157,6 +159,7 @@ const handleNextClick = async (e) => {
             placeholder="hello@email.com"
             value={email}
             onChange={handleEmailChange}
+            onInput={(e) => e.target.value = e.target.value.toUpperCase()}
             required
           />
           {emailError && <p className="error-message">{emailError}</p>}
@@ -181,13 +184,11 @@ const handleNextClick = async (e) => {
             <p className="error-message">{passwordMatchError}</p>
           )}
 
-          <label>Date of Birth</label>
-          <input type="date" required />
-
           <label>What are you using this platform for? (Optional)</label>
           <input
             type="text"
             placeholder="e.g. Learning, Training, Fun, etc."
+            onInput={(e) => e.target.value = e.target.value.toUpperCase()}
           />
 
           <button
