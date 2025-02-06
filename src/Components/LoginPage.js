@@ -62,7 +62,7 @@ const LoginPage = () => {
         } else {
           // Successful login
           setLoginError(""); // Clear any existing error message
-          navigate("/mainmenu"); // Redirect to the main menu
+          navigate("/skills"); // Redirect to the skills page
         }
       }
     } catch (error) {
