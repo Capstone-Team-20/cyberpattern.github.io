@@ -117,6 +117,29 @@ const handleNextClick = async (e) => {
       console.error("Error signing up:", error.message);
       alert(error.message);
     }
+
+    try {
+      // Create User in Skills into Supabase
+      const { data, error } = await supabase
+        .from('Skills')
+        .insert([
+          { email}
+        ]);
+
+      if (error) {
+        console.error('Error inserting data:', error);
+        alert("Error signing up.");
+      } else {
+        console.log('Data inserted:', data);
+        alert("Check your email for the verification link!");
+        navigate("/"); // Redirect to login page
+      }
+    } catch (error) {
+      console.error("Error signing up:", error.message);
+      alert(error.message);
+    }
+
+
   };
 
 
