@@ -96,6 +96,7 @@ label {
   display: block;
   margin-bottom: 5px;
   font-size: 0.9rem;
+  color: grey; /* Change label color to grey */
 }
 
 /* Input styling */
@@ -112,6 +113,17 @@ input {
 input[type="password"],
 input[type="text"] {
   padding-right: 35px; /* Space for icon */
+}
+
+input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 10px 0;
+  display: inline-block;
+  border: 1px solid grey; /* Change input border to grey */
+  box-sizing: border-box;
+  background-color: rgba(128, 128, 128, 0.5); /* Transparent grey background */
+  color: white; /* Text color */
 }
 
 /* Password field with visibility toggle */
@@ -166,10 +178,22 @@ input[type="text"] {
   cursor: pointer;
   margin-bottom: 10px;
 }
+.btn-primary {
+  margin-top: 10px;
+  width: 100%;
+  background-color: grey; /* Change button background to desired color */
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 .btn-primary:hover {
-  background-color: #4636ff; /* Slightly darker shade of blue */
-  transform: scale(1.05); /* Slight zoom effect */
-  transition: all 0.2s ease-in-out;
+  background-color: darkgrey; /* Change hover effect to a darker color */
 }
 
 .btn-secondary:hover {
@@ -182,13 +206,6 @@ input[type="text"] {
 .btn-secondary:active {
     transform: scale(0.95);
     transition: all 0.1s ease-in-out;
-}
-
-
-.btn-primary {
-  background-color: #574bff;
-  color: white;
-  font-weight: bold;
 }
 
 .btn-secondary {

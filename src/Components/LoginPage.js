@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../Styles/LoginPage.css";
-import image from "../Assets/HomePage.png"; // Adjust the path as needed
-import logo from "../Assets/Logo.png"; // Import the logo
+import image from "../Assets/Logo.png"; // Keep only the Logo.png
 import { useNavigate } from 'react-router-dom';  // Make sure to import useNavigate
 import { createClient } from "@supabase/supabase-js";
 
@@ -71,12 +70,13 @@ const LoginPage = () => {
     navigate("/registration");
   };
 
- 
   return (
     <div className="page-wrapper">
       <div className="login-grid">
+        <div className="image-container">
+          <img src={image} alt="Company Logo" /> {/* Keep only the Logo.png */}
+        </div>
         <div className="form-container">
-          <img src={logo} alt="Company Logo" className="logo" />
           <form>
             <label htmlFor="email">Email</label>
             <input
@@ -88,7 +88,7 @@ const LoginPage = () => {
               required
             />
             {emailError && <p className="error-message">{emailError}</p>}
-  
+
             <label htmlFor="password">Password</label>
             <div className="password-field">
               <input
@@ -110,7 +110,7 @@ const LoginPage = () => {
                 ></i>
               </span>
             </div>
-  
+
             <div className="forgot-password-container">
               <button
                 type="button"
@@ -120,7 +120,7 @@ const LoginPage = () => {
                 Forgot Password?
               </button>
             </div>
-  
+
             <button
               type="button"
               className="btn-primary"
@@ -139,14 +139,9 @@ const LoginPage = () => {
           </form>
           {loginError && <p className="error-message">{loginError}</p>}
         </div>
-  
-        <div className="image-container">
-          <img src={image} alt="Login illustration" />
-        </div>
       </div>
     </div>
   );
-  
 };
 
 export default LoginPage;
