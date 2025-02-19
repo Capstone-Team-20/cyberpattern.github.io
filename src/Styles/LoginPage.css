@@ -1,36 +1,4 @@
-/* General resets */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.header {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 20px;
-  left: 0px; /* Adjust this to align with input boxes */
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.logo {
-  height: 150px; /* Adjust as needed */
-  width: auto;
-}
-
-.logo-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 70px; /* Adjust this based on the form fields */
-}
-
-
-body {
-  font-family: Arial, sans-serif;
-  color: white;
+.page-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,28 +8,10 @@ body {
   background-position: center; /* Center the background image */
 }
 
-/* Error message styling */
-.error-message {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
-
-/* Main container */
-.login-container {
-  background-color: #1a1a40;
-  border-radius: 15px;
-  padding: 40px;
-  width: 80%;
-  max-width: 1000px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-}
-
 .platform-title {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #fc82c5;
+  color: #cfc6cb;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -70,26 +20,12 @@ body {
 .login-grid {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Two equal columns */
-  gap: 20px;
+  gap: 0px;
   align-items: center;
 }
 
 .form-container {
-  padding: 20px;
-}
-
-h1 {
-  margin-bottom: 20px;
-  font-size: 2rem;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-h2 {
-  margin-bottom: 20px;
-  font-size: 2rem;
-  text-align: center;
-  font-weight: bold;
+  padding: 50px;
 }
 
 label {
@@ -103,33 +39,19 @@ label {
 input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 10px; /* Reduce margin to move elements up */
   border: none;
   border-radius: 5px;
-  background-color: #28285e;
-  color: white;
-}
-
-input[type="password"],
-input[type="text"] {
-  padding-right: 35px; /* Space for icon */
-}
-
-input[type="email"], input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0 10px 0;
-  display: inline-block;
-  border: 1px solid grey; /* Change input border to grey */
-  box-sizing: border-box;
   background-color: rgba(128, 128, 128, 0.5); /* Transparent grey background */
-  color: white; /* Text color */
+  color: white;
 }
 
 /* Password field with visibility toggle */
 .password-field {
   position: relative;
-}
+  display: flex;
+  align-items: center;
+  width: 100%;}
 
 /* Password visibility toggle icon */
 .show-password {
@@ -140,31 +62,33 @@ input[type="email"], input[type="password"] {
   cursor: pointer;
   font-size: 1rem; /* Smaller icon for neatness */
   color: white;
+  margin-left: 10px;
 }
 
 .show-password:hover {
-  color: #fc82c5;
+  color: #d1c7cd;
 }
 
 /* Forgot Password button container */
 .forgot-password-container {
   display: flex;
   justify-content: flex-end; /* Align to the right */
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  margin-top: 5px; /* Reduce margin to move elements up */
 }
 
 .forgot-password-btn {
   background: none;
-  color: red;
+  color: rgba(255, 253, 253, 0.789);
   border: none;
   font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
-  margin-top: 5px; /* Align vertically if needed */
+  margin-top: -15px; /* Align vertically if needed */
 }
 
 .forgot-password-btn:hover {
-  color: #fc82c5; /* Change color on hover */
+  color: #fd0808; /* Change color on hover */
 }
 
 
@@ -177,35 +101,31 @@ input[type="email"], input[type="password"] {
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 10px;
-}
-.btn-primary {
-  margin-top: 10px;
-  width: 100%;
-  background-color: grey; /* Change button background to desired color */
-  border: none;
+  margin-top: 5px; /* Reduce margin to move elements up */
+  background-color: grey; /* Change button background to grey */
   color: white;
-  padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  cursor: pointer;
 }
 
-.btn-primary:hover {
-  background-color: darkgrey; /* Change hover effect to a darker color */
-}
-
+.btn-primary:hover,
 .btn-secondary:hover {
-  background-color: #e0e0e0; /* Slightly darker white */
-  transform: scale(1.05);
-  transition: all 0.2s ease-in-out;
+  background-color: darkgrey; /* Change hover effect to a darker grey */
 }
 
 .btn-primary:active,
 .btn-secondary:active {
     transform: scale(0.95);
     transition: all 0.1s ease-in-out;
+}
+
+
+.btn-primary {
+  background-color: #ecebf1;
+  color: white;
+  font-weight: bold;
 }
 
 .btn-secondary {
@@ -224,7 +144,7 @@ input[type="email"], input[type="password"] {
 }
 
 .home-icon:hover {
-  color: #fc82c5; /* Color change on hover */
+  color: #ddced677; /* Color change on hover */
 }
 
 /* Image container */
@@ -271,4 +191,11 @@ input[type="email"], input[type="password"] {
 
 .popup button:hover {
   background: #0056b3;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align form elements to the start */
+  margin-top: -20px; /* Move the form elements up */
 }

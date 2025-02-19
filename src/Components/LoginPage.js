@@ -82,7 +82,7 @@ const LoginPage = () => {
             <input
               type="email"
               id="email"
-              placeholder="hello@someemail.com"
+              placeholder=""
               value={email}
               onChange={handleEmailChange}
               required
@@ -94,7 +94,7 @@ const LoginPage = () => {
               <input
                 type={passwordVisible ? "text" : "password"}
                 id="password"
-                placeholder="********"
+                placeholder=""
                 value={password}
                 onChange={handlePasswordChange}
                 required

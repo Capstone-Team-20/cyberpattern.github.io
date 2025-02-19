@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";  // Import Supabase client
 import "../Styles/RegistrationPage.css";
+import logo from "../Assets/Logo.png"; // Import the logo image
 
 // Initiatlize Supabase Client
 const supabaseURL = "https://kdzamdxnnnzodftvjcrh.supabase.co";
@@ -144,84 +145,89 @@ const handleNextClick = async (e) => {
 
 
   return (
-    <div className="registration-container">
-      {/* Home Icon */}
-      <div className="home-icon" onClick={handleHomeClick}>
-        <i className="fas fa-home"></i>
+    <div className="page-wrapper">
+      <div className="logo-container">
+        <img src={logo} alt="Logo" />
       </div>
+      <div className="registration-container">
+        {/* Home Icon */}
+        <div className="home-icon" onClick={handleHomeClick}>
+          <i className="fas fa-home"></i>
+        </div>
 
-      <div className="registration-content">
-        <h1>Please Enter Your Details:</h1>
-        <form>
-          <label>First Name</label>
-          <input
-            type="text"
-            placeholder="First Name"
-            value={firstName}
-            onChange={handleFirstNameChange}
-            onInput={(e) => e.target.value = e.target.value.toUpperCase()}
-            required
-          />
-          {firstNameError && <p className="error-message">{firstNameError}</p>}
+        <div className="registration-content">
+          <h1>Please Enter Your Details:</h1>
+          <form>
+            <label>First Name</label>
+            <input
+              type="text"
+              placeholder="First Name"
+              value={firstName}
+              onChange={handleFirstNameChange}
+              onInput={(e) => e.target.value = e.target.value.toUpperCase()}
+              required
+            />
+            {firstNameError && <p className="error-message">{firstNameError}</p>}
 
-          <label>Last Name</label>
-          <input
-            type="text"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={handleLastNameChange}
-            onInput={(e) => e.target.value = e.target.value.toUpperCase()}
-            required
-          />
-          {lastNameError && <p className="error-message">{lastNameError}</p>}
+            <label>Last Name</label>
+            <input
+              type="text"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={handleLastNameChange}
+              onInput={(e) => e.target.value = e.target.value.toUpperCase()}
+              required
+            />
+            {lastNameError && <p className="error-message">{lastNameError}</p>}
 
 
-          <label>Email</label>
-          <input
-            type="email"
-            placeholder="hello@email.com"
-            value={email}
-            onChange={handleEmailChange}
-            onInput={(e) => e.target.value = e.target.value.toUpperCase()}
-            required
-          />
-          {emailError && <p className="error-message">{emailError}</p>}
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="Valid Email Address"
+              value={email}
+              onChange={handleEmailChange}
+              onInput={(e) => e.target.value = e.target.value.toUpperCase()}
+              required
+            />
+            {emailError && <p className="error-message">{emailError}</p>}
 
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-          {passwordError && <p className="error-message">{passwordError}</p>}
+            <label>Password</label>
+            <input
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+            />
+            {passwordError && <p className="error-message">{passwordError}</p>}
 
-          <label>Verify Password</label>
-          <input
-            type="password"
-            value={verifyPassword}
-            onChange={handleVerifyPasswordChange}
-            required
-          />
-          {passwordMatchError && (
-            <p className="error-message">{passwordMatchError}</p>
-          )}
+            <label>Verify Password</label>
+            <input
+              type="password"
+              value={verifyPassword}
+              onChange={handleVerifyPasswordChange}
+              required
+            />
+            {passwordMatchError && (
+              <p className="error-message">{passwordMatchError}</p>
+            )}
 
-          <label>What are you using this platform for? (Optional)</label>
-          <input
-            type="text"
-            placeholder="e.g. Learning, Training, Fun, etc."
-            onInput={(e) => e.target.value = e.target.value.toUpperCase()}
-          />
+            <label>What are you using this platform for? (Optional)</label>
+            <input
+              type="text"
+              placeholder="e.g. Learning, Training, Fun, etc."
+              onInput={(e) => e.target.value = e.target.value.toUpperCase()}
+            />
 
-          <button
-            type="button"
-            className="btn-secondary"
-            onClick={handleNextClick}
-          >
-            NEXT
-          </button>
-        </form>
+            <button
+              type="button"
+              className="btn-secondary"
+              onClick={handleNextClick}
+            >
+              NEXT
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
