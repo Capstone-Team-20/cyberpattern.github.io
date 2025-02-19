@@ -1,42 +1,17 @@
-/* General resets */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #1a1a40;
-  color: white;
+.page-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
-
-/* Error message styling */
-.error-message {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
-
-/* Main container */
-.login-container {
-  background-color: #1a1a40;
-  border-radius: 15px;
-  padding: 40px;
-  width: 80%;
-  max-width: 1000px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  background-image: url('../Assets/Background.png'); /* Set the background image */
+  background-size: cover; /* Ensure the background covers the entire page */
+  background-position: center; /* Center the background image */
 }
 
 .platform-title {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #fc82c5;
+  color: #cfc6cb;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -45,54 +20,38 @@ body {
 .login-grid {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Two equal columns */
-  gap: 20px;
+  gap: 0px;
   align-items: center;
 }
 
 .form-container {
-  padding: 20px;
-}
-
-h1 {
-  margin-bottom: 20px;
-  font-size: 2rem;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-h2 {
-  margin-bottom: 20px;
-  font-size: 2rem;
-  text-align: center;
-  font-weight: bold;
+  padding: 50px;
 }
 
 label {
   display: block;
   margin-bottom: 5px;
   font-size: 0.9rem;
+  color: grey; /* Change label color to grey */
 }
 
 /* Input styling */
 input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 10px; /* Reduce margin to move elements up */
   border: none;
   border-radius: 5px;
-  background-color: #28285e;
+  background-color: rgba(128, 128, 128, 0.5); /* Transparent grey background */
   color: white;
-}
-
-input[type="password"],
-input[type="text"] {
-  padding-right: 35px; /* Space for icon */
 }
 
 /* Password field with visibility toggle */
 .password-field {
   position: relative;
-}
+  display: flex;
+  align-items: center;
+  width: 100%;}
 
 /* Password visibility toggle icon */
 .show-password {
@@ -103,31 +62,33 @@ input[type="text"] {
   cursor: pointer;
   font-size: 1rem; /* Smaller icon for neatness */
   color: white;
+  margin-left: 10px;
 }
 
 .show-password:hover {
-  color: #fc82c5;
+  color: #d1c7cd;
 }
 
 /* Forgot Password button container */
 .forgot-password-container {
   display: flex;
   justify-content: flex-end; /* Align to the right */
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  margin-top: 5px; /* Reduce margin to move elements up */
 }
 
 .forgot-password-btn {
   background: none;
-  color: red;
+  color: rgba(255, 253, 253, 0.789);
   border: none;
   font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
-  margin-top: 5px; /* Align vertically if needed */
+  margin-top: -15px; /* Align vertically if needed */
 }
 
 .forgot-password-btn:hover {
-  color: #fc82c5; /* Change color on hover */
+  color: #fd0808; /* Change color on hover */
 }
 
 
@@ -140,10 +101,29 @@ input[type="text"] {
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 10px;
+  margin-top: 5px; /* Reduce margin to move elements up */
+  background-color: grey; /* Change button background to grey */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
+.btn-primary:hover,
+.btn-secondary:hover {
+  background-color: darkgrey; /* Change hover effect to a darker grey */
+}
+
+.btn-primary:active,
+.btn-secondary:active {
+    transform: scale(0.95);
+    transition: all 0.1s ease-in-out;
+}
+
+
 .btn-primary {
-  background-color: #574bff;
+  background-color: #ecebf1;
   color: white;
   font-weight: bold;
 }
@@ -164,7 +144,7 @@ input[type="text"] {
 }
 
 .home-icon:hover {
-  color: #fc82c5; /* Color change on hover */
+  color: #ddced677; /* Color change on hover */
 }
 
 /* Image container */
@@ -211,4 +191,11 @@ input[type="text"] {
 
 .popup button:hover {
   background: #0056b3;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align form elements to the start */
+  margin-top: -20px; /* Move the form elements up */
 }
