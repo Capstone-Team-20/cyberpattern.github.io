@@ -19,6 +19,14 @@ function App() {
         <Route path="/skills" element={<Skills />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route 
+            path="/vm-access" 
+            element={<VMPage  
+              viewOnly={false} 
+              shouldReconnect={true} 
+              password="capstone123"
+            />}
+          />
       </Routes>
     </Router>
   );
