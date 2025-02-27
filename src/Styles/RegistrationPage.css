@@ -4,33 +4,6 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #1a1a40;
-  color: white;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #28285e;
-}
-
-.logo {
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.url-bar {
-  padding: 5px;
-  background-color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
 /* Page wrapper to fill the entire viewport */
 .page-wrapper {
   display: flex;
@@ -97,23 +70,6 @@ input[type="range"] {
   margin-bottom: 15px;
   border: none;
   border-radius: 5px;
-}
-
-input[type="range"] {
-  appearance: none;
-  background-color: #3a3a6e;
-  height: 6px;
-  border-radius: 5px;
-  outline: none;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  background-color: #574bff;
-  border-radius: 50%;
-  cursor: pointer;
 }
 
 /* Tools Section Styles */

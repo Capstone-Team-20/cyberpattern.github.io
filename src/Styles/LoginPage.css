@@ -177,7 +177,10 @@ input {
   flex-direction: column;
   align-items: center;
 }
-
+.error-message {
+  color: rgba(249, 249, 249, 0.684); /* Change this to your desired color */
+  margin-bottom: 10px; /* Adjust this value to change the gap */
+}
 .popup button {
   margin-top: 10px;
   padding: 10px 15px;

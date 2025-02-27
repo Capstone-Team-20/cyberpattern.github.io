@@ -50,7 +50,7 @@ const LoginPage = () => {
       }
 
       if (users.length === 0) {
-        setLoginError("There is no such email registered for an account.");
+        setLoginError("We couldn't log you in. Please check your email and password and try again");
       } else {
         const user = users[0];
         if (user.password !== password) {
