@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";  // Import Supabase client
-import "../Styles/RegistrationPage.css";
+import "../Styles/Setup.css";
 import logo from "../Assets/Logo.png"; // Import the logo image
 
 // Initiatlize Supabase Client

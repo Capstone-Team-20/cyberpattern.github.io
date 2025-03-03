@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../Styles/MainMenu.css";  // Apply RegistrationPage styles
+import logo from "../Assets/Logo.png"; // Import the logo image
 
 const SkillsPage = () => {
+  const navigate = useNavigate();
   const [skills, setSkills] = useState({
     CTF: false,
     "Vulnerability Simulation": false,
@@ -27,124 +31,106 @@ const SkillsPage = () => {
       // Proceed to the next page or submit the form
       console.log("Form submitted successfully");
       setErrors({ tools: false, vms: false });
-      window.location.href = "/cyberpattern.github.io"; // Redirect to Login page
+      navigate("/cyberpattern.github.io"); // Redirect to Login page
     }
   };
 
-  const handleBackClick = () => {
-    window.location.href = "/cyberpattern.github.io/registration"; // Redirect to Registration page
-  };
 
   return (
-    <div className="registration-container">
-      <div className="registration-content">
-        <h1><u>Please Enter Your Details:</u></h1>
-        <form onSubmit={handleSubmit}>
-          <label>Which Tools Do you want to use?</label>
-          <div className="tools-section">
-            <div className="tool-option">
-              <input
-                type="checkbox"
-                name="tools"
-                value="CTF"
-                checked={skills.CTF}
-                onChange={() => setSkills({ ...skills, CTF: !skills.CTF })}
-              />
-              <span style={{ position: 'relative', top: '-7px', marginLeft: '10px' }}>CTF Challenges</span>
+    <div className="page-wrapper">  {/* Apply background style */}
+      <div className="logo-container">
+        <img src={logo} alt="Logo" />
+      </div>
+      <div className="registration-container"> {/* Consistent container */}
+        <div className="registration-content">
+          <form onSubmit={handleSubmit}>
+            <label><b>Which Tools Do you want to use?</b></label>
+            <div className="tools-section">
+              <div className="tool-option">
+                <input
+                  type="checkbox"
+                  value="CTF"
+                  checked={skills.CTF}
+                  onChange={() => setSkills({ ...skills, CTF: !skills.CTF })}
+                />
+                <span>CTF Challenges</span>
+              </div>
+              <div className="tool-option">
+                <input
+                  type="checkbox"
+                  value="Vulnerability Simulation"
+                  checked={skills["Vulnerability Simulation"]}
+                  onChange={() =>
+                    setSkills({ ...skills, "Vulnerability Simulation": !skills["Vulnerability Simulation"] })
+                  }
+                />
+                <span>Vulnerability Simulation</span>
+              </div>
+              <div className="tool-option">
+                <input
+                  type="checkbox"
+                  value="Penetration Testing"
+                  checked={skills["Penetration Testing"]}
+                  onChange={() =>
+                    setSkills({ ...skills, "Penetration Testing": !skills["Penetration Testing"] })
+                  }
+                />
+                <span>Penetration Testing</span>
+              </div>
+              {errors.tools && <p className="error-message">Please select at least one tool.</p>}
             </div>
-            <div className="tool-option">
-              <input
-                type="checkbox"
-                name="tools"
-                value="Vulnerability Simulation"
-                checked={skills["Vulnerability Simulation"]}
-                onChange={() =>
-                  setSkills({
-                    ...skills,
-                    "Vulnerability Simulation": !skills["Vulnerability Simulation"],
-                  })
-                }
-              />
-              <span style={{ position: 'relative', top: '-7px', marginLeft: '10px' }}>Vulnerability Simulation</span>
-            </div>
-            <div className="tool-option">
-              <input
-                type="checkbox"
-                name="tools"
-                value="Penetration Testing"
-                checked={skills["Penetration Testing"]}
-                onChange={() =>
-                  setSkills({
-                    ...skills,
-                    "Penetration Testing": !skills["Penetration Testing"],
-                  })
-                }
-              />
-              <span style={{ position: 'relative', top: '-7px', marginLeft: '10px' }}>Penetration Testing</span>
-            </div>
-          {errors.tools && <p style={{ color: 'red', fontSize: '14px', marginBottom: '10px' }}>Please select at least one tool.</p>}
-          </div>
-          {/* Virtual Machines */}
 
-          <label>Which Virtual Machines do you want to use?</label>
-          <div className="tools-section">
-            <div className="tool-option">
-              <input
-                type="checkbox"
-                name="tools"
-                value="Kali"
-                checked={skills.Kali}
-                onChange={() => setSkills({ ...skills, Kali: !skills.Kali })}
-              />
-              <span style={{ position: 'relative', top: '-7px', marginLeft: '10px' }}>Kali Linux</span>
+            <label><b>Which Virtual Machines do you want to use?</b></label>
+            <div className="tools-section">
+              <div className="tool-option">
+                <input
+                  type="checkbox"
+                  value="Kali"
+                  checked={skills.Kali}
+                  onChange={() => setSkills({ ...skills, Kali: !skills.Kali })}
+                />
+                <span>Kali Linux</span>
+              </div>
+              <div className="tool-option">
+                <input
+                  type="checkbox"
+                  value="Ubuntu"
+                  checked={skills.Ubuntu}
+                  onChange={() =>
+                    setSkills({ ...skills, Ubuntu: !skills.Ubuntu })
+                  }
+                />
+                <span>Ubuntu</span>
+              </div>
+              <div className="tool-option">
+                <input
+                  type="checkbox"
+                  value="SEEDS LAB"
+                  checked={skills["SEEDS LAB"]}
+                  onChange={() =>
+                    setSkills({ ...skills, "SEEDS LAB": !skills["SEEDS LAB"] })
+                  }
+                />
+                <span>SEEDS LAB</span>
+              </div>
+              {errors.vms && <p className="error-message">Please select at least one virtual machine.</p>}
             </div>
-            <div className="tool-option">
-              <input
-                type="checkbox"
-                name="tools"
-                value="Ubuntu"
-                checked={skills["Ubuntu"]}
-                onChange={() =>
-                  setSkills({
-                    ...skills,
-                    "Ubuntu": !skills["Ubuntu"],
-                  })
-                }
-              />
-              <span style={{ position: 'relative', top: '-7px', marginLeft: '10px' }}>Ubuntu</span>
-            </div>
-            <div className="tool-option">
-              <input
-                type="checkbox"
-                name="tools"
-                value="SEEDS LAB"
-                checked={skills["SEEDS LAB"]}
-                onChange={() =>
-                  setSkills({
-                    ...skills,
-                    "SEEDS LAB": !skills["SEEDS LAB"],
-                  })
-                }
-              />
-              <span style={{ position: 'relative', top: '-7px', marginLeft: '10px' }}>SEEDS LAB</span>
-            </div>
-          {errors.vms && <p style={{ color: 'red', fontSize: '14px', marginBottom: '10px' }}>Please select at least one virtual machine.</p>}
-          </div>
-          <label>What would you rate your skills?</label>
-          <input
-            type="range"
-            min="1"
-            max="9"
-            value={skills.skillLevel}
-            onChange={(e) => setSkills({ ...skills, skillLevel: e.target.value })}
-          />
-          
-          <p>Skill Level: {skills.skillLevel}</p>
-          <label>(1- Beginner, 5- Intermediate, 9- Expert)</label>
 
-          <button className="btn-primary" type="submit">SUBMIT</button>
-        </form>
-        <button className="btn-secondary" onClick={handleBackClick}>BACK</button>
+            <label><b>What would you rate your skills?</b></label>
+            <input
+              type="range"
+              min="1"
+              max="9"
+              value={skills.skillLevel}
+              onChange={(e) => setSkills({ ...skills, skillLevel: e.target.value })}
+            />
+            
+            <label><b>Skill Level: {skills.skillLevel}</b></label>
+            <label><b>(1 - Beginner, 5 - Intermediate, 9 - Expert)</b></label>
+
+            <button className="btn-secondary" type="submit"><b>SUBMIT</b></button>
+          </form>
+        </div>
       </div>
     </div>
   );
