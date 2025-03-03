@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";  // Import Supabase client
-import "../Styles/RegistrationPage.css";
+import "../Styles/Setup.css";
 import logo from "../Assets/Logo.png"; // Import the logo image
 
 // Initiatlize Supabase Client
@@ -98,17 +98,12 @@ const handleNextClick = async (e) => {
       return;
     }
 
-    // Convert email, first name, and last name to uppercase before sending to the database
-    const emailToStore = email.toUpperCase();
-    const firstNameToStore = firstName.toUpperCase();
-    const lastNameToStore = lastName.toUpperCase();
-
     try {
       // Insert Data into Supabase
       const { data, error } = await supabase
         .from('Users')
         .insert([
-          { email: emailToStore, password, firstName: firstNameToStore, lastName: lastNameToStore }
+          { email, password, firstName, lastName }
         ]);
 
       if (error) {
@@ -169,8 +164,10 @@ const handleNextClick = async (e) => {
               placeholder="First Name"
               value={firstName}
               onChange={handleFirstNameChange}
+              onInput={(e) => e.target.value = e.target.value.toUpperCase()}
               required
             />
+            {firstNameError && <p className="error-message">{firstNameError}</p>}
 
             <label>Last Name</label>
             <input
@@ -178,8 +175,11 @@ const handleNextClick = async (e) => {
               placeholder="Last Name"
               value={lastName}
               onChange={handleLastNameChange}
+              onInput={(e) => e.target.value = e.target.value.toUpperCase()}
               required
             />
+            {lastNameError && <p className="error-message">{lastNameError}</p>}
+
 
             <label>Email</label>
             <input
@@ -187,6 +187,7 @@ const handleNextClick = async (e) => {
               placeholder="Valid Email Address"
               value={email}
               onChange={handleEmailChange}
+              onInput={(e) => e.target.value = e.target.value.toUpperCase()}
               required
             />
             {emailError && <p className="error-message">{emailError}</p>}
@@ -207,12 +208,15 @@ const handleNextClick = async (e) => {
               onChange={handleVerifyPasswordChange}
               required
             />
-            {passwordMatchError && <p className="error-message">{passwordMatchError}</p>}
+            {passwordMatchError && (
+              <p className="error-message">{passwordMatchError}</p>
+            )}
 
             <label>What are you using this platform for? (Optional)</label>
             <input
               type="text"
               placeholder="e.g. Learning, Training, Fun, etc."
+              onInput={(e) => e.target.value = e.target.value.toUpperCase()}
             />
 
             <button

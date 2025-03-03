@@ -46,7 +46,7 @@ The project aims to simulate real-world scenarios where users can:
 │   ├── Styles/
 │   │   ├── LoginPage.css
 │   │   ├── MainMenu.css
-│   │   ├── RegistrationPage.css
+│   │   ├── Setup.css
 │   │   ├── Skills.css
 │   ├── App.js
 │   ├── App.css

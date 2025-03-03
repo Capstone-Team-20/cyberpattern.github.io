@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "../Styles/LoginPage.css";
-import image from "../Assets/HomePage.png";
 import { useNavigate } from "react-router-dom";
-// import supabase from "../supabaseClient.js";
+// import { createClient } from "@supabase/supabase-js";
+import "../Styles/Setup.css";  // Apply RegistrationPage styles
+import logo from "../Assets/Logo.png"; // Import the logo image
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -45,10 +45,10 @@ const ResetPassword = () => {
       return;
     }
 
+    // Uncomment when integrating Supabase password reset
     // try {
     //   const { error } = await supabase.auth.updateUser({ password });
     //   if (error) throw error;
-
     //   setShowPopup(true);
     // } catch (error) {
     //   setPasswordError("Something went wrong. Please try again later.");
@@ -66,52 +66,63 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="login-grid">
-      <div className="form-container">
-        <h2>Reset Your Password</h2>
-        <br />
-        <form>
-          <input
-            type="password"
-            placeholder="Enter new password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-          {passwordError && <p className="error-message">{passwordError}</p>}
-
-          <input
-            type="password"
-            placeholder="Confirm new password"
-            value={verifyPassword}
-            onChange={handleVerifyPasswordChange}
-            required
-          />
-          {passwordMatchError && (
-            <p className="error-message">{passwordMatchError}</p>
-          )}
-
-          <button
-            type="button"
-            className="btn-primary"
-            onClick={handleResetPassword}
-            disabled={!password || !verifyPassword || passwordError || passwordMatchError}
-          >
-            RESET PASSWORD
-          </button>
-          <button
-            type="button"
-            className="btn-secondary"
-            onClick={handleHomeClick}
-          >
-            BACK TO LOGIN
-          </button>
-        </form>
+    <div className="page-wrapper">  {/* Background styling */}
+      <div className="logo-container">
+        <img src={logo} alt="Logo" />
       </div>
-      <div className="image-container">
-        <img src={image} alt="Security illustration" />
+      <div className="registration-container"> {/* Matching container style */}
+        {/* Home Icon */}
+        <div className="home-icon" onClick={handleHomeClick}>
+          <i className="fas fa-home"></i>
+        </div>
+
+        <div className="registration-content">
+          <h1>Reset Your Password</h1>
+          <p>Enter your new password below.</p>
+          <form>
+            <label>New Password</label>
+            <input
+              type="password"
+              placeholder="Enter new password"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+            />
+            {passwordError && <p className="error-message">{passwordError}</p>}
+
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              placeholder="Confirm new password"
+              value={verifyPassword}
+              onChange={handleVerifyPasswordChange}
+              required
+            />
+            {passwordMatchError && (
+              <p className="error-message">{passwordMatchError}</p>
+            )}
+
+            <button
+              type="button"
+              className="btn-secondary"
+              onClick={handleResetPassword}
+              disabled={!password || !verifyPassword || passwordError || passwordMatchError}
+            >
+              RESET PASSWORD
+            </button>
+
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={handleHomeClick}
+            >
+              BACK TO LOGIN
+            </button>
+          </form>
+        </div>
       </div>
 
+      {/* Popup for password reset success */}
       {showPopup && (
         <div className="popup">
           <div className="popup-content">
