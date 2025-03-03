@@ -6,6 +6,8 @@ import Skills from './Components/Skills';
 import { MainMenu } from './Components/MainMenu';  // Named import
 import ForgotPassword from './Components/ForgotPassword'; 
 import ResetPassword from './Components/ResetPassword'; 
+import VMPage from './Components/VMPage';
+
 
 const basename = process.env.PUBLIC_URL || '/cyberpattern.github.io';
 
