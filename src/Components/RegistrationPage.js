@@ -4,7 +4,7 @@ import { createClient } from "@supabase/supabase-js";  // Import Supabase client
 import "../Styles/Setup.css";
 import logo from "../Assets/Logo.png"; // Import the logo image
 
-// Initiatlize Supabase Client
+// Initialize Supabase Client
 const supabaseURL = "https://kdzamdxnnnzodftvjcrh.supabase.co";
 const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkemFtZHhubm56b2RmdHZqY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc2NzA5NzIsImV4cCI6MjA1MzI0Njk3Mn0.0Ml4p6x7VDY2m5_t2ISl0aEYpEum-vD8uFL1BYxBaes";
 const supabase = createClient(supabaseURL, supabaseAnonKey);
@@ -20,6 +20,7 @@ const RegistrationPage = () => {
   const [lastNameError, setLastNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [purpose, setPurpose] = useState("");
   const [passwordMatchError, setPasswordMatchError] = useState("");
 
   const handleHomeClick = () => {
@@ -65,83 +66,61 @@ const RegistrationPage = () => {
     }
   };
 
-const handleNextClick = async (e) => {
+  const handleNextClick = async (e) => {
     e.preventDefault();
 
-    // Validate First Name
+    // Validate inputs
     if (!firstName) {
-      setFirstNameError("Please enter your first name.");
-      return;
+        setFirstNameError("Please enter your first name.");
+        return;
     }
-
-    // Validate Last Name
     if (!lastName) {
-      setLastNameError("Please enter your last name.");
-      return;
+        setLastNameError("Please enter your last name.");
+        return;
     }
-
-    // Validate Email
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
-      setEmailError("Please enter a valid email address.");
-      return;
+        setEmailError("Please enter a valid email address.");
+        return;
     }
-
-    // Validate Password
     if (password.length < 8) {
-      setPasswordError("Password must be at least 8 characters long.");
-      return;
+        setPasswordError("Password must be at least 8 characters long.");
+        return;
     }
-
-    // Check if passwords match
     if (password !== verifyPassword) {
-      setPasswordMatchError("Passwords do not match.");
-      return;
+        setPasswordMatchError("Passwords do not match.");
+        return;
     }
+
+    // Convert to uppercase ONLY for database storage (except password)
+    const formattedFirstName = firstName.toUpperCase();
+    const formattedLastName = lastName.toUpperCase();
+    const formattedEmail = email.toUpperCase();
+    const formattedPurpose = purpose.toUpperCase(); // Convert purpose to uppercase
 
     try {
-      // Insert Data into Supabase
-      const { data, error } = await supabase
-        .from('Users')
-        .insert([
-          { email, password, firstName, lastName }
-        ]);
+        const { data, error } = await supabase
+            .from('Users')
+            .insert([{ 
+                email: formattedEmail, 
+                password, 
+                firstName: formattedFirstName, 
+                lastName: formattedLastName,
+                Purpose: formattedPurpose // Store purpose in the database
+            }]);
 
-      if (error) {
-        console.error('Error inserting data:', error);
-        alert("Error signing up.");
-      } else {
-        console.log('Data inserted:', data);
-        alert("Check your email for the verification link!");
-        navigate("/"); // Redirect to login page
-      }
+        if (error) {
+            console.error('Error inserting data:', error);
+            alert("Error signing up.");
+        } else {
+            console.log('Data inserted:', data);
+            alert("Check your email for the verification link!");
+            navigate("/");
+        }
     } catch (error) {
-      console.error("Error signing up:", error.message);
-      alert(error.message);
+        console.error("Error signing up:", error.message);
+        alert(error.message);
     }
-
-    try {
-      // Create User in Skills into Supabase
-      const { data, error } = await supabase
-        .from('Skills')
-        .insert([
-          { email}
-        ]);
-
-      if (error) {
-        console.error('Error inserting data:', error);
-        alert("Error signing up.");
-      } else {
-        console.log('Data inserted:', data);
-        alert("Check your email for the verification link!");
-        navigate("/"); // Redirect to login page
-      }
-    } catch (error) {
-      console.error("Error signing up:", error.message);
-      alert(error.message);
-    }
-
-
-  };
+};
 
 
   return (
@@ -164,7 +143,6 @@ const handleNextClick = async (e) => {
               placeholder="First Name"
               value={firstName}
               onChange={handleFirstNameChange}
-              onInput={(e) => e.target.value = e.target.value.toUpperCase()}
               required
             />
             {firstNameError && <p className="error-message">{firstNameError}</p>}
@@ -175,11 +153,9 @@ const handleNextClick = async (e) => {
               placeholder="Last Name"
               value={lastName}
               onChange={handleLastNameChange}
-              onInput={(e) => e.target.value = e.target.value.toUpperCase()}
               required
             />
             {lastNameError && <p className="error-message">{lastNameError}</p>}
-
 
             <label>Email</label>
             <input
@@ -187,7 +163,6 @@ const handleNextClick = async (e) => {
               placeholder="Valid Email Address"
               value={email}
               onChange={handleEmailChange}
-              onInput={(e) => e.target.value = e.target.value.toUpperCase()}
               required
             />
             {emailError && <p className="error-message">{emailError}</p>}
@@ -216,8 +191,10 @@ const handleNextClick = async (e) => {
             <input
               type="text"
               placeholder="e.g. Learning, Training, Fun, etc."
-              onInput={(e) => e.target.value = e.target.value.toUpperCase()}
+              value={purpose}
+              onChange={(e) => setPurpose(e.target.value)}
             />
+
 
             <button
               type="button"
