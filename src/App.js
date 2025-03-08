@@ -7,6 +7,7 @@ import { MainMenu } from './Components/MainMenu';  // Named import
 import ForgotPassword from './Components/ForgotPassword'; 
 import ResetPassword from './Components/ResetPassword'; 
 import UserProfile from './User/Profile.js';
+import VMPage from './Components/VMPage';
 
 const basename = process.env.PUBLIC_URL || '/cyberpattern.github.io';
 
@@ -21,6 +22,14 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/profile" element={<UserProfile/>} />
+        <Route 
+            path="/vm-access" 
+            element={<VMPage  
+              viewOnly={false} 
+              shouldReconnect={true} 
+              password="capstone123"
+            />}
+          />
       </Routes>
     </Router>
   );

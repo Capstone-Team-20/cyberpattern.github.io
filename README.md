@@ -37,17 +37,19 @@ The project aims to simulate real-world scenarios where users can:
 ├── src/
 │   ├── Assets/
 │   │   ├── Background.jpg
-│   │   ├── HomePage.png
+│   │   ├── Logo.png
 │   ├── Components/
+│   │   ├── ForgotPassword.js
 │   │   ├── LoginPage.js
 │   │   ├── MainMenu.js
 │   │   ├── RegistrationPage.js
+│   │   ├── ResetPassword.js
 │   │   ├── Skills.js
+│   │   ├── VMPage.js
 │   ├── Styles/
 │   │   ├── LoginPage.css
 │   │   ├── MainMenu.css
 │   │   ├── Setup.css
-│   │   ├── Skills.css
 │   ├── App.js
 │   ├── App.css
 │   ├── index.js
