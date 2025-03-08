@@ -31,7 +31,7 @@ const SkillsPage = () => {
       // Proceed to the next page or submit the form
       console.log("Form submitted successfully");
       setErrors({ tools: false, vms: false });
-      navigate("/cyberpattern.github.io/UserProfile"); // Redirect to Login page
+      navigate("/mainmenu"); // Redirect to Login page
     }
   };
 
