@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Styles/MainMenu.css";  // Apply RegistrationPage styles
+import "../Styles/Skills.css";  // Apply RegistrationPage styles
 import logo from "../Assets/Logo.png"; // Import the logo image
 
 const SkillsPage = () => {
@@ -31,7 +31,7 @@ const SkillsPage = () => {
       // Proceed to the next page or submit the form
       console.log("Form submitted successfully");
       setErrors({ tools: false, vms: false });
-      navigate("/cyberpattern.github.io"); // Redirect to Login page
+      navigate("/mainmenu"); // Redirect to Login page
     }
   };
 

@@ -78,7 +78,7 @@ const ResetPassword = () => {
 
         <div className="registration-content">
           <h1>Reset Your Password</h1>
-          <p>Enter your new password below.</p>
+          <p></p>
           <form>
             <label>New Password</label>
             <input
