@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../Styles/MainMenu.css';
-import { FaHome, FaUser, FaTools, FaUserPlus } from 'react-icons/fa'; // Import icons
+import { FaHome, FaUser, FaFlask } from 'react-icons/fa'; // Import icons
 import logo from '../Assets/Logo.png'; // Import the logo
 
 export const MainMenu = () => {
@@ -23,15 +23,20 @@ export const MainMenu = () => {
                                 </NavLink>
                             </li>
                             <li>
+                                <NavLink to="/vm-access" end className={({ isActive }) => (isActive ? "active-link" : "")}>
+                                    <FaFlask className="nav-icon" /> Labs
+                                </NavLink>
+                            </li>
+                            {/* <li>
                                 <NavLink to="/skills" className={({ isActive }) => (isActive ? "active-link" : "")}>
                                     <FaTools className="nav-icon" /> Skills
                                 </NavLink>
-                            </li>
-                            <li>
+                            </li> */}
+                            {/* <li>
                                 <NavLink to="/registration" className={({ isActive }) => (isActive ? "active-link" : "")}>
                                     <FaUserPlus className="nav-icon" /> Register
                                 </NavLink>
-                            </li>
+                            </li> */}
                             <li>
                                 <NavLink to="/UserProfile" className={({ isActive }) => (isActive ? "active-link" : "")}>
                                     <FaUser className="nav-icon" /> Profile
