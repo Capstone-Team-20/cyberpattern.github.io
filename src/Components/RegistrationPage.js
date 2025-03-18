@@ -91,12 +91,6 @@ const RegistrationPage = () => {
         return;
     }
 
-    // Convert to uppercase ONLY for database storage (except password)
-    const formattedFirstName = firstName.toUpperCase();
-    const formattedLastName = lastName.toUpperCase();
-    const formattedEmail = email.toUpperCase();
-    const formattedPurpose = purpose.toUpperCase(); // Convert purpose to uppercase
-
     try {
       
         const { data, error } = await supabase.auth.signUp({
