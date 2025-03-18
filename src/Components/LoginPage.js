@@ -39,32 +39,32 @@ const LoginPage = () => {
 
   const handleSignIn = async () => {
     try {
-      const upperCaseEmail = email.toUpperCase(); // Store as uppercase
-      const { data: users, error } = await supabase
-        .from("Users")
-        .select("*")
-        .eq("email", upperCaseEmail); // Query in uppercase
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
 
-      if (error) {
-        throw new Error("Failed to fetch user data from Supabase.");
-      }
-
-      if (users.length === 0) {
-        setLoginError("We couldn't log you in. Please check your email and password and try again");
-      } else {
-        const user = users[0];
-        if (user.password !== password) {
-          setLoginError("This password is incorrect, please try again!");
-        } else {
-          setLoginError("");
-          navigate("/skills");
+        if (error) {
+            setLoginError("We couldn't log you in. Please check your email and password and try again.");
+            return;
         }
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      setLoginError("An error occurred while processing your request.");
+
+        // Ensure user exists before continuing
+        if (!data.user) {
+            setLoginError("Authentication failed. Please try again.");
+            return;
+        }
+
+        console.log("User signed in:", data.user);
+        setLoginError(""); // Clear errors on success
+        navigate("/skills"); // Redirect user after successful login
+    } 
+      catch (error) {
+        console.error("Error:", error);
+        setLoginError("An error occurred while processing your request.");
     }
-  };
+};
+
 
   const handleCreateAccount = () => {
     navigate("/registration");

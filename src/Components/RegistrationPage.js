@@ -98,15 +98,18 @@ const RegistrationPage = () => {
     const formattedPurpose = purpose.toUpperCase(); // Convert purpose to uppercase
 
     try {
-        const { data, error } = await supabase
-            .from('Users')
-            .insert([{ 
-                email: formattedEmail, 
-                password, 
-                firstName: formattedFirstName, 
-                lastName: formattedLastName,
-                Purpose: formattedPurpose // Store purpose in the database
-            }]);
+      
+        const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+              data: {
+                firstName: firstName,
+                lastName: lastName,
+                purpose: purpose
+              }
+            }
+          });
 
         if (error) {
             console.error('Error inserting data:', error);
