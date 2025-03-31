@@ -3,11 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # Replace with your default branch if different
+      - main  # Replace with your default branch if different
 
 jobs:
   deploy:
-    runs-on: ubuntu-22.04 # Explicitly specify the Ubuntu version
+    runs-on: ubuntu-22.04  # Specify the Ubuntu version
 
     steps:
     - name: Checkout code
@@ -21,14 +21,16 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Inject environment variables
+      run: |
+        echo "REACT_APP_SUPABASE_URL=${{ secrets.REACT_APP_SUPABASE_URL }}" >> $GITHUB_ENV
+        echo "REACT_APP_SUPABASE_ANON_KEY=${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}" >> $GITHUB_ENV
+
     - name: Build the site
       env:
-        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-        SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        REACT_APP_SUPABASE_URL: ${{ secrets.REACT_APP_SUPABASE_URL }}
+        REACT_APP_SUPABASE_ANON_KEY: ${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}
       run: npm run build
-
-    - name: Debug build output
-      run: ls -l ./build
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
