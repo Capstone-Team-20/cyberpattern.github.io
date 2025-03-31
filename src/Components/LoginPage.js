@@ -4,8 +4,8 @@ import image from "../Assets/Logo.png";
 import { useNavigate } from 'react-router-dom';  
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseURL = process.env.SUPABASE_URL;
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
+const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
+const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 const LoginPage = () => {
@@ -20,7 +20,7 @@ const LoginPage = () => {
 
   const handleEmailChange = (e) => {
     const emailValue = e.target.value;
-    setEmail(emailValue.toLowerCase()); // Display in lowercase
+    setEmail(emailValue.toLowerCase());
 
     if (emailValue && !emailRegex.test(emailValue)) {
       setEmailError("Please enter a valid email address.");
@@ -39,32 +39,30 @@ const LoginPage = () => {
 
   const handleSignIn = async () => {
     try {
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password
-        });
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
 
-        if (error) {
-            setLoginError("We couldn't log you in. Please check your email and password and try again.");
-            return;
-        }
+      if (error) {
+        setLoginError("We couldn't log you in. Please check your email and password and try again.");
+        return;
+      }
 
-        // Ensure user exists before continuing
-        if (!data.user) {
-            setLoginError("Authentication failed. Please try again.");
-            return;
-        }
+      if (!data.user) {
+        setLoginError("Authentication failed. Please try again.");
+        return;
+      }
 
-        console.log("User signed in:", data.user);
-        setLoginError(""); // Clear errors on success
-        navigate("/skills"); // Redirect user after successful login
+      console.log("User signed in:", data.user);
+      setLoginError(""); 
+      navigate("/skills"); 
     } 
-      catch (error) {
-        console.error("Error:", error);
-        setLoginError("An error occurred while processing your request.");
+    catch (error) {
+      console.error("Error:", error);
+      setLoginError("An error occurred while processing your request.");
     }
-};
-
+  };
 
   const handleCreateAccount = () => {
     navigate("/registration");
@@ -74,7 +72,7 @@ const LoginPage = () => {
     <div className="page-wrapper">
       <div className="login-grid">
         <div className="image-container">
-          <img src={image} alt="Company Logo" /> {/* Keep only the Logo.png */}
+          <img src={image} alt="Company Logo" />
         </div>
         <div className="form-container">
           <form>
@@ -82,7 +80,6 @@ const LoginPage = () => {
             <input
               type="email"
               id="email"
-              placeholder=""
               value={email}
               onChange={handleEmailChange}
               required
@@ -94,7 +91,6 @@ const LoginPage = () => {
               <input
                 type={passwordVisible ? "text" : "password"}
                 id="password"
-                placeholder=""
                 value={password}
                 onChange={handlePasswordChange}
                 required
@@ -104,10 +100,7 @@ const LoginPage = () => {
                 onClick={togglePasswordVisibility}
                 title={passwordVisible ? "Hide Password" : "Show Password"}
               >
-                <i
-                  className={`fas ${passwordVisible ? "fa-eye-slash" : "fa-eye"}`}
-                  aria-hidden="true"
-                ></i>
+                <i className={`fas ${passwordVisible ? "fa-eye-slash" : "fa-eye"}`}></i>
               </span>
             </div>
 
