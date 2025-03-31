@@ -22,7 +22,11 @@ jobs:
       run: npm install
 
     - name: Build the site
+      env:
+        SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
       run: npm run build
+
     - name: Debug build output
       run: ls -l ./build
 
