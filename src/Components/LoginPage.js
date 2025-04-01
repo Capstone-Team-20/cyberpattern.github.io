@@ -4,11 +4,16 @@ import image from "../Assets/Logo.png";
 import { useNavigate } from 'react-router-dom';  
 import { createClient } from "@supabase/supabase-js";
 
+// // Initialize Supabase Client
+// const supabase = createClient(
+//   process.env.REACT_APP_SUPABASE_URL, 
+//   process.env.REACT_APP_SUPABASE_ANON_KEY
+// );
+
 // Initialize Supabase Client
-const supabase = createClient(
-  process.env.REACT_APP_SUPABASE_URL, 
-  process.env.REACT_APP_SUPABASE_ANON_KEY
-);
+const supabaseURL = "https://kdzamdxnnnzodftvjcrh.supabase.co";
+const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkemFtZHhubm56b2RmdHZqY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc2NzA5NzIsImV4cCI6MjA1MzI0Njk3Mn0.0Ml4p6x7VDY2m5_t2ISl0aEYpEum-vD8uFL1BYxBaes";
+const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 const LoginPage = () => {
   const navigate = useNavigate();
