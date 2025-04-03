@@ -21,11 +21,6 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Inject environment variables
-      run: |
-        echo "REACT_APP_SUPABASE_URL=${{ secrets.REACT_APP_SUPABASE_URL }}" >> $GITHUB_ENV
-        echo "REACT_APP_SUPABASE_ANON_KEY=${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}" >> $GITHUB_ENV
-
     - name: Build the site
       env:
         REACT_APP_SUPABASE_URL: ${{ secrets.REACT_APP_SUPABASE_URL }}
