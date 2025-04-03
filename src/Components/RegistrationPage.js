@@ -4,14 +4,11 @@ import { createClient } from "@supabase/supabase-js";  // Import Supabase client
 import "../Styles/Setup.css";
 import logo from "../Assets/Logo.png"; // Import the logo image
 
-// // Initialize Supabase Client
-// const supabaseURL = process.env.SUPABASE_URL;
-// const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
-// const supabase = createClient(supabaseURL, supabaseAnonKey);
+// Access environment variables
+const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
+const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
 
 // Initialize Supabase Client
-const supabaseURL = "https://kdzamdxnnnzodftvjcrh.supabase.co";
-const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkemFtZHhubm56b2RmdHZqY3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc2NzA5NzIsImV4cCI6MjA1MzI0Njk3Mn0.0Ml4p6x7VDY2m5_t2ISl0aEYpEum-vD8uFL1BYxBaes";
 const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 const RegistrationPage = () => {
@@ -76,53 +73,53 @@ const RegistrationPage = () => {
 
     // Validate inputs
     if (!firstName) {
-        setFirstNameError("Please enter your first name.");
-        return;
+      setFirstNameError("Please enter your first name.");
+      return;
     }
     if (!lastName) {
-        setLastNameError("Please enter your last name.");
-        return;
+      setLastNameError("Please enter your last name.");
+      return;
     }
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
-        setEmailError("Please enter a valid email address.");
-        return;
+      setEmailError("Please enter a valid email address.");
+      return;
     }
     if (password.length < 8) {
-        setPasswordError("Password must be at least 8 characters long.");
-        return;
+      setPasswordError("Password must be at least 8 characters long.");
+      return;
     }
     if (password !== verifyPassword) {
-        setPasswordMatchError("Passwords do not match.");
-        return;
+      setPasswordMatchError("Passwords do not match.");
+      return;
     }
 
     try {
-      
-        const { data, error } = await supabase.auth.signUp({
-            email: email,
-            password: password,
-            options: {
-              data: {
-                firstName: firstName,
-                lastName: lastName,
-                purpose: purpose
-              }
-            }
-          });
 
-        if (error) {
-            console.error('Error inserting data:', error);
-            alert("Error signing up.");
-        } else {
-            console.log('Data inserted:', data);
-            alert("Check your email for the verification link!");
-            navigate("/");
+      const { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          data: {
+            firstName: firstName,
+            lastName: lastName,
+            purpose: purpose
+          }
         }
+      });
+
+      if (error) {
+        console.error('Error inserting data:', error);
+        alert("Error signing up.");
+      } else {
+        console.log('Data inserted:', data);
+        alert("Check your email for the verification link!");
+        navigate("/skills");
+      }
     } catch (error) {
-        console.error("Error signing up:", error.message);
-        alert(error.message);
+      console.error("Error signing up:", error.message);
+      alert(error.message);
     }
-};
+  };
 
 
   return (

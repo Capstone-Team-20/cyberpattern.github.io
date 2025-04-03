@@ -31,7 +31,7 @@ const SkillsPage = () => {
       // Proceed to the next page or submit the form
       console.log("Form submitted successfully");
       setErrors({ tools: false, vms: false });
-      navigate("/mainmenu"); // Redirect to Login page
+      navigate("/"); // Redirect to Login page
     }
   };
 
@@ -124,7 +124,7 @@ const SkillsPage = () => {
               value={skills.skillLevel}
               onChange={(e) => setSkills({ ...skills, skillLevel: e.target.value })}
             />
-            
+
             <label><b>Skill Level: {skills.skillLevel}</b></label>
             <label><b>(1 - Beginner, 5 - Intermediate, 9 - Expert)</b></label>
 

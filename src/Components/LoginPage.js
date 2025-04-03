@@ -59,7 +59,7 @@ const LoginPage = () => {
 
       console.log("User signed in:", data.user);
       setLoginError("");
-      navigate("/skills");
+      navigate("/mainmenu");
     }
     catch (error) {
       console.error("Error:", error);
