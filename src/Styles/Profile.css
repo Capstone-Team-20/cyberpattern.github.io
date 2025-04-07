@@ -26,6 +26,17 @@
     min-height: 400px;
 }
 
+/* Center the Edit Profile form */
+.profile-card form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the form content horizontally */
+    justify-content: center; /* Center the form content vertically */
+    width: 100%;
+    max-width: 500px; /* Limit the width of the form */
+    margin: 0 auto; /* Center the form horizontally */
+}
+
 .profile-card h2 {
     color: #ffffff;
     font-size: 28px;
@@ -34,9 +45,10 @@
     padding-bottom: 10px;
 }
 
+/* Profile Section Inputs */
 .profile-section {
-    margin-bottom: 25px;
-    width: 100%;
+    width: 100%; /* Ensure inputs take the full width of the form */
+    margin-bottom: 20px; /* Add spacing between sections */
 }
 
 .profile-section label {
@@ -44,6 +56,7 @@
     margin-bottom: 8px;
     font-weight: bold;
     color: #ffffff;
+    text-align: left; /* Align labels to the left */
 }
 
 .profile-section input {
@@ -63,13 +76,14 @@
     background-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Center the buttons in the Edit Profile section */
 .profile-buttons {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Center the buttons horizontally */
     align-items: center;
     text-align: center;
-    width: 100%;
-    margin-top: 20px;
+    gap: 10px; /* Add spacing between buttons */
+    margin-top: 20px; /* Add spacing above the buttons */
 }
 
 .profile-buttons button {
@@ -79,16 +93,29 @@
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Save Button */
 .save-button {
-    background-color: #ffffff;
-    color: rgb(12, 12, 12);
+    padding: 10px 40px; /* Match the padding of the Delete Account button */
+    background-color: #ffffff; /* White background for Save */
+    color: rgb(12, 12, 12); /* Black text */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .save-button:hover {
-    background-color: #43a095;
+    background-color: #43a095; /* Slightly darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+.save-button:active {
+    transform: scale(0.95); /* Slightly shrink the button when clicked */
 }
 
 .edit-button {
@@ -137,4 +164,31 @@
 
 .back-button:hover {
     background-color: #8d99a2; /* Slightly lighter grey on hover */
+}
+
+/* Delete Account Button */
+.delete-account-container {
+    margin-top: 20px; /* Add spacing from other content */
+    text-align: center; /* Center the button */
+}
+
+.delete-account-button {
+    padding: 10px 40px; /* Same padding as Save button */
+    background-color: #f44336; /* Red background for delete */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.delete-account-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+.delete-account-button:active {
+    transform: scale(0.95); /* Slightly shrink the button when clicked */
 }

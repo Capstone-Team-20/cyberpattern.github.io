@@ -223,3 +223,25 @@ main {
   .btn-secondary:hover {
     background-color: #7e7e82;
   }
+
+  /* Logout Button */
+.logout-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.logout-button {
+    padding: 10px 20px;
+    background-color: #f44336; /* Red background for logout */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}

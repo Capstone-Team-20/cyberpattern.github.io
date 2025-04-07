@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../Styles/MainMenu.css';
 import { FaHome, FaUser, FaFlask } from 'react-icons/fa'; // Import icons
 import logo from '../Assets/Logo.png'; // Import the logo
 
 export const MainMenu = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    const handleLogout = () => {
+        // Clear any user-related data (if applicable)
+        localStorage.clear(); // Example: Clear localStorage
+        navigate('/'); // Redirect to the Login Page
     };
 
     return (
@@ -16,6 +23,13 @@ export const MainMenu = () => {
             {/* Logo in the Top Left */}
             <div className="logo-container">
                 <img src={logo} alt="Logo" />
+            </div>
+
+            {/* Logout Button */}
+            <div className="logout-container">
+                <button className="logout-button" onClick={handleLogout}>
+                    Logout
+                </button>
             </div>
 
             {/* Navbar */}
