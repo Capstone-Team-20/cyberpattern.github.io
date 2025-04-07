@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Styles/LoginPage.css";
 import image from "../Assets/Logo.png";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 
 // Access environment variables
@@ -18,6 +18,7 @@ const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [loginError, setLoginError] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false); // State to toggle the hamburger menu
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -44,11 +45,13 @@ const LoginPage = () => {
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
-        password: password
+        password: password,
       });
 
       if (error) {
-        setLoginError("We couldn't log you in. Please check your email and password and try again.");
+        setLoginError(
+          "We couldn't log you in. Please check your email and password and try again."
+        );
         return;
       }
 
@@ -60,8 +63,7 @@ const LoginPage = () => {
       console.log("User signed in:", data.user);
       setLoginError("");
       navigate("/mainmenu");
-    }
-    catch (error) {
+    } catch (error) {
       console.error("Error:", error);
       setLoginError("An error occurred while processing your request.");
     }
@@ -71,8 +73,25 @@ const LoginPage = () => {
     navigate("/registration");
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen); // Toggle the menu state
+  };
+
   return (
     <div className="page-wrapper">
+      {/* Hamburger Menu */}
+      <div className="hamburger-menu">
+        <button className="hamburger-icon" onClick={toggleMenu}>
+          &#9776; {/* Unicode for hamburger icon */}
+        </button>
+        {menuOpen && (
+          <div className="menu-dropdown">
+            <button onClick={() => navigate("/about")}>About Us</button>
+            <button onClick={() => navigate("/faq")}>FAQ</button>
+          </div>
+        )}
+      </div>
+
       <div className="login-grid">
         <div className="image-container">
           <img src={image} alt="Company Logo" />
@@ -103,7 +122,11 @@ const LoginPage = () => {
                 onClick={togglePasswordVisibility}
                 title={passwordVisible ? "Hide Password" : "Show Password"}
               >
-                <i className={`fas ${passwordVisible ? "fa-eye-slash" : "fa-eye"}`}></i>
+                <i
+                  className={`fas ${
+                    passwordVisible ? "fa-eye-slash" : "fa-eye"
+                  }`}
+                ></i>
               </span>
             </div>
 

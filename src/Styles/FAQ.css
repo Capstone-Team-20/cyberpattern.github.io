@@ -1,0 +1,36 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: black; /* Set the entire screen background to black */
+  color: white; /* Set text color to white */
+  height: 100%; /* Ensure the background covers the full height */
+}
+
+.faq-container {
+  padding: 20px;
+  max-width: 100%; /* Remove width restriction */
+  margin: 0; /* Remove centering */
+  background-color: black; /* Set background to black */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  color: white; /* Set text color to white */
+}
+
+.faq-container h1 {
+  text-align: center;
+  color: white; /* White text for the heading */
+  margin-bottom: 20px;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+}
+
+.faq-item h3 {
+  color: white; /* White text for subheadings */
+  margin-bottom: 10px;
+}
+
+.faq-item p {
+  color: white; /* White text for paragraphs */
+}

@@ -10,6 +10,8 @@ import { Profile } from './User/Profile'; // Adjusted import
 import VMPage from './Components/VMPage';
 import Lab1 from './Components/Lab1'; // Import Lab1 component
 import Lab2 from './Components/Lab2'; // Import Lab2 component
+import FAQ from "./Components/FAQ"; // Import FAQ component
+import AboutUs from "./Components/AboutUs"; // Import About Us component
 
 const basename = process.env.PUBLIC_URL || '/cyberpattern.github.io';
 
@@ -24,6 +26,8 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/faq" element={<FAQ />} /> {/* Add FAQ route */}
+        <Route path="/about" element={<AboutUs />} /> {/* Add About Us route */}
         <Route 
             path="/vm-access" 
             element={<VMPage  
