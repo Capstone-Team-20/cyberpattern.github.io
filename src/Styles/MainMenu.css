@@ -67,7 +67,70 @@
     background-color: white;
     color: black;
   }
-  
+  /* Dropdown container */
+.dropdown {
+  position: relative;
+}
+
+/* Dropdown button */
+.dropdown-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 700; /* Make it bold like other links */
+  font-size: 16px; /* Match the font size of other links */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-toggle:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 100%; /* Position below the button */
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 4px;
+  padding: 10px 0;
+  list-style: none;
+  margin: 0;
+  min-width: 150px;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Show dropdown menu on hover */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Dropdown menu items */
+.dropdown-menu li {
+  padding: 5px 20px;
+}
+
+.dropdown-menu li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  display: block;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-menu li a:hover {
+  background-color: white;
+  color: black;
+}
   /* Social Media Icons */
   .social-icons {
     display: flex;
@@ -145,8 +208,8 @@ main {
   }
   
   .btn-secondary {
-    background-color: #574bff;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     border: none;
     padding: 12px;
     border-radius: 5px;
@@ -158,6 +221,27 @@ main {
   }
   
   .btn-secondary:hover {
-    background-color: #4238d9;
+    background-color: #7e7e82;
   }
-  
+
+  /* Logout Button */
+.logout-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.logout-button {
+    padding: 10px 20px;
+    background-color: #f44336; /* Red background for logout */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}

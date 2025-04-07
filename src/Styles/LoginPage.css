@@ -202,3 +202,50 @@ form {
   align-items: flex-start; /* Align form elements to the start */
   margin-top: -20px; /* Move the form elements up */
 }
+
+/* Hamburger Menu */
+.hamburger-menu {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.hamburger-icon {
+    background: none;
+    border: none;
+    font-size: 32px; /* Increase the size of the hamburger icon */
+    cursor: pointer;
+    color: white; /* Change the icon color to white */
+}
+
+.menu-dropdown {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: black; /* Set dropdown background to black */
+    border: 1px solid #333; /* Add a subtle border */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Add a darker shadow */
+    padding: 10px;
+    z-index: 1000;
+}
+
+.menu-dropdown button {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 10px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold; /* Make the text bold */
+    color: white; /* Set text color to white */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-dropdown button:hover {
+    background-color: #333; /* Slightly lighter black on hover */
+    color: #00e6e6; /* Highlight text with a teal color on hover */
+}

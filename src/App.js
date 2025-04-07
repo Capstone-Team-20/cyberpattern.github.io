@@ -6,8 +6,12 @@ import Skills from './Components/Skills';
 import { MainMenu } from './Components/MainMenu';  // Named import
 import ForgotPassword from './Components/ForgotPassword'; 
 import ResetPassword from './Components/ResetPassword'; 
-import UserProfile from './User/Profile.js';
+import { Profile } from './User/Profile'; // Adjusted import
 import VMPage from './Components/VMPage';
+import Lab1 from './Components/Lab1'; // Import Lab1 component
+import Lab2 from './Components/Lab2'; // Import Lab2 component
+import FAQ from "./Components/FAQ"; // Import FAQ component
+import AboutUs from "./Components/AboutUs"; // Import About Us component
 
 const basename = process.env.PUBLIC_URL || '/cyberpattern.github.io';
 
@@ -21,7 +25,9 @@ function App() {
         <Route path="/skills" element={<Skills />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/profile" element={<UserProfile/>} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/faq" element={<FAQ />} /> {/* Add FAQ route */}
+        <Route path="/about" element={<AboutUs />} /> {/* Add About Us route */}
         <Route 
             path="/vm-access" 
             element={<VMPage  
@@ -30,6 +36,8 @@ function App() {
               password="capstone123"
             />}
           />
+        <Route path="/lab1" element={<Lab1 />} /> {/* Add Lab1 route */}
+        <Route path="/lab2" element={<Lab2 />} /> {/* Add Lab1 route */}
       </Routes>
     </Router>
   );
