@@ -3,6 +3,14 @@ import { NavLink, useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../Styles/MainMenu.css';
 import { FaHome, FaUser, FaFlask } from 'react-icons/fa'; // Import icons
 import logo from '../Assets/Logo.png'; // Import the logo
+// import { createClient } from "@supabase/supabase-js";
+
+// // Access environment variables
+// const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
+// const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
+
+// // Initialize Supabase Client
+// const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 export const MainMenu = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { createClient } from "@supabase/supabase-js";
 import "../Styles/Setup.css";  // Apply the same styles as RegistrationPage
 import logo from "../Assets/Logo.png"; // Import the logo image
+import { createClient } from "@supabase/supabase-js";
 
 // Access environment variables
 const supabaseURL = process.env.REACT_APP_SUPABASE_URL;

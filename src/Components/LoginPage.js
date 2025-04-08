@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "../Styles/LoginPage.css";
 import image from "../Assets/Logo.png";
-import { useNavigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 
 // Access environment variables
@@ -20,6 +20,23 @@ const LoginPage = () => {
   const [loginError, setLoginError] = useState("");
   const [loading, setLoading] = useState(false); // Add loading state to manage button disabling
   const [menuOpen, setMenuOpen] = useState(false); // State to toggle the hamburger menu
+  const signInButtonRef = useRef(null); // create reference to button
+
+  // handles enter key press
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        signInButtonRef.current?.click();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -67,12 +84,6 @@ const LoginPage = () => {
         setLoading(false); // stop loading if there is no user data
         return;
       }
-
-      // if (!data.user) {
-      //   setLoginError("Authentication failed. Please try again.");
-      //   setLoading(false); // stop loading if there is no user data
-      //   return;
-      // }
 
       // Check if the user already has a Skills row
       const { data: skillsData, error: skillsError } = await supabase
@@ -183,6 +194,7 @@ const LoginPage = () => {
               type="button"
               className="btn-primary"
               onClick={handleSignIn}
+              ref={signInButtonRef}
               disabled={!email || !password || emailError}
             >
               SIGN IN

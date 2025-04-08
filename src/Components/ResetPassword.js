@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { createClient } from "@supabase/supabase-js";
 import "../Styles/Setup.css";  // Apply RegistrationPage styles
 import logo from "../Assets/Logo.png"; // Import the logo image
+// import { createClient } from "@supabase/supabase-js";
+
+// // Access environment variables
+// const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
+// const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
+
+// // Initialize Supabase Client
+// const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 const ResetPassword = () => {
   const navigate = useNavigate();

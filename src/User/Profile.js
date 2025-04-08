@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import { Link} from 'react-router-dom';
 import '../Styles/Profile.css';
+import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+// Access environment variables
+const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
 const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+// Initialize Supabase Client
+const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 export const Profile = () => {
     const [isEditing, setIsEditing] = useState(false);
@@ -13,6 +16,7 @@ export const Profile = () => {
         firstName: '',
         lastName: '',
         email: '',
+
     });
     const [originalData, setOriginalData] = useState(null);
 
