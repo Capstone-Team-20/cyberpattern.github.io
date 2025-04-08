@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import '../Styles/Profile.css';
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
@@ -15,7 +15,6 @@ export const Profile = () => {
         email: '',
     });
     const [originalData, setOriginalData] = useState(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUser = async () => {
