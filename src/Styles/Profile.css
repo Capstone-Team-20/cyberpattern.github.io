@@ -192,3 +192,55 @@
 .delete-account-button:active {
     transform: scale(0.95); /* Slightly shrink the button when clicked */
 }
+
+/* Profile Overview Clean Vertical Layout */
+.profile-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* keeps it centered in card */
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.profile-detail {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-size: 1.1rem;
+    color: #ffffff;
+    width: 300px; /* 👈 controls the entire block width */
+    margin: 6px 0;
+}
+
+.label {
+    font-weight: bold;
+    width: 70px;
+    text-align: left;
+}
+
+.value {
+    font-weight: 400;
+    color: #dddddd;
+    flex: 1;
+    text-align: left;
+}
+.cancel-button {
+    padding: 10px 40px;
+    background-color: #999;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cancel-button:hover {
+    background-color: #777;
+    transform: scale(1.05);
+}
+
+.cancel-button:active {
+    transform: scale(0.95);
+}
