@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Skills.css";  // Apply RegistrationPage styles
 import logo from "../Assets/Logo.png"; // Import the logo image
+import { createClient } from "@supabase/supabase-js";
+
+// Access environment variables
+const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
+const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
+
+// Initialize Supabase Client
+const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 const SkillsPage = () => {
   const navigate = useNavigate();
@@ -17,21 +25,53 @@ const SkillsPage = () => {
 
   const [errors, setErrors] = useState({ tools: false, vms: false });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const toolsSelected = skills.CTF || skills["Vulnerability Simulation"] || skills["Penetration Testing"];
     const vmsSelected = skills.Kali || skills.Ubuntu || skills["SEEDS LAB"];
+
+    // pull current user that is logged in
+    const { data: { user }, error } = await supabase.auth.getUser();
+
+    if (error || !user) {
+      console.error('No user is logged in or error fetching user:', error);
+      return;
+    }
+
+    // assign user ID to new userID in skills table
+    const userId = user.id
 
     if (!toolsSelected) {
       setErrors({ tools: true, vms: false });
     } else if (!vmsSelected) {
       setErrors({ tools: false, vms: true });
     } else {
-      // Proceed to the next page or submit the form
+      // insert skills into supabase Skills table, mark user as loggedin
+        const {error: insertError } = await supabase
+          .from('Skills')
+          .insert([
+          {
+            auth_userID: userId,
+            CTF: skills.CTF,
+            "Vulnerability Simulation": skills["Vulnerability Simulation"],
+            "Penetration Testing": skills["Penetration Testing"],
+            Kali: skills.Kali,
+            Ubuntu: skills.Ubuntu,
+            "SEEDS LAB": skills["SEEDS LAB"],
+            skill_level: skills.skillLevel,
+            LoggedIn: true
+          }
+        ]);
+      
+      if (insertError) {
+        console.error('Insert failed:', insertError.message);
+      } else {
+      // Proceed to the next page
       console.log("Form submitted successfully");
       setErrors({ tools: false, vms: false });
       navigate("/"); // Redirect to Login page
+      }
     }
   };
 

@@ -113,7 +113,7 @@ const RegistrationPage = () => {
       } else {
         console.log('Data inserted:', data);
         alert("Check your email for the verification link!");
-        navigate("/skills");
+        navigate("/");
       }
     } catch (error) {
       console.error("Error signing up:", error.message);

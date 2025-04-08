@@ -18,6 +18,7 @@ const LoginPage = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [loginError, setLoginError] = useState("");
+  const [loading, setLoading] = useState(false); // Add loading state to manage button disabling
   const [menuOpen, setMenuOpen] = useState(false); // State to toggle the hamburger menu
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -42,6 +43,7 @@ const LoginPage = () => {
   };
 
   const handleSignIn = async () => {
+    setLoading(true); // start loading once button is hit
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
@@ -52,20 +54,28 @@ const LoginPage = () => {
         setLoginError(
           "We couldn't log you in. Please check your email and password and try again."
         );
+        setLoading(false); // stop loading if there is an error
         return;
       }
 
       if (!data.user) {
         setLoginError("Authentication failed. Please try again.");
+        setLoading(false); // stop loading if there is no user data
         return;
       }
 
+      // if LoggedIn = false, then go to skills 
+
       console.log("User signed in:", data.user);
       setLoginError("");
-      navigate("/mainmenu");
+      setLoading(false);
+      //navigate("/mainmenu");
+      navigate("/skills");
+
     } catch (error) {
       console.error("Error:", error);
       setLoginError("An error occurred while processing your request.");
+      setLoading(false);
     }
   };
 
