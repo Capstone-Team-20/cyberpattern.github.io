@@ -58,19 +58,48 @@ const LoginPage = () => {
         return;
       }
 
-      if (!data.user) {
+      // set user variable with user data
+      const user = data.user;
+
+      // if user is empty
+      if (!user) {
         setLoginError("Authentication failed. Please try again.");
         setLoading(false); // stop loading if there is no user data
         return;
       }
 
-      // if LoggedIn = false, then go to skills 
+      // if (!data.user) {
+      //   setLoginError("Authentication failed. Please try again.");
+      //   setLoading(false); // stop loading if there is no user data
+      //   return;
+      // }
 
-      console.log("User signed in:", data.user);
-      setLoginError("");
-      setLoading(false);
-      //navigate("/mainmenu");
-      navigate("/skills");
+      // Check if the user already has a Skills row
+      const { data: skillsData, error: skillsError } = await supabase
+        .from("Skills")
+        .select("auth_userID")
+        .eq("auth_userID", user.id)
+        .maybeSingle();
+
+      if (skillsError) {
+        console.error("Error checking Skills table:", skillsError.message);
+        setLoginError("There was a problem checking your profile.");
+        return;
+      }
+
+      if (!skillsData) {
+        // no row in skills yet - go to skills page
+        console.log("User signed in:", data.user);
+        setLoginError("");
+        setLoading(false);
+        navigate("/skills");
+      } else {
+        // already set skills, go to main menu
+        console.log("User signed in:", data.user);
+        setLoginError("");
+        setLoading(false);
+        navigate("/mainmenu");
+      }
 
     } catch (error) {
       console.error("Error:", error);

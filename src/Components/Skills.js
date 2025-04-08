@@ -40,7 +40,7 @@ const SkillsPage = () => {
     }
 
     // assign user ID to new userID in skills table
-    const userId = user.id
+    const userId = user.id;
 
     if (!toolsSelected) {
       setErrors({ tools: true, vms: false });
@@ -60,7 +60,6 @@ const SkillsPage = () => {
             Ubuntu: skills.Ubuntu,
             "SEEDS LAB": skills["SEEDS LAB"],
             skill_level: skills.skillLevel,
-            LoggedIn: true
           }
         ]);
       
@@ -70,7 +69,7 @@ const SkillsPage = () => {
       // Proceed to the next page
       console.log("Form submitted successfully");
       setErrors({ tools: false, vms: false });
-      navigate("/"); // Redirect to Login page
+      navigate("/mainmenu"); // Redirect to Login page
       }
     }
   };
