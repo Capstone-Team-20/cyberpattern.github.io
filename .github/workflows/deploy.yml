@@ -25,6 +25,8 @@ jobs:
       env:
         REACT_APP_SUPABASE_URL: ${{ secrets.REACT_APP_SUPABASE_URL }}
         REACT_APP_SUPABASE_ANON_KEY: ${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}
+        REACT_APP_VM_PASSWORD: ${{ secrets.VM_PASSWORD }}
+
       run: npm run build
 
     - name: Deploy to GitHub Pages
