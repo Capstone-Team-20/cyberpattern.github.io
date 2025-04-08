@@ -14,6 +14,7 @@ import FAQ from "./Components/FAQ"; // Import FAQ component
 import AboutUs from "./Components/AboutUs"; // Import About Us component
 
 const basename = process.env.PUBLIC_URL || '/cyberpattern.github.io';
+const vmPassword = process.env.REACT_APP_VM_PASSWORD || '';
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
             element={<VMPage  
               viewOnly={false} 
               shouldReconnect={true} 
-              password="capstone123"
+              password={vmPassword}
             />}
           />
         <Route path="/lab1" element={<Lab1 />} /> {/* Add Lab1 route */}
