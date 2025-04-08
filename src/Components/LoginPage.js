@@ -197,7 +197,7 @@ const LoginPage = () => {
               ref={signInButtonRef}
               disabled={!email || !password || emailError}
             >
-              SIGN IN
+              {loading ? "Signing In..." : "SIGN IN"} {/* Display loading text or button text */}
             </button>
             <button
               type="button"
