@@ -1,22 +1,24 @@
-// VMPage.js
 import React from 'react';
 
 const VMPage = ({ viewOnly, shouldReconnect, password }) => {
-  // Construct the URL for the iframe directly
-  //const vncUrl = `http://192.168.10.141:6080/vnc.html?autoconnect=true&reconnect=${shouldReconnect}&view_only=${viewOnly}&password=${password}`;
-  const vncUrl2 = `http://72.209.113.80:443/vnc.html?autoconnect=true&reconnect=${shouldReconnect}&view_only=${viewOnly}&password=${password}`;
-  return (
-    <div>
-      <h1>Virtual Machine Access</h1>
-      <iframe 
-        src={vncUrl2}
-        title="VNC Viewer"
-        width="1024px"
-        height="768px"
-        frameBorder="0"
-      ></iframe>
-    </div>
-  );
+    const vncUrl = `http://72.209.113.80:6080/vnc.html?autoconnect=true&reconnect=${shouldReconnect}&view_only=${viewOnly}&password=${password}`;
+
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
+            <h1 style={{ textAlign: 'center', margin: '0 0 10px 0', color: 'white', fontSize: '20px' }}>
+                Virtual Machine Access
+            </h1>
+            <iframe
+                src={vncUrl}
+                title="Virtual Machine"
+                style={{
+                    flexGrow: 1,
+                    width: '100%',
+                    border: 'none',
+                }}
+            ></iframe>
+        </div>
+    );
 };
 
 export default VMPage;

@@ -1,29 +1,15 @@
-import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom'; // Import useNavigate
+import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import '../Styles/MainMenu.css';
-import { FaHome, FaUser, FaFlask } from 'react-icons/fa'; // Import icons
-import logo from '../Assets/Logo.png'; // Import the logo
-// import { createClient } from "@supabase/supabase-js";
-
-// // Access environment variables
-// const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
-// const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
-
-// // Initialize Supabase Client
-// const supabase = createClient(supabaseURL, supabaseAnonKey);
+import { FaHome, FaUser, FaFlask } from 'react-icons/fa';
+import logo from '../Assets/Logo.png';
 
 export const MainMenu = () => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const navigate = useNavigate(); // Initialize useNavigate
-
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
-    };
+    const navigate = useNavigate();
 
     const handleLogout = () => {
-        // Clear any user-related data (if applicable)
-        localStorage.clear(); // Example: Clear localStorage
-        navigate('/'); // Redirect to the Login Page
+        localStorage.clear();
+        navigate('/');
     };
 
     return (
@@ -40,28 +26,54 @@ export const MainMenu = () => {
                 </button>
             </div>
 
-            {/* Navbar */}
+            {/* Navigation Bar */}
             <header>
                 <div className="container">
                     <nav>
                         <ul>
+                            {/* Home */}
                             <li>
                                 <NavLink to="/mainmenu" end className={({ isActive }) => (isActive ? "active-link" : "")}>
                                     <FaHome className="nav-icon" /> Home
                                 </NavLink>
                             </li>
+
+                            {/* Labs Dropdown */}
                             <li className="dropdown">
-                                <button className="dropdown-toggle" onClick={toggleDropdown}>
+                                <span className="dropdown-toggle">
                                     <FaFlask className="nav-icon" /> Labs
-                                </button>
-                                {isDropdownOpen && (
-                                    <ul className="dropdown-menu">
-                                        <li><NavLink to="/Lab1">ICMP Redirect Attack</NavLink></li>
-                                        <li><NavLink to="/Lab2">Packet Sniffing & Spoofing</NavLink></li>
-                                        <li><NavLink to="/Lab3"></NavLink></li>
-                                    </ul>
-                                )}
+                                </span>
+                                <ul className="dropdown-menu">
+                                    {/* Lab Activities (Submenu) */}
+                                    <li className="dropdown nested-dropdown">
+                                        <span className="dropdown-toggle">
+                                            Lab Activities &#9656;
+                                        </span>
+                                        <ul className="dropdown-menu sub-menu">
+                                            <li>
+                                                <NavLink to="/Lab1">ICMP Redirect Attack</NavLink>
+                                            </li>
+                                            <li>
+                                                <NavLink to="/Lab2">Packet Sniffing & Spoofing</NavLink>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    {/* Direct Link to Sandbox */}
+                                    <li>
+                                        <a
+                                            href="http://72.209.113.80:6081/vnc.html"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            style={{ fontWeight: 'bold' }}
+                                        >
+                                            Sandbox
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
+
+                            {/* Profile */}
                             <li>
                                 <NavLink to="/Profile" className={({ isActive }) => (isActive ? "active-link" : "")}>
                                     <FaUser className="nav-icon" /> Profile

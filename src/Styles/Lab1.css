@@ -1,103 +1,121 @@
 .lab-container {
     display: flex;
-    flex-direction: row;
-    height: 100vh;
-    width: 100%;
+    height: 100vh; /* Full height of the viewport */
+    width: 100%; /* Full width of the viewport */
     background-color: #000000; /* Black background */
     color: white;
 }
 
 .lab-left {
-    flex: 1;
-    padding: 20px;
-    background-color: #1a1a1a;
-    overflow-y: auto;
+    flex: 3; /* 75% of the width */
+    padding: 40px;
+    background-color: #1a1a1a; /* Dark grey background for the left section */
+    overflow: hidden; /* Prevent scrolling */
+    display: flex;
+    flex-direction: column;
     border-right: 1px solid #333;
 }
 
 .lab-right {
-    flex: 1;
-    padding: 20px;
-    background-color: #000000;
-    overflow-y: auto;
-    position: relative;
+    flex: 1; /* 25% of the width */
+    padding: 40px;
+    background-color: #000000; /* Black background for the right section */
+    overflow-y: auto; /* Allow scrolling if content overflows */
+    position: relative; /* for absolutely positioned arrows */
 }
 
-/* Navigation Arrows */
+/* Arrow Buttons */
 .arrow-button {
     position: absolute;
-    top: 50%; /* Center vertically */
+    top: 50%;
     transform: translateY(-50%);
-    background: none;
+    background: rgba(0, 0, 0, 0.4);
     border: none;
     color: white;
-    font-size: 36px; /* Make the arrows large */
+    font-size: 28px;
     cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.arrow-button:disabled {
-    color: #555; /* Grey out when disabled */
-    cursor: not-allowed;
+    padding: 10px 15px;
+    border-radius: 5px;
+    z-index: 10;
 }
 
 .arrow-button:hover:not(:disabled) {
-    color: #00e6e6; /* Highlight color on hover */
+    color: #00e6e6;
+    background-color: rgba(0, 230, 230, 0.2);
+}
+
+.arrow-button:disabled {
+    color: #555;
+    cursor: not-allowed;
 }
 
 .prev-arrow {
-    left: 10px; /* Position on the left */
+    left: 10px;
 }
 
 .next-arrow {
-    right: 10px; /* Position on the right */
+    right: 10px;
+}
+
+/* Section Title and Content */
+.lab-right h2 {
+    margin-bottom: 15px;
+    color: #00e6e6;
+}
+
+.lab-right p {
+    margin-top: 20px;
+    line-height: 1.6;
+    color: #cccccc;
+    text-align: justify;
 }
 
 /* Save and Quit Buttons */
 .save-quit-buttons {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
     display: flex;
-    gap: 10px; /* Add spacing between buttons */
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
 }
 
 .save-button,
 .quit-button {
     padding: 10px 20px;
-    background-color: #4caf50; /* Green for Save */
-    color: white;
+    font-size: 14px;
     border: none;
     border-radius: 5px;
-    font-size: 14px;
+    color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+}
+
+.save-button {
+    background-color: #4caf50;
 }
 
 .quit-button {
-    background-color: #f44336; /* Red for Quit */
+    background-color: #f44336;
 }
 
 .save-button:hover {
-    background-color: #43a047; /* Darker green on hover */
+    background-color: #43a047;
 }
 
 .quit-button:hover {
-    background-color: #d32f2f; /* Darker red on hover */
+    background-color: #d32f2f;
 }
 
-.lab-right h2, .lab-left h2 {
+.lab-left h2 {
     margin-bottom: 15px;
-    color: #00e6e6; /* Highlighted text color for headings */
+    color: #00e6e6;
 }
 
-.lab-right p, .lab-left p {
+.lab-left p {
     margin-bottom: 10px;
     line-height: 1.6;
-    color: #cccccc; /* Light grey text for readability */
+    color: #cccccc;
 }
 
 .lab-right ol {
     margin-left: 20px;
-    color: #cccccc; /* Light grey text for ordered lists */
+    color: #cccccc;
 }
