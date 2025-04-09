@@ -81,6 +81,7 @@
     text-align: center;
     gap: 10px;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .profile-buttons button {
@@ -125,7 +126,7 @@
 
 .skills-button {
     display: block;
-    margin: 0 auto;
+    margin: 10px auto 0;
     padding: 12px 24px;
     border: none;
     border-radius: 10px;

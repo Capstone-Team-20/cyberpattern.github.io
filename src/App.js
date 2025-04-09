@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './Components/LoginPage';  
 import RegistrationPage from './Components/RegistrationPage';
 import Skills from './Components/Skills';
+import UpdateSkills from './User/UpdateSkills'; // Import UpdateSkills component
 import { MainMenu } from './Components/MainMenu';  // Named import
 import ForgotPassword from './Components/ForgotPassword'; 
 import ResetPassword from './Components/ResetPassword'; 
@@ -12,6 +13,7 @@ import Lab1 from './Components/Lab1'; // Import Lab1 component
 import Lab2 from './Components/Lab2'; // Import Lab2 component
 import FAQ from "./Components/FAQ"; // Import FAQ component
 import AboutUs from "./Components/AboutUs"; // Import About Us component
+
 
 const basename = process.env.PUBLIC_URL || '/cyberpattern.github.io';
 const vmPassword = process.env.REACT_APP_VM_PASSWORD || '';
@@ -24,6 +26,7 @@ function App() {
         <Route path="/registration" element={<RegistrationPage />} />
         <Route path="/mainmenu" element={<MainMenu />} />
         <Route path="/skills" element={<Skills />} />
+        <Route path="/update-skills" element={<UpdateSkills />} /> {/* Add UpdateSkills route */}
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/profile" element={<Profile />} />

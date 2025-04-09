@@ -124,24 +124,27 @@ export const Profile = () => {
 
     const handleDeleteAccount = async (e) => {
         e.preventDefault();
-        const confirmDelete = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
-        if (!confirmDelete) return;
-
+    
+        const doubleConfirm = window.confirm("⚠️ Are you sure you want to permanently delete your account? This action cannot be undone.");
+        if (!doubleConfirm) return;
+    
         try {
             const { data: { user }, error: getUserError } = await supabase.auth.getUser();
             if (getUserError || !user) throw getUserError || new Error("User not found");
-
+    
+            // Delete the user
             const { error } = await supabase.auth.admin.deleteUser(user.id);
             if (error) throw error;
-
-            alert("Account deleted successfully.");
+    
+            alert("Your account has been deleted. Thanks for being part of our platform.");
             localStorage.clear();
             window.location.href = "/";
         } catch (error) {
             console.error("Error deleting account:", error.message);
-            alert("Failed to delete account.");
+            alert("Account deletion failed. Please try again.");
         }
     };
+    
 
     return (
         <div className="profile-container">
@@ -209,6 +212,13 @@ export const Profile = () => {
                             )}
                             <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
                         </div>
+
+                        <div className="profile-section">
+                            <Link to="/update-skills">
+                                <button type="button" className="skills-button">Update Skills</button>
+                            </Link>
+                        </div>
+
 
                         <div className="delete-account-container">
                             <button type="button" className="delete-account-button" onClick={handleDeleteAccount}>
