@@ -213,11 +213,12 @@ export const Profile = () => {
                             <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
                         </div>
 
-                        <div className="profile-section">
-                            <Link to="/update-skills">
+                        <div className="profile-buttons">
+                            <Link to="/update-skills" className="unstyled-link">
                                 <button type="button" className="skills-button">Update Skills</button>
                             </Link>
                         </div>
+
 
 
                         <div className="delete-account-container">

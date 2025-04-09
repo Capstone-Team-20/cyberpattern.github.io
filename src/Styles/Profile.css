@@ -249,3 +249,9 @@
 .cancel-button:active {
     transform: scale(0.95);
 }
+
+.unstyled-link {
+    text-decoration: none;
+    display: inline-block;
+  }
+  
