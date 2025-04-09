@@ -30,26 +30,36 @@ The project aims to simulate real-world scenarios where users can:
 
 ## Directory Structure
 ```CAPSTONE_FRONTEND/
-├── .github/workflows/
-│   ├── deploy.yml
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
 ├── public/
-│   ├── index.html
+│   └── index.html
 ├── src/
 │   ├── Assets/
 │   │   ├── Background.jpg
 │   │   ├── Logo.png
 │   ├── Components/
+│   │   ├── AboutUs.js
+│   │   ├── FAQ.js
 │   │   ├── ForgotPassword.js
+│   │   ├── Lab1.js
+│   │   ├── Lab2.js
 │   │   ├── LoginPage.js
 │   │   ├── MainMenu.js
 │   │   ├── RegistrationPage.js
 │   │   ├── ResetPassword.js
 │   │   ├── Skills.js
 │   │   ├── VMPage.js
+│   ├── User/
+│   │   ├── Profile.js
+│   │   ├── UpdateSkills.js
 │   ├── Styles/
 │   │   ├── LoginPage.css
 │   │   ├── MainMenu.css
+│   │   ├── Profile.css
 │   │   ├── Setup.css
+│   │   ├── Skills.css
 │   ├── App.js
 │   ├── App.css
 │   ├── index.js
