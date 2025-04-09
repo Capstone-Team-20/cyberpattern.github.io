@@ -1,14 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../Styles/Profile.css';
 import { createClient } from "@supabase/supabase-js";
 
-// Access environment variables
 const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
 const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
-
-// Initialize Supabase Client
 const supabase = createClient(supabaseURL, supabaseAnonKey);
+
+const skillCategories = {
+    tools: ["CTF", "Vulnerability Simulation", "Penetration Testing"],
+    vms: ["Kali", "Ubuntu", "SEEDS LAB"]
+};
+
+const skillLabels = {
+    CTF: "CTF Challenges",
+    "Vulnerability Simulation": "Vulnerability Simulation",
+    "Penetration Testing": "Penetration Testing",
+    Kali: "Kali Linux",
+    Ubuntu: "Ubuntu",
+    "SEEDS LAB": "SEEDS LAB"
+};
+
+const getSkillLevelLabel = (level) => {
+    if (level <= 4) return "Beginner";
+    if (level <= 8) return "Intermediate";
+    return "Expert";
+};
 
 export const Profile = () => {
     const [isEditing, setIsEditing] = useState(false);
@@ -16,18 +33,16 @@ export const Profile = () => {
         firstName: '',
         lastName: '',
         email: '',
-
     });
     const [originalData, setOriginalData] = useState(null);
+    const [tools, setTools] = useState([]);
+    const [vms, setVMs] = useState([]);
+    const [skillLevel, setSkillLevel] = useState(null);
 
     useEffect(() => {
-        const fetchUser = async () => {
+        const fetchUserData = async () => {
             const { data: { user }, error } = await supabase.auth.getUser();
-
-            if (error || !user) {
-                console.error("Error fetching user:", error);
-                return;
-            }
+            if (error || !user) return console.error("Error fetching user:", error);
 
             const initialData = {
                 firstName: user.user_metadata?.firstName || '',
@@ -37,9 +52,23 @@ export const Profile = () => {
 
             setFormData(initialData);
             setOriginalData(initialData);
+
+            const { data: skillsData, error: skillsError } = await supabase
+                .from("Skills")
+                .select("*")
+                .eq("auth_userID", user.id)
+                .single();
+
+            if (!skillsError && skillsData) {
+                const selectedTools = skillCategories.tools.filter(key => skillsData[key]);
+                const selectedVMs = skillCategories.vms.filter(key => skillsData[key]);
+                setTools(selectedTools);
+                setVMs(selectedVMs);
+                setSkillLevel(skillsData.skill_level || null);
+            }
         };
 
-        fetchUser();
+        fetchUserData();
     }, []);
 
     const handleChange = (e) => {
@@ -47,17 +76,14 @@ export const Profile = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const isFormModified = () => {
-        return (
-            formData.firstName !== originalData?.firstName ||
-            formData.lastName !== originalData?.lastName ||
-            formData.email !== originalData?.email
-        );
-    };
+    const isFormModified = () => (
+        formData.firstName !== originalData?.firstName ||
+        formData.lastName !== originalData?.lastName ||
+        formData.email !== originalData?.email
+    );
 
     const handleSave = async (e) => {
         e.preventDefault();
-
         if (isFormModified()) {
             const confirmSave = window.confirm("Are you sure you want to save these changes?");
             if (!confirmSave) return;
@@ -67,10 +93,7 @@ export const Profile = () => {
 
         try {
             const { data: { user }, error: getUserError } = await supabase.auth.getUser();
-
-            if (getUserError || !user) {
-                throw getUserError || new Error("User not found");
-            }
+            if (getUserError || !user) throw getUserError || new Error("User not found");
 
             const { error: updateError } = await supabase.auth.updateUser({
                 email: formData.email,
@@ -80,12 +103,9 @@ export const Profile = () => {
                 },
             });
 
-            if (updateError) {
-                throw updateError;
-            }
-
+            if (updateError) throw updateError;
             alert("Profile updated! If you changed your email, check your inbox to confirm.");
-            setOriginalData(formData); // Update the reference
+            setOriginalData(formData);
         } catch (error) {
             console.error("Error updating profile:", error.message);
             alert("Failed to update profile.");
@@ -102,6 +122,30 @@ export const Profile = () => {
         setIsEditing(false);
     };
 
+    const handleDeleteAccount = async (e) => {
+        e.preventDefault();
+    
+        const doubleConfirm = window.confirm("⚠️ Are you sure you want to permanently delete your account? This action cannot be undone.");
+        if (!doubleConfirm) return;
+    
+        try {
+            const { data: { user }, error: getUserError } = await supabase.auth.getUser();
+            if (getUserError || !user) throw getUserError || new Error("User not found");
+    
+            // Delete the user
+            const { error } = await supabase.auth.admin.deleteUser(user.id);
+            if (error) throw error;
+    
+            alert("Your account has been deleted. Thanks for being part of our platform.");
+            localStorage.clear();
+            window.location.href = "/";
+        } catch (error) {
+            console.error("Error deleting account:", error.message);
+            alert("Account deletion failed. Please try again.");
+        }
+    };
+    
+
     return (
         <div className="profile-container">
             <div className="back-button-container">
@@ -114,16 +158,30 @@ export const Profile = () => {
                 {!isEditing ? (
                     <>
                         <h2>Profile Overview</h2>
-                        <div className="profile-details-container">
-                            <div className="profile-detail">
-                                <span className="label">Name:</span>
-                                <span className="value">{formData.firstName} {formData.lastName}</span>
-                            </div>
-                            <div className="profile-detail">
-                                <span className="label">Email:</span>
-                                <span className="value">{formData.email}</span>
-                            </div>
-                        </div>
+                        <table className="profile-details-table">
+                            <tbody>
+                                <tr><th>Name:</th><td>{formData.firstName} {formData.lastName}</td></tr>
+                                <tr><th>Email:</th><td>{formData.email}</td></tr>
+                                <tr>
+                                    <th>🛠️ Tools:</th>
+                                    <td>
+                                        {tools.length ? tools.map(t => <div key={t}>{skillLabels[t]}</div>) : "None selected"}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>💻 Virtual Machines:</th>
+                                    <td>
+                                        {vms.length ? vms.map(vm => <div key={vm}>{skillLabels[vm]}</div>) : "None selected"}
+                                    </td>
+                                </tr>
+                                {skillLevel !== null && (
+                                    <tr>
+                                        <th>📊 Skill Level:</th>
+                                        <td>{getSkillLevelLabel(skillLevel)} ({skillLevel})</td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
 
                         <div className="profile-buttons">
                             <button className="edit-button" onClick={() => setIsEditing(true)}>Edit Profile</button>
@@ -148,20 +206,24 @@ export const Profile = () => {
                             <input type="email" name="email" value={formData.email} onChange={handleChange} />
                         </div>
 
-                        {/* Skills section is commented out until DB table is ready */}
-                        {/*
-                        <div className="profile-section">
-                            <Link to="/skills">
-                                <button type="button" className="skills-button">Update Skills</button>
-                            </Link>
-                        </div>
-                        */}
-
                         <div className="profile-buttons">
                             {isFormModified() && (
                                 <button type="submit" className="save-button">Save</button>
                             )}
                             <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
+                        </div>
+
+                        <div className="profile-section">
+                            <Link to="/update-skills">
+                                <button type="button" className="skills-button">Update Skills</button>
+                            </Link>
+                        </div>
+
+
+                        <div className="delete-account-container">
+                            <button type="button" className="delete-account-button" onClick={handleDeleteAccount}>
+                                Delete Account
+                            </button>
                         </div>
                     </form>
                 )}

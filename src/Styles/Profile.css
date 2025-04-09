@@ -26,15 +26,14 @@
     min-height: 400px;
 }
 
-/* Center the Edit Profile form */
 .profile-card form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center the form content horizontally */
-    justify-content: center; /* Center the form content vertically */
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    max-width: 500px; /* Limit the width of the form */
-    margin: 0 auto; /* Center the form horizontally */
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .profile-card h2 {
@@ -45,10 +44,9 @@
     padding-bottom: 10px;
 }
 
-/* Profile Section Inputs */
 .profile-section {
-    width: 100%; /* Ensure inputs take the full width of the form */
-    margin-bottom: 20px; /* Add spacing between sections */
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .profile-section label {
@@ -56,7 +54,7 @@
     margin-bottom: 8px;
     font-weight: bold;
     color: #ffffff;
-    text-align: left; /* Align labels to the left */
+    text-align: left;
 }
 
 .profile-section input {
@@ -76,14 +74,14 @@
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Center the buttons in the Edit Profile section */
 .profile-buttons {
     display: flex;
-    justify-content: center; /* Center the buttons horizontally */
+    justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 10px; /* Add spacing between buttons */
-    margin-top: 20px; /* Add spacing above the buttons */
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .profile-buttons button {
@@ -96,11 +94,10 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Save Button */
 .save-button {
-    padding: 10px 40px; /* Match the padding of the Delete Account button */
-    background-color: #ffffff; /* White background for Save */
-    color: rgb(12, 12, 12); /* Black text */
+    padding: 10px 40px;
+    background-color: #ffffff;
+    color: rgb(12, 12, 12);
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -110,12 +107,12 @@
 }
 
 .save-button:hover {
-    background-color: #43a095; /* Slightly darker green on hover */
-    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    background-color: #43a095;
+    transform: scale(1.05);
 }
 
 .save-button:active {
-    transform: scale(0.95); /* Slightly shrink the button when clicked */
+    transform: scale(0.95);
 }
 
 .edit-button {
@@ -129,7 +126,7 @@
 
 .skills-button {
     display: block;
-    margin: 0 auto;
+    margin: 10px auto 0;
     padding: 12px 24px;
     border: none;
     border-radius: 10px;
@@ -146,14 +143,14 @@
 }
 
 .back-button-container {
-    position: absolute; /* Position the container absolutely */
-    top: 20px; /* Distance from the top */
-    left: 20px; /* Distance from the left */
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
 
 .back-button {
     padding: 10px 20px;
-    background-color: #32bbc0; /* Grey background */
+    background-color: #32bbc0;
     color: white;
     border: none;
     border-radius: 5px;
@@ -163,18 +160,17 @@
 }
 
 .back-button:hover {
-    background-color: #8d99a2; /* Slightly lighter grey on hover */
+    background-color: #8d99a2;
 }
 
-/* Delete Account Button */
 .delete-account-container {
-    margin-top: 20px; /* Add spacing from other content */
-    text-align: center; /* Center the button */
+    margin-top: 20px;
+    text-align: center;
 }
 
 .delete-account-button {
-    padding: 10px 40px; /* Same padding as Save button */
-    background-color: #f44336; /* Red background for delete */
+    padding: 10px 40px;
+    background-color: #f44336;
     color: white;
     border: none;
     border-radius: 5px;
@@ -185,45 +181,54 @@
 }
 
 .delete-account-button:hover {
-    background-color: #d32f2f; /* Darker red on hover */
-    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    background-color: #d32f2f;
+    transform: scale(1.05);
 }
 
 .delete-account-button:active {
-    transform: scale(0.95); /* Slightly shrink the button when clicked */
+    transform: scale(0.95);
 }
 
-/* Profile Overview Clean Vertical Layout */
 .profile-details-container {
+    margin: 20px 0;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center; /* keeps it centered in card */
     justify-content: center;
-    margin-bottom: 30px;
 }
 
-.profile-detail {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    font-size: 1.1rem;
-    color: #ffffff;
-    width: 300px; /* 👈 controls the entire block width */
-    margin: 6px 0;
+.profile-details-table {
+    width: 100%;
+    max-width: 600px;
+    border-collapse: collapse;
 }
 
-.label {
-    font-weight: bold;
-    width: 70px;
+.profile-details-table td {
+    padding: 10px 8px;
+    vertical-align: top;
     text-align: left;
-}
-
-.value {
-    font-weight: 400;
     color: #dddddd;
-    flex: 1;
-    text-align: left;
+    font-size: 1rem;
 }
+
+.profile-details-table .label {
+    font-weight: bold;
+    color: #ffffff;
+    width: 160px;
+    white-space: nowrap;
+}
+
+.profile-details-table ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.profile-details-table ul li {
+    margin-bottom: 5px;
+    color: #dddddd;
+    font-size: 1rem;
+}
+
 .cancel-button {
     padding: 10px 40px;
     background-color: #999;
