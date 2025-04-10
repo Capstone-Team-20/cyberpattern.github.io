@@ -1,36 +1,64 @@
 body, html {
   margin: 0;
   padding: 0;
-  background-color: black; /* Set the entire screen background to black */
-  color: white; /* Set text color to white */
-  height: 100%; /* Ensure the background covers the full height */
+  background-color: black;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100%;
 }
 
+.faq-wrapper {
+  min-height: 100vh;
+}
+
+/* Match header styling exactly like AboutUs */
+.faq-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 40px 0;
+}
+
+.faq-logo {
+  max-width: 200px;
+  height: auto;
+}
+
+.home-icon {
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.home-icon:hover {
+  color: #00bfff;
+}
+
+/* FAQ Content styling remains the same */
 .faq-container {
-  padding: 20px;
-  max-width: 100%; /* Remove width restriction */
-  margin: 0; /* Remove centering */
-  background-color: black; /* Set background to black */
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  color: white; /* Set text color to white */
+  padding: 40px 20px 60px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .faq-container h1 {
   text-align: center;
-  color: white; /* White text for the heading */
-  margin-bottom: 20px;
+  font-size: 2.4rem;
+  margin-bottom: 30px;
+  font-weight: bold;
 }
 
 .faq-item {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .faq-item h3 {
-  color: white; /* White text for subheadings */
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  font-size: 1.4rem;
 }
 
 .faq-item p {
-  color: white; /* White text for paragraphs */
+  font-size: 1.1rem;
+  line-height: 1.6;
 }

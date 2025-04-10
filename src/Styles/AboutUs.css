@@ -2,39 +2,81 @@
 body, html {
   margin: 0;
   padding: 0;
-  background-color: black; /* Full black background */
-  color: white; /* White text */
-  height: 100%; /* Full height */
+  background-color: black;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url('../Assets/Background.png'); /* Set the background image */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
 }
 
-/* Logo Styling */
-.logo-container {
-  text-align: center; /* Center the logo horizontally */
-  margin-top: 50px; /* Add some spacing at the top */
-}
 
-.about-us-logo {
-  max-width: 150px; /* Adjust the size of the logo */
-  height: auto; /* Maintain aspect ratio */
-}
-
-/* About Us Content */
-.about-us-container {
+/* Registration Page Styles */
+.registration-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
-  text-align: center; /* Center-align the text */
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  border-radius: 10px; /* Optional: add border radius */
+}
+
+.registration-content {
+  max-width: 600px;
+  background-color: #000000;
+  padding: 20px;
+}
+
+/* Main Content Styling */
+.about-us-container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 20px 80px;
+  text-align: center;
 }
 
 .about-us-container h1 {
-  margin-top: 20px;
-  color: white;
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .about-us-container h2 {
-  margin-top: 20px;
-  color: white;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #cccccc;
 }
 
 .about-us-container p {
-  color: white;
-  line-height: 1.6;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #dddddd;
 }
+
+.about-us-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 40px 0;
+}
+
+.about-us-logo {
+  max-width: 200px;
+  height: auto;
+}
+
+/* Home Icon Styling */
+.home-icon {
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.home-icon:hover {
+  color: #00bfff;
+}
+
+
