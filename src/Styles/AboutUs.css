@@ -12,49 +12,7 @@ body, html {
   height: 100%;
 }
 
-
-/* Registration Page Styles */
-.registration-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-  border-radius: 10px; /* Optional: add border radius */
-}
-
-.registration-content {
-  max-width: 600px;
-  background-color: #000000;
-  padding: 20px;
-}
-
-/* Main Content Styling */
-.about-us-container {
-  max-width: 800px;
-  margin: 60px auto;
-  padding: 0 20px 80px;
-  text-align: center;
-}
-
-.about-us-container h1 {
-  font-size: 2.4rem;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.about-us-container h2 {
-  font-size: 1.6rem;
-  margin-bottom: 20px;
-  color: #cccccc;
-}
-
-.about-us-container p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #dddddd;
-}
-
+/* Header Section: Logo + Home Icon */
 .about-us-header {
   display: flex;
   justify-content: space-between;
@@ -67,7 +25,6 @@ body, html {
   height: auto;
 }
 
-/* Home Icon Styling */
 .home-icon {
   font-size: 1.8rem;
   color: white;
@@ -79,4 +36,44 @@ body, html {
   color: #00bfff;
 }
 
+/* Main Content Styling */
+.about-us-content {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 30px 80px; /* Horizontal padding added */
+  text-align: left;
+}
 
+.about-us-content h1 {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.about-us-content h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #cccccc;
+}
+
+.about-us-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #dddddd;
+}
+
+/* Optional: Registration Page Carryover (if used elsewhere) */
+.registration-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  border-radius: 10px;
+}
+
+.registration-content {
+  max-width: 600px;
+  background-color: #000000;
+  padding: 20px;
+}
