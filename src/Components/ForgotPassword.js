@@ -20,7 +20,7 @@ const ForgotPassword = () => {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const handleEmailChange = (e) => {
-    const emailValue = e.target.value.toUpperCase(); // Convert to uppercase like in RegistrationPage
+    const emailValue = e.target.value; // Keep the email as entered
     setEmail(emailValue);
     if (emailValue && !emailRegex.test(emailValue)) {
       setEmailError("Please enter a valid email address.");
