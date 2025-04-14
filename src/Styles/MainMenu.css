@@ -14,39 +14,58 @@ body {
 
 /* Page container */
 .page-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto 1fr auto;
+  grid-gap: 20px;
   min-height: 100vh;
   width: 100vw;
+  padding: 40px;
+  position: relative;
   background-size: cover;
   background-position: center;
 }
 
-/* Logo area */
-.logo-container img {
-  height: auto;
-  width: 400px; /* or larger if needed */
-  max-width: 100%;
-  object-fit: contain;
-  margin-top: 10px;
+/* Logo */
+.logo-container {
+  position: absolute;
+  top: -30px;
+  left: 20px;
+  width: 18vw;
+  min-width: 250px;
+  max-width: 250px;
+  z-index: 10;
 }
 
-/* Header */
+.logo-container img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Header (Transparent Nav) */
 header {
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 1em 0;
+  background-color: transparent;
+  padding: 0.5em;
   text-align: center;
   width: 100%;
 }
-
+header.nav-bar {
+  padding: 0.5em 0 0 0;
+  margin-bottom: 0; /* important! */
+}
 header .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0px;
 }
 
 /* Navigation */
+.nav-bar {
+  grid-column: 1 / -1;
+}
+
 nav ul {
   list-style: none;
   padding: 0;
@@ -77,12 +96,11 @@ nav ul li .active-link {
   color: black;
 }
 
-/* Dropdown container */
+/* Dropdown */
 .dropdown {
   position: relative;
 }
 
-/* Dropdown toggle button */
 .dropdown-toggle {
   background: none;
   border: none;
@@ -103,7 +121,6 @@ nav ul li .active-link {
   color: black;
 }
 
-/* Main dropdown menu */
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -122,7 +139,6 @@ nav ul li .active-link {
   display: block;
 }
 
-/* Sub-dropdown (Lab Activities) */
 .nested-dropdown {
   position: relative;
 }
@@ -146,7 +162,6 @@ nav ul li .active-link {
   display: block;
 }
 
-/* Dropdown links */
 .dropdown-menu li {
   padding: 5px 20px;
 }
@@ -171,7 +186,7 @@ nav ul li .active-link {
   vertical-align: middle;
 }
 
-/* Social Icons (if any) */
+/* Social */
 .social-icons {
   display: flex;
 }
@@ -187,7 +202,29 @@ nav ul li .active-link {
   color: #574bff;
 }
 
-/* Main section content */
+/* Logout Button */
+.logout-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.logout-button {
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
+}
+
+/* Main section default */
 main {
   display: flex;
   flex-direction: column;
@@ -214,67 +251,291 @@ p {
 
 /* Footer */
 footer {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: transparent;
   color: white;
   text-align: center;
   padding: 1em 0;
-  width: 100%;
-  margin-top: auto;
+  grid-column: 1 / -1;
+  align-self: end;
 }
 
-/* Buttons */
-.btn-primary {
+/* Lab Progress Widget */
+.lab-widget {
+  grid-column: 1 / 2;
+  align-self: start;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.15); /* subtle but visible border */
+  border-radius: 16px;
+  padding: 40px 30px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 360px;
+  text-align: left;
+}
+
+
+
+.lab-widget h2 {
+  font-size: 28px;
+  color: white;
+  margin-bottom: 25px;
+}
+
+.lab-label {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #f1f1f1;
+}
+
+.lab-progress-bar {
+  background-color: #444;
+  border-radius: 14px;
+  overflow: hidden;
+  height: 36px;
+  width: 100%;
+  position: relative;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+.lab-progress-fill {
+  background: linear-gradient(to right, #00bfff, #1e90ff);
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.lab-progress-text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  line-height: 36px;
+  text-shadow: 1px 1px 3px #000;
+}
+.lab-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.lab-progress-header h2 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.lab-continue-button {
+  margin-top: 5px;
+  margin-bottom: 25px;
+  padding: 16px 28px;
+  font-size: 18px;
+  font-weight: bold;
   background-color: #215f6c;
   color: white;
   border: none;
-  padding: 12px;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-  transition: 0.3s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
 }
 
-.btn-primary:hover {
+.lab-continue-button:hover {
   background-color: #183f4c;
+  transform: scale(1.05);
 }
 
-.btn-secondary {
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  border: none;
-  padding: 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
+/* Shared widget panel style */
+.widget {
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 30px 24px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 360px;
+  color: white;
+}
+
+/* Layout positions */
+.recent-activity {
+  grid-column: 2 / 3;
+}
+
+.system-status {
+  grid-column: 3 / 4;
+}
+
+.quick-links {
+  grid-column: 4 / 5;
+}
+
+.widget h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.widget ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.widget ul li {
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.widget a {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+.widget a:hover {
+  text-decoration: underline;
+}
+
+.system-status button {
+  margin-top: 12px;
+  padding: 12px 18px;
   font-size: 16px;
   font-weight: bold;
-  transition: 0.3s;
-}
-
-.btn-secondary:hover {
-  background-color: #7e7e82;
-}
-
-/* Logout Button */
-.logout-container {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.logout-button {
-  padding: 10px 20px;
-  background-color: #f44336;
+  background-color: #215f6c;
   color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 14px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.logout-button:hover {
-  background-color: #d32f2f;
+.system-status button:hover {
+  background-color: #183f4c;
+  transform: scale(1.05);
+}
+
+.dashboard-widgets {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 24px;
+  grid-column: 1 / -1;
+  margin-top: 20px;
+}
+.lab-nav-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.next-lab-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 4px 10px;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.next-lab-btn:hover {
+  color: #4ccdf4;
+}
+
+.overview-section {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 40px;
+  padding: 0 40px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.overview-card {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 16px;
+  padding: 24px 28px;
+  flex: 1 1 420px;
+  max-width: 500px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  color: white;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.overview-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.overview-title {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  color: #00bfff;
+}
+
+.overview-card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.overview-section.vertical {
+  grid-column: 1 / -1;
+  max-width: 800px;
+  margin: 10px auto 0 auto;
+  padding: 0 20px 20px;
+}
+
+.overview-block {
+  margin-bottom: 20px;
+}
+.overview-fullwidth {
+  grid-column: 1 / -1;
+  width: 100%;
+  background: transparent;
+  padding: 40px 0 20px;
+}
+
+.overview-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px;
+  color: white;
+}
+.overview-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+.overview-wrapper p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.overview-block p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: white;
+  margin: 0;
+}
+.overview-align-left {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 40px 10px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
