@@ -38,6 +38,14 @@ export const Profile = () => {
     const [tools, setTools] = useState([]);
     const [vms, setVMs] = useState([]);
     const [skillLevel, setSkillLevel] = useState(null);
+    const [lab1Progress, setLab1Progress] = useState(0);
+    const [lab2Progress, setLab2Progress] = useState(0);
+
+    useEffect(() => {
+        // Load lab progress from localStorage
+        setLab1Progress(Number(localStorage.getItem('lab1Progress') || 0));
+        setLab2Progress(Number(localStorage.getItem('lab2Progress') || 0));
+    }, []);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -124,18 +132,17 @@ export const Profile = () => {
 
     const handleDeleteAccount = async (e) => {
         e.preventDefault();
-    
+
         const doubleConfirm = window.confirm("⚠️ Are you sure you want to permanently delete your account? This action cannot be undone.");
         if (!doubleConfirm) return;
-    
+
         try {
             const { data: { user }, error: getUserError } = await supabase.auth.getUser();
             if (getUserError || !user) throw getUserError || new Error("User not found");
-    
-            // Delete the user
+
             const { error } = await supabase.auth.admin.deleteUser(user.id);
             if (error) throw error;
-    
+
             alert("Your account has been deleted. Thanks for being part of our platform.");
             localStorage.clear();
             window.location.href = "/";
@@ -144,7 +151,6 @@ export const Profile = () => {
             alert("Account deletion failed. Please try again.");
         }
     };
-    
 
     return (
         <div className="profile-container">
@@ -180,6 +186,37 @@ export const Profile = () => {
                                         <td>{getSkillLevelLabel(skillLevel)} ({skillLevel})</td>
                                     </tr>
                                 )}
+                                <tr>
+                                <th>🧪 Lab Progress:</th>
+                                <td>
+                                    <div className="lab-progress">
+                                    {/* Lab 1 */}
+                                    <div className="lab-label">Lab 1: ICMP Redirect Attack</div>
+                                    <div className="lab-progress-bar">
+                                        <div
+                                        className="lab-progress-fill"
+                                        style={{ width: `${(lab1Progress / 7) * 100}%` }}
+                                        />
+                                        <span className="lab-progress-text">
+                                        {lab1Progress >= 7 ? '✅ Completed!' : `${Math.round((lab1Progress / 7) * 100)}%`}
+                                        </span>
+                                    </div>
+
+                                    {/* Lab 2 */}
+                                    <div className="lab-label" style={{ marginTop: '15px' }}>Lab 2: Packet Sniffing</div>
+                                    <div className="lab-progress-bar">
+                                        <div
+                                        className="lab-progress-fill"
+                                        style={{ width: `${(lab2Progress / 7) * 100}%` }}
+                                        />
+                                        <span className="lab-progress-text">
+                                        {lab2Progress >= 7 ? '✅ Completed!' : `${Math.round((lab2Progress / 7) * 100)}%`}
+                                        </span>
+                                    </div>
+                                    </div>
+                                </td>
+                                </tr>
+
                             </tbody>
                         </table>
 
@@ -218,8 +255,6 @@ export const Profile = () => {
                                 <button type="button" className="skills-button">Update Skills</button>
                             </Link>
                         </div>
-
-
 
                         <div className="delete-account-container">
                             <button type="button" className="delete-account-button" onClick={handleDeleteAccount}>
