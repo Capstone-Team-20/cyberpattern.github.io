@@ -38,7 +38,7 @@ export const MainMenu = () => {
   const lab = labs.find((l) => l.id === currentLab);
 
   return (
-    <div className="page-wrapper">
+    <div className="page-wrapper2">
       <div className="logo-container">
         <img src={logo} alt="Logo" />
       </div>
