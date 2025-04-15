@@ -119,7 +119,7 @@ You’ve learned how attackers can exploit ICMP messages to manipulate traffic r
     return (
         <div className="lab-container">
             <div className="lab-left">
-                <h2>Lab 2: Packet Sniffing and Spoofing</h2>
+                <h2>Lab 1: ICMP Redirect Attack Lab</h2>
                 <VMPage
                     viewOnly={false}
                     shouldReconnect={true}
