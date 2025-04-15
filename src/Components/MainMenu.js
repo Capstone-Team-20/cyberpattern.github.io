@@ -18,9 +18,18 @@ export const MainMenu = () => {
 
   const [activityIndex, setActivityIndex] = useState(0);
   const activities = [
-    '✅ Completed Lab 1 – 04/12/25',
-    '🕒 Continued Lab 2 – 04/13/25',
+    '✅ Completed Lab 1',
+    '🕒 Continued Lab 2 - Section 1',
     '📥 Downloaded Packet Sniffer Kit',
+    '🧪 Finished Lab 1 - Section 1',
+    '🔄 Updated First Name in Profile',
+    '🛠️ Added Skill: Penetration Testing',
+    '💻 Selected Kali Linux as preferred VM',
+    '📧 Changed Email Address',
+    '🧪 Started Lab 2 - Step 3: Launch Attack',
+    '📊 Adjusted Skill Level to Intermediate',
+    '🎯 Completed Lab 2 - Final Verification',
+    '⚙️ Updated all skill preferences'
   ];
 
   useEffect(() => {
