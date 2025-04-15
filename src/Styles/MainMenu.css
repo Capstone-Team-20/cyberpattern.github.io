@@ -287,6 +287,13 @@ nav ul li .active-link {
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease;
+
+  /* Make buttons behave like links */
+  background: none;
+  border: none;
+  outline: none;
+  font: inherit;
+  appearance: none;
 }
 
 .unstyled-link:hover {
@@ -298,14 +305,14 @@ nav ul li .active-link {
 
 .unstyled-link svg {
   transition: transform 0.3s ease;
-  vertical-align: middle; /* ⬅️ This fixes alignment */
-  font-size: 1rem;         /* optional tweak */
+  vertical-align: middle;
+  font-size: 1rem;
 }
-
 
 .unstyled-link:hover svg {
   transform: scale(1.15);
 }
+
 
 
 
@@ -479,11 +486,20 @@ footer {
 }
 
 .widget a {
-  color: #00c6ff;
+  color: white;
   text-decoration: none;
 }
 
 .widget a:hover {
+  text-decoration: underline;
+}
+
+.widget button {
+  color: white;
+  text-decoration: none;
+}
+
+.widget button:hover {
   text-decoration: underline;
 }
 

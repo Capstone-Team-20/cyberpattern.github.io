@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import '../Styles/MainMenu.css';
 import { FaHome, FaUser, FaFlask, FaArrowRight, FaBook, FaVideo, FaBug, FaGithub } from 'react-icons/fa';
@@ -12,50 +12,26 @@ export const MainMenu = () => {
   const [currentLab, setCurrentLab] = useState(1);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [bugMessage, setBugMessage] = useState('');
-
   const chatRef = useRef(null);
   const pos = useRef({ x: 0, y: 0, offsetX: 0, offsetY: 0 });
 
-  const [activityIndex, setActivityIndex] = useState(0);
-  const activities = [
+  const [visibleActivities, setVisibleActivities] = useState([]);
+
+  const allActivities = useMemo(() => [
     '✅ Completed Lab 1',
-    '🕒 Continued Lab 2 - Section 1',
+    '🕒 Continued Lab 2',
     '📥 Downloaded Packet Sniffer Kit',
     '🧪 Finished Lab 1 - Section 1',
     '🔄 Updated First Name in Profile',
     '🛠️ Added Skill: Penetration Testing',
-    '💻 Selected Kali Linux as preferred VM',
+    '💻 Selected Kali Linux as a VM',
     '📧 Changed Email Address',
-    '🧪 Started Lab 2 - Step 3: Launch Attack',
+    '🧪 Started Lab 2 - Step 3',
     '📊 Adjusted Skill Level to Intermediate',
-    '🎯 Completed Lab 2 - Final Verification',
+    '🎯 Completed Lab 2',
     '⚙️ Updated all skill preferences'
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentLab((prev) => (prev % labs.length) + 1);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActivityIndex((prev) => (prev + 1) % activities.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate('/');
-  };
-
-  const handleBugSubmit = () => {
-    alert("🐞 Thanks for your feedback:\n\n" + bugMessage);
-    setBugMessage('');
-    setIsChatOpen(false);
-  };
+  ], []);
+  
 
   const labs = [
     {
@@ -71,6 +47,41 @@ export const MainMenu = () => {
       route: '/Lab2',
     },
   ];
+
+  useEffect(() => {
+    setVisibleActivities(allActivities.slice(0, 5));
+    let pointer = 5;
+  
+    const interval = setInterval(() => {
+      setVisibleActivities(prev => {
+        const nextIndex = pointer % allActivities.length;
+        const nextVisible = [...prev.slice(1), allActivities[nextIndex]];
+        pointer++;
+        return nextVisible;
+      });
+    }, 3000);
+  
+    return () => clearInterval(interval);
+  }, [allActivities]);
+  
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentLab((prev) => (prev % labs.length) + 1);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [labs.length]);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/');
+  };
+
+  const handleBugSubmit = () => {
+    alert("🐞 Thanks for your feedback:\n\n" + bugMessage);
+    setBugMessage('');
+    setIsChatOpen(false);
+  };
 
   const startDrag = (e) => {
     const box = chatRef.current;
@@ -129,11 +140,9 @@ export const MainMenu = () => {
       <section className="overview-fullwidth">
         <div className="overview-wrapper">
           <h3 className="overview-heading">Why Cyber Pattern Labs?</h3>
-          <p>As the demand for skilled cybersecurity professionals grows, it is increasingly important for students to gain hands-on experience in ethical hacking and security practices to stand out to future employers. However, many current virtual labs and cybersecurity platforms are either too expensive or require advanced technical skills, which limits access for undergraduate students.
-          </p>
+          <p>As the demand for skilled cybersecurity professionals grows, it is increasingly important for students to gain hands-on experience in ethical hacking and security practices to stand out to future employers. However, many current virtual labs and cybersecurity platforms are either too expensive or require advanced technical skills, which limits access for undergraduate students.</p>
           <h3 className="overview-heading">Our Objective</h3>
-          <p>This project aims to address this gap by creating a cost-free, beginner-friendly penetration testing environment specifically designed for students. The platform allows users to simulate cyberattacks and defense techniques in a safe, controlled environment, enabling students to build practical, real-world experience.
-          </p>
+          <p>This project aims to address this gap by creating a cost-free, beginner-friendly penetration testing environment specifically designed for students. The platform allows users to simulate cyberattacks and defense techniques in a safe, controlled environment, enabling students to build practical, real-world experience.</p>
           <h3 className="overview-heading">Our Solution</h3>
           <p>By developing this platform, students will be better equipped to demonstrate their skills and readiness for entry-level cybersecurity roles, making them more attractive candidates to potential employers. The project focuses on providing a comprehensive introduction to essential cybersecurity concepts, including vulnerability exploitation and security best practices, intending to prepare students to excel in the cybersecurity industry.</p>
         </div>
@@ -156,7 +165,9 @@ export const MainMenu = () => {
         <div className="widget recent-activity">
           <h2>Recent Activity:</h2>
           <ul>
-            <li className="activity-fade">{activities[activityIndex]}</li>
+            {visibleActivities.map((activity, index) => (
+              <li key={index}>{activity}</li>
+            ))}
           </ul>
         </div>
 
@@ -173,9 +184,9 @@ export const MainMenu = () => {
           <h2>Resources:</h2>
           <ul>
             <li><a className="unstyled-link" href="https://seedsecuritylabs.org/labs.html" target="_blank" rel="noopener noreferrer"><FaBook /> Lab Guide PDF</a></li>
-            <li><a className="unstyled-link" href="#" onClick={(e) => { e.preventDefault(); alert("🎥 The video walkthrough feature is coming soon!"); }}><FaVideo /> Video: ICMP Walkthrough</a></li>
+            <li><button className="unstyled-link" onClick={() => alert("🎥 The video walkthrough feature is coming soon!") }><FaVideo /> Video: ICMP Walkthrough</button></li>
             <li><a className="unstyled-link" href="https://github.com/Capstone-Team-20/cyberpattern.github.io" target="_blank" rel="noopener noreferrer"><FaGithub /> GitHub Repository</a></li>
-            <li><a className="unstyled-link" href="#" onClick={(e) => { e.preventDefault(); setIsChatOpen(true); }}><FaBug /> Provide Feeback</a></li>
+            <li><button className="unstyled-link" onClick={() => setIsChatOpen(true)}><FaBug /> Provide Feedback</button></li>
           </ul>
         </div>
       </section>
@@ -184,7 +195,7 @@ export const MainMenu = () => {
         <div className="chatbox-overlay">
           <div className="chatbox-popup" ref={chatRef} style={{ position: 'fixed', top: '20%', right: '40px' }}>
             <div className="chatbox-header" onMouseDown={startDrag}>
-              <h4>🐞 Provide Feeback</h4>
+              <h4>🐞 Provide Feedback</h4>
             </div>
             <textarea rows="4" placeholder="Enter your feedback..." value={bugMessage} onChange={(e) => setBugMessage(e.target.value)} />
             <div className="chatbox-buttons">
@@ -203,3 +214,4 @@ export const MainMenu = () => {
     </div>
   );
 };
+
