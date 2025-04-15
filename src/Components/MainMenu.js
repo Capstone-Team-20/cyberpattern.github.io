@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // ⬅️ import useEffect
 import { NavLink, useNavigate } from 'react-router-dom';
 import '../Styles/MainMenu.css';
 import { FaHome, FaUser, FaFlask, FaArrowRight } from 'react-icons/fa';
@@ -34,6 +34,15 @@ export const MainMenu = () => {
   const handleNextLab = () => {
     setCurrentLab((prev) => (prev % labs.length) + 1);
   };
+
+  // ⏱️ Automatically rotate labs every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNextLab();
+    }, 5000);
+
+    return () => clearInterval(interval); // Clean up on unmount
+  }, []);
 
   const lab = labs.find((l) => l.id === currentLab);
 
@@ -97,30 +106,29 @@ export const MainMenu = () => {
       </header>
 
       <section className="overview-fullwidth">
-  <div className="overview-wrapper">
-    <h3 className="overview-heading">Why Cyber Pattern Labs?</h3>
-    <p>
-      As the demand for skilled cybersecurity professionals grows, it is increasingly important for students to gain
-      hands-on experience in ethical hacking and security practices to stand out to future employers. However, many
-      current virtual labs and cybersecurity platforms are either too expensive or require advanced technical skills,
-      which limits access for undergraduate students.
-    </p>
-    <p>
-      This project aims to address this gap by creating a cost-free, beginner-friendly penetration testing environment
-      specifically designed for students. The platform allows users to simulate cyberattacks and defense techniques in
-      a safe, controlled environment, enabling students to build practical, real-world experience.
-    </p>
-    <p>
-      By developing this platform, students will be better equipped to demonstrate their skills and readiness for
-      entry-level cybersecurity roles, making them more attractive candidates to potential employers. The project
-      focuses on providing a comprehensive introduction to essential cybersecurity concepts, including vulnerability
-      exploitation and security best practices, intending to prepare students to excel in the cybersecurity industry.
-    </p>
-  </div>
-</section>
-
-
-
+        <div className="overview-wrapper">
+          <h3 className="overview-heading">Why Cyber Pattern Labs?</h3>
+          <p>
+            As the demand for skilled cybersecurity professionals grows, it is increasingly important for students to gain
+            hands-on experience in ethical hacking and security practices to stand out to future employers. However, many
+            current virtual labs and cybersecurity platforms are either too expensive or require advanced technical skills,
+            which limits access for undergraduate students.
+          </p>
+          <h3 className="overview-heading">Our Objective</h3>
+          <p>
+            This project aims to address this gap by creating a cost-free, beginner-friendly penetration testing environment
+            specifically designed for students. The platform allows users to simulate cyberattacks and defense techniques in
+            a safe, controlled environment, enabling students to build practical, real-world experience.
+          </p>
+          <h3 className="overview-heading">Our Solution</h3>
+          <p>
+            By developing this platform, students will be better equipped to demonstrate their skills and readiness for
+            entry-level cybersecurity roles, making them more attractive candidates to potential employers. The project
+            focuses on providing a comprehensive introduction to essential cybersecurity concepts, including vulnerability
+            exploitation and security best practices, intending to prepare students to excel in the cybersecurity industry.
+          </p>
+        </div>
+      </section>
 
       <section className="dashboard-widgets">
         <div className="widget lab-widget">
@@ -151,10 +159,21 @@ export const MainMenu = () => {
 
         <div className="widget system-status">
           <h2>Sandbox Status</h2>
-          <p>🟢 Online</p>
+          <p className="status-indicator">
+          <span className="pulse-dot-online"></span> Kali : Online
+          </p>
           <button onClick={() => window.open('http://72.209.113.80:6081/vnc.html', '_blank')}>
             Launch Kali Sandbox
           </button>
+          <br></br>
+          <br></br>
+          <p className ="status-indicator">
+          <span className="pulse-dot-offline"></span> Ubuntu : Offline
+          </p>
+          <button onClick={() => window.open('http://72.209.113.80:6081/vnc.html', '_blank')}>
+            Launch Ubuntu Sandbox
+          </button>
+
         </div>
 
         <div className="widget quick-links">
