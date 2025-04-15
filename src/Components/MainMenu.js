@@ -133,7 +133,7 @@ export const MainMenu = () => {
       <section className="dashboard-widgets">
         <div className="widget lab-widget">
           <div className="lab-progress-header">
-            <h2>Lab Progress</h2>
+            <h2>Lab Progress:</h2>
             <FaArrowRight className="next-lab-btn" onClick={handleNextLab} />
           </div>
           <div className="lab-label">{lab.title}</div>
@@ -149,7 +149,7 @@ export const MainMenu = () => {
         </div>
 
         <div className="widget recent-activity">
-          <h2>Recent Activity</h2>
+          <h2>Recent Activity:</h2>
           <ul>
             <li>✅ Completed Lab 1 – 04/12/25</li>
             <li>🕒 Continued Lab 2 – 04/13/25</li>
@@ -158,7 +158,7 @@ export const MainMenu = () => {
         </div>
 
         <div className="widget system-status">
-          <h2>Sandbox Status</h2>
+          <h2>Sandbox Status:</h2>
           <p className="status-indicator">
           <span className="pulse-dot-online"></span> Kali : Online
           </p>
@@ -177,7 +177,7 @@ export const MainMenu = () => {
         </div>
 
         <div className="widget quick-links">
-          <h2>Resources</h2>
+          <h2>Resources:</h2>
           <ul>
             <li>
               <a href="#">📘 Lab Guide PDF</a>
