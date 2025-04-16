@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Styles/Setup.css";  // Apply RegistrationPage styles
-import logo from "../Assets/Logo.png"; // Import the logo image
-// import { createClient } from "@supabase/supabase-js";
+import "../Styles/Setup.css";
+import logo from "../Assets/Logo.png";
+import { createClient } from "@supabase/supabase-js";
 
-// // Access environment variables
-// const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
-// const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
-
-// // Initialize Supabase Client
-// const supabase = createClient(supabaseURL, supabaseAnonKey);
+// Supabase credentials from environment variables
+const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
+const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -19,14 +17,35 @@ const ResetPassword = () => {
   const [passwordMatchError, setPasswordMatchError] = useState("");
   const [showPopup, setShowPopup] = useState(false);
 
+  // Grabs token from URL hash (after Supabase email link)
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash.includes("access_token")) {
+      const params = new URLSearchParams(hash.substring(1));
+      const access_token = params.get("access_token");
+      const refresh_token = params.get("refresh_token");
+
+      if (access_token && refresh_token) {
+        supabase.auth.setSession({ access_token, refresh_token }).then(() => {
+          console.log("Session set successfully!");
+        });
+      } else {
+        console.log("Tokens not found.");
+      }
+    } else {
+      console.log("No access token in URL.");
+    }
+  }, []);
+
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    if (e.target.value.length < 8) {
+    const value = e.target.value;
+    setPassword(value);
+    if (value.length < 8) {
       setPasswordError("Password must be at least 8 characters long.");
     } else {
       setPasswordError("");
     }
-    if (e.target.value !== verifyPassword) {
+    if (value !== verifyPassword) {
       setPasswordMatchError("Passwords do not match.");
     } else {
       setPasswordMatchError("");
@@ -34,8 +53,9 @@ const ResetPassword = () => {
   };
 
   const handleVerifyPasswordChange = (e) => {
-    setVerifyPassword(e.target.value);
-    if (password !== e.target.value) {
+    const value = e.target.value;
+    setVerifyPassword(value);
+    if (value !== password) {
       setPasswordMatchError("Passwords do not match.");
     } else {
       setPasswordMatchError("");
@@ -52,15 +72,14 @@ const ResetPassword = () => {
       return;
     }
 
-    // Uncomment when integrating Supabase password reset
-    // try {
-    //   const { error } = await supabase.auth.updateUser({ password });
-    //   if (error) throw error;
-    //   setShowPopup(true);
-    // } catch (error) {
-    //   setPasswordError("Something went wrong. Please try again later.");
-    // }
-    setShowPopup(true);
+    try {
+      const { error } = await supabase.auth.updateUser({ password });
+      if (error) throw error;
+      setShowPopup(true);
+    } catch (error) {
+      console.error("Password reset error:", error.message);
+      setPasswordError("Something went wrong. Please try again later.");
+    }
   };
 
   const handlePopupClose = () => {
@@ -73,19 +92,17 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="page-wrapper">  {/* Background styling */}
+    <div className="page-wrapper">
       <div className="logo-container">
         <img src={logo} alt="Logo" />
       </div>
-      <div className="registration-container"> {/* Matching container style */}
-        {/* Home Icon */}
+      <div className="registration-container">
         <div className="home-icon" onClick={handleHomeClick}>
           <i className="fas fa-home"></i>
         </div>
 
         <div className="registration-content">
           <h1>Reset Your Password</h1>
-          <p></p>
           <form>
             <label>New Password</label>
             <input
@@ -113,7 +130,12 @@ const ResetPassword = () => {
               type="button"
               className="btn-secondary"
               onClick={handleResetPassword}
-              disabled={!password || !verifyPassword || passwordError || passwordMatchError}
+              disabled={
+                !password ||
+                !verifyPassword ||
+                passwordError ||
+                passwordMatchError
+              }
             >
               RESET PASSWORD
             </button>
@@ -129,7 +151,6 @@ const ResetPassword = () => {
         </div>
       </div>
 
-      {/* Popup for password reset success */}
       {showPopup && (
         <div className="popup">
           <div className="popup-content">

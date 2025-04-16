@@ -37,13 +37,16 @@ const ForgotPassword = () => {
     if (!email || emailError) return;
 
     try {
-      const { error } = await supabase.auth.resetPasswordForEmail(email);
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: "http://localhost:3000/reset-password", // ✅ your reset page route
+      });
       if (error) throw error;
       setMessage("If this email is registered, you will receive password reset instructions.");
     } catch (error) {
       setEmailError("Something went wrong. Please try again later.");
     }
   };
+
 
   return (
     <div className="page-wrapper">  {/* Apply the same wrapper style */}
