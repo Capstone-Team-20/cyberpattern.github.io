@@ -38,7 +38,7 @@ const ForgotPassword = () => {
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: "http://localhost:3000/reset-password", // ✅ your reset page route
+        redirectTo: "https://capstone-team-20.github.io/cyberpattern.github.io/reset-password" // ✅ your reset page route
       });
       if (error) throw error;
       setMessage("If this email is registered, you will receive password reset instructions.");

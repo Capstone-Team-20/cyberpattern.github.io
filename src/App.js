@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LoginPage from './Components/LoginPage';  
+import LoginPage from './Components/LoginPage';
 import RegistrationPage from './Components/RegistrationPage';
 import Skills from './Components/Skills';
 import UpdateSkills from './User/UpdateSkills'; // Import UpdateSkills component
 import { MainMenu } from './Components/MainMenu';  // Named import
-import ForgotPassword from './Components/ForgotPassword'; 
-import ResetPassword from './Components/ResetPassword'; 
+import ForgotPassword from './Components/ForgotPassword';
+import ResetPassword from './Components/ResetPassword';
 import { Profile } from './User/Profile'; // Adjusted import
 import VMPage from './Components/VMPage';
 import Lab1 from './Components/Lab1'; // Import Lab1 component
@@ -17,6 +17,13 @@ import AboutUs from "./Components/AboutUs"; // Import About Us component
 
 const basename = process.env.PUBLIC_URL || '/cyberpattern.github.io';
 const vmPassword = process.env.REACT_APP_VM_PASSWORD || '';
+
+// Check for GitHub Pages redirect
+const urlParams = new URLSearchParams(window.location.search);
+const redirect = urlParams.get('redirect');
+if (redirect) {
+  window.history.replaceState(null, "", redirect);
+}
 
 function App() {
   return (
@@ -32,14 +39,14 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/faq" element={<FAQ />} /> {/* Add FAQ route */}
         <Route path="/about" element={<AboutUs />} /> {/* Add About Us route */}
-        <Route 
-            path="/vm-access" 
-            element={<VMPage  
-              viewOnly={false} 
-              shouldReconnect={true} 
-              password={vmPassword}
-            />}
-          />
+        <Route
+          path="/vm-access"
+          element={<VMPage
+            viewOnly={false}
+            shouldReconnect={true}
+            password={vmPassword}
+          />}
+        />
         <Route path="/lab1" element={<Lab1 />} /> {/* Add Lab1 route */}
         <Route path="/lab2" element={<Lab2 />} /> {/* Add Lab1 route */}
       </Routes>
