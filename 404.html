@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page Not Found</title>
-    <script type="text/javascript">
-      // Redirect to the root so React Router can handle the routing
-      setTimeout(function() {
-        window.location.replace("/cyberpattern.github.io");
-      }, 0);
-    </script>
-  </head>
-  <body>
-    <p>Page not found. Redirecting...</p>
-  </body>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // Extract the path and redirect to index.html with it as a query param
+    const redirectPath = location.pathname + location.search + location.hash;
+    window.location.replace("/cyberpattern.github.io?redirect=" + encodeURIComponent(redirectPath));
+  </script>
+</head>
+
+<body>
+  Redirecting...
+</body>
+
 </html>
