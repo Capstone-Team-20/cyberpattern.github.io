@@ -349,6 +349,16 @@ p {
   color: white;
 }
 
+span.video-title {
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  padding: 10px 0;
+}
+
+
 /* Footer */
 footer {
   background-color: transparent;

@@ -15,8 +15,16 @@ export const MainMenu = () => {
 
   const lab1Progress = Number(localStorage.getItem('lab1Progress') || 0);
   const lab2Progress = Number(localStorage.getItem('lab2Progress') || 0);
+  const videoRef = useRef(null);
+  const labVideoRef = useRef(null);
+
+  const [videoSize, setVideoSize] = useState({ width: 580, height: 360 });
+  const videoPos = useRef({ offsetX: 0, offsetY: 0 });
+
   const [currentLab, setCurrentLab] = useState(1);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+
   const [bugMessage, setBugMessage] = useState('');
   const chatRef = useRef(null);
   const pos = useRef({ x: 0, y: 0, offsetX: 0, offsetY: 0 });
@@ -83,6 +91,15 @@ export const MainMenu = () => {
     navigate('/');
   };
 
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') setShowVideo(false);
+    };
+    document.addEventListener('keydown', handleEsc);
+    return () => document.removeEventListener('keydown', handleEsc);
+  }, []);
+  
+
   const handleBugSubmit = async () => {
     const { error } = await supabase.from('Feedback').insert([
       {
@@ -125,6 +142,48 @@ export const MainMenu = () => {
     document.removeEventListener('mouseup', stopDrag);
   };
 
+  const startVideoDrag = (e) => {
+    const box = videoRef.current;
+    videoPos.current.offsetX = e.clientX - box.getBoundingClientRect().left;
+    videoPos.current.offsetY = e.clientY - box.getBoundingClientRect().top;
+    document.addEventListener('mousemove', dragVideo);
+    document.addEventListener('mouseup', stopVideoDrag);
+  };
+  
+  const dragVideo = (e) => {
+    const box = videoRef.current;
+    const x = e.clientX - videoPos.current.offsetX;
+    const y = e.clientY - videoPos.current.offsetY;
+    box.style.left = `${x}px`;
+    box.style.top = `${y}px`;
+  };
+  
+  const stopVideoDrag = () => {
+    document.removeEventListener('mousemove', dragVideo);
+    document.removeEventListener('mouseup', stopVideoDrag);
+  };
+  
+  const startResize = (e) => {
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const startWidth = videoSize.width;
+    const startHeight = videoSize.height;
+  
+    const doResize = (moveEvent) => {
+      const newWidth = Math.max(300, startWidth + moveEvent.clientX - startX);
+      const newHeight = Math.max(200, startHeight + moveEvent.clientY - startY);
+      setVideoSize({ width: newWidth, height: newHeight });
+    };
+  
+    const stopResize = () => {
+      document.removeEventListener('mousemove', doResize);
+      document.removeEventListener('mouseup', stopResize);
+    };
+  
+    document.addEventListener('mousemove', doResize);
+    document.addEventListener('mouseup', stopResize);
+  };
+  
   const lab = labs.find((l) => l.id === currentLab);
 
   return (
@@ -205,7 +264,7 @@ export const MainMenu = () => {
           <h2>Resources:</h2>
           <ul>
             <li><a className="unstyled-link" href="https://seedsecuritylabs.org/Labs_20.04/" target="_blank" rel="noopener noreferrer"><FaBook /> Lab Guide PDF</a></li>
-            <li><button className="unstyled-link" onClick={() => alert("🎥 The video walkthrough feature is coming soon!") }><FaVideo /> Video: ICMP Walkthrough</button></li>
+            <li><button className="unstyled-link" onClick={() => setShowVideo(true)}><FaVideo /> Video: ICMP Walkthrough</button></li>
             <li><a className="unstyled-link" href="https://github.com/Capstone-Team-20/cyberpattern.github.io" target="_blank" rel="noopener noreferrer"><FaGithub /> GitHub Repository</a></li>
             <li><button className="unstyled-link" onClick={() => setIsChatOpen(true)}><FaBug /> Provide Feedback</button></li>
           </ul>
@@ -226,6 +285,91 @@ export const MainMenu = () => {
           </div>
         </div>
       )}
+      
+      {showVideo && (
+  <div className="chatbox-overlay">
+    <div
+      ref={videoRef}
+      className="chatbox-popup"
+      style={{
+        width: `${videoSize.width}px`,
+        height: `${videoSize.height}px`,
+        backgroundColor: 'rgba(0, 0, 0, 0.65)',
+        backdropFilter: 'blur(12px)',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.8)',
+        borderRadius: '16px',
+        position: 'fixed',
+        top: '20%',
+        left: `calc(50% - ${videoSize.width / 2}px)`,
+        zIndex: 1002,
+        color: 'white',
+        overflow: 'hidden',
+        resize: 'none'
+      }}
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div
+        className="chatbox-header"
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '10px 16px',
+          fontWeight: 'bold',
+          background: 'rgba(255, 255, 255, 0.05)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+          cursor: 'move'
+        }}
+        onMouseDown={startVideoDrag}
+      >
+        <span className="video-title">🎥 Lab 1 Walkthrough</span>
+          <button
+          onClick={() => setShowVideo(false)}
+          style={{
+            color: 'white',
+            background: 'none',
+            border: 'none',
+            fontSize: '20px',
+            cursor: 'pointer',
+            transition: 'color 0.2s'
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.color = '#00bfff')}
+          onMouseOut={(e) => (e.currentTarget.style.color = 'white')}
+        >
+          ✖
+        </button>
+      </div>
+      <video
+        ref={labVideoRef}
+        width="100%"
+        height="85%"
+        controls
+        onEnterPictureInPicture={() => setShowVideo(false)}
+        onLeavePictureInPicture={() => setShowVideo(true)}
+        style={{ borderRadius: '0 0 16px 16px' }}
+      >
+        <source src={require('../Assets/LabWalkthrough1.mp4')} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <div
+        style={{
+          width: '20px',
+          height: '20px',
+          backgroundColor: 'transparent',
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          cursor: 'nwse-resize'
+        }}
+        onMouseDown={startResize}
+      />
+    </div>
+  </div>
+)}
+
+
 
       <footer>
         <div className="container">
