@@ -2,11 +2,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-image: url('../Assets/Background.png'); /* Set the background image */
-  background-size: cover; /* Ensure the background covers the entire page */
-  background-position: center; /* Center the background image */
+  min-height: 100vh; /* ✅ allows the page to grow if content exceeds viewport */
+
+  /* 🌌 Background settings */
+  background-image: url('../Assets/Background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* ✅ keeps background fixed while scrolling */
 }
+
+
 
 .platform-title {
   font-size: 1.8rem;

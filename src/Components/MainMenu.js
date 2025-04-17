@@ -3,6 +3,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import '../Styles/MainMenu.css';
 import { FaHome, FaUser, FaFlask, FaArrowRight, FaBook, FaVideo, FaBug, FaGithub } from 'react-icons/fa';
 import logo from '../Assets/Logo.png';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseURL = process.env.REACT_APP_SUPABASE_URL;
+const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseURL, supabaseAnonKey);
+
 
 export const MainMenu = () => {
   const navigate = useNavigate();
@@ -77,11 +83,26 @@ export const MainMenu = () => {
     navigate('/');
   };
 
-  const handleBugSubmit = () => {
-    alert("🐞 Thanks for your feedback:\n\n" + bugMessage);
-    setBugMessage('');
-    setIsChatOpen(false);
+  const handleBugSubmit = async () => {
+    const { error } = await supabase.from('Feedback').insert([
+      {
+        Feedback: bugMessage,
+        created_at: new Date().toISOString()
+      }
+    ]);
+  
+    if (error) {
+      console.error("Supabase insert error:", error);
+      alert("Failed to submit feedback.");
+    } else {
+      alert("🐞 Thanks for your feedback!");
+      setBugMessage('');
+      setIsChatOpen(false);
+    }
   };
+  
+  
+  
 
   const startDrag = (e) => {
     const box = chatRef.current;
@@ -183,7 +204,7 @@ export const MainMenu = () => {
         <div className="widget quick-links">
           <h2>Resources:</h2>
           <ul>
-            <li><a className="unstyled-link" href="https://seedsecuritylabs.org/labs.html" target="_blank" rel="noopener noreferrer"><FaBook /> Lab Guide PDF</a></li>
+            <li><a className="unstyled-link" href="https://seedsecuritylabs.org/Labs_20.04/" target="_blank" rel="noopener noreferrer"><FaBook /> Lab Guide PDF</a></li>
             <li><button className="unstyled-link" onClick={() => alert("🎥 The video walkthrough feature is coming soon!") }><FaVideo /> Video: ICMP Walkthrough</button></li>
             <li><a className="unstyled-link" href="https://github.com/Capstone-Team-20/cyberpattern.github.io" target="_blank" rel="noopener noreferrer"><FaGithub /> GitHub Repository</a></li>
             <li><button className="unstyled-link" onClick={() => setIsChatOpen(true)}><FaBug /> Provide Feedback</button></li>

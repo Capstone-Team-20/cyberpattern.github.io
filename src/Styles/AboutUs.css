@@ -2,15 +2,21 @@
 body, html {
   margin: 0;
   padding: 0;
-  background-color: black;
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-image: url('../Assets/Background.png'); /* Set the background image */
+
+  /* 🌌 Background settings */
+  background-color: black;
+  background-image: url('../Assets/Background.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100%;
+  background-attachment: fixed; /* ✅ Keeps the background in place while scrolling */
+
+  min-height: 100vh; /* ✅ Allows the background to grow with the content */
+  width: 100%;
 }
+
 
 /* Header Section: Logo + Home Icon */
 .about-us-header {
