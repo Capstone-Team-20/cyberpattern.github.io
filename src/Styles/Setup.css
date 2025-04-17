@@ -7,15 +7,22 @@
 /* Page wrapper to fill the entire viewport */
 .page-wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+
+  min-height: 100vh; /* Allows scrolling when content overflows */
   width: 100vw;
-  background-image: url('../Assets/Background.png'); /* Set the background image */
-  background-size: cover; /* Ensure the background covers the entire page */
-  background-position: center; /* Center the background image */
-  position: relative; /* Ensure the logo can be positioned absolutely */
+
+  background-image: url('../Assets/Background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Keeps background fixed during scroll */
+
+  position: relative; /* Enables absolute positioning for inner elements like logo */
 }
+
 
 .logo-container {
   position: absolute;

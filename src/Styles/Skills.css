@@ -10,15 +10,22 @@
   /* Page wrapper to fill the entire viewport */
   .page-wrapper {
     display: flex;
+    flex-direction: column; /* Ensures vertical stacking */
     justify-content: center;
     align-items: center;
-    height: 100vh;
+  
+    min-height: 100vh; /* Allows the content to grow vertically */
     width: 100vw;
-    background-image: url('../Assets/Background.png'); /* Set the background image */
-    background-size: cover; /* Ensure the background covers the entire page */
-    background-position: center; /* Center the background image */
-    position: relative; /* Ensure the logo can be positioned absolutely */
+  
+    background-image: url('../Assets/Background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Keeps background in place when scrolling */
+  
+    position: relative;
   }
+  
   
   .logo-container {
     position: absolute;

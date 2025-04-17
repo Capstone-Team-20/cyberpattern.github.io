@@ -6,9 +6,13 @@
     padding: 40px 20px;
     width: 100%;
     min-height: 100vh;
+  
+    /* 🌌 Background settings */
     background: url('../Assets/Background.png') no-repeat center center;
     background-size: cover;
-}
+    background-attachment: fixed; /* Keeps background in place while scrolling */
+  }
+  
 
 .profile-card {
     display: flex;

@@ -18,13 +18,19 @@ body {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto 1fr auto;
   grid-gap: 20px;
-  min-height: 100vh;
+  min-height: 100vh; /* ✅ allows scrolling while keeping background */
   width: 100vw;
   padding: 40px;
   position: relative;
+
+  /* ✅ Background styling */
+  background-image: url('../Assets/Background.png');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Optional: makes background stay in place */
 }
+
 
 /* Logo */
 .logo-container {
@@ -526,7 +532,6 @@ footer {
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 24px;
   grid-column: 1 / -1;
-  margin-top: 20px;
 }
 .lab-nav-btn-container {
   display: flex;
