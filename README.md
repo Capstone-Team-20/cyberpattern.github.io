@@ -122,9 +122,9 @@ To run this project locally, follow these steps:
 -------------------------------------
 |  Full Name       | Github Username |  Team|
 |------------------|-----------------| -----------------|
+|Charles Poolman   |   [ProfessorKnicks](https://github.com/professorknicks) | Team Lead / Database & Backend Development |
 |Nadine Filat      |   [nadinefilat](https://github.com/nadinefilat)     |Frontend & User Interface |
 |Pranav Mahesh     |   [pmahesh29](https://github.com/pmahesh29)         |Frontend & User Interface |
-|Charles Poolman   |   [ProfessorKnicks](https://github.com/professorknicks) | Database & Backend Development |
 |Tessa Kapellar    |   [tessakapeller](https://github.com/tessakapeller)|Database & Backend Development |
 |Tyler Cash        |   [Tcash1990](https://github.com/Tcash1990)         | Infrastructure and DevOps |
 |Adel Barbaravi    |   [Adel-Barbarawi](https://github.com/Adel-Barbarawi) | Infrastructure and DevOps |
