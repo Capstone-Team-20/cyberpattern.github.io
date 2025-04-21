@@ -33,12 +33,20 @@ The project aims to simulate real-world scenarios where users can:
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml
+├── build/
+│   ├── asset-manifest.json
+│   └── index.html
 ├── public/
+│   ├── 404.html
 │   └── index.html
 ├── src/
 │   ├── Assets/
-│   │   ├── Background.jpg
-│   │   ├── Logo.png
+│   │   ├── Background.png
+│   │   ├── Background1.png
+│   │   ├── dummy.png
+│   │   ├── HomePage.png
+│   │   ├── LabWalkthrough1.mp4
+│   │   └── Logo.png
 │   ├── Components/
 │   │   ├── AboutUs.js
 │   │   ├── FAQ.js
@@ -50,20 +58,27 @@ The project aims to simulate real-world scenarios where users can:
 │   │   ├── RegistrationPage.js
 │   │   ├── ResetPassword.js
 │   │   ├── Skills.js
-│   │   ├── VMPage.js
-│   ├── User/
-│   │   ├── Profile.js
-│   │   ├── UpdateSkills.js
+│   │   └── VMPage.js
 │   ├── Styles/
+│   │   ├── AboutUs.css
+│   │   ├── FAQ.css
+│   │   ├── Feedback.css
+│   │   ├── Lab1.css
+│   │   ├── Lab2.css
 │   │   ├── LoginPage.css
 │   │   ├── MainMenu.css
 │   │   ├── Profile.css
 │   │   ├── Setup.css
-│   │   ├── Skills.css
-│   ├── App.js
+│   │   └── Skills.css
+│   └── User/
+│       ├── FeedbackChatbox.js
+│       ├── Profile.js
+│       └── UpdateSkills.js
 │   ├── App.css
-│   ├── index.js
+│   ├── App.js
 │   ├── index.css
+│   ├── index.js
+├── .env
 ├── .gitignore
 ├── package.json
 ├── package-lock.json
