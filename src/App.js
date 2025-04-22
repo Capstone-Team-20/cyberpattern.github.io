@@ -13,6 +13,7 @@ import Lab1 from './Components/Lab1'; // Import Lab1 component
 import Lab2 from './Components/Lab2'; // Import Lab2 component
 import FAQ from "./Components/FAQ"; // Import FAQ component
 import AboutUs from "./Components/AboutUs"; // Import About Us component
+import Sandbox from './Components/Sandbox';
 
 
 const basename = process.env.PUBLIC_URL || '/cyberpattern.github.io';
@@ -49,6 +50,7 @@ function App() {
         />
         <Route path="/lab1" element={<Lab1 />} /> {/* Add Lab1 route */}
         <Route path="/lab2" element={<Lab2 />} /> {/* Add Lab1 route */}
+        <Route path="/sandbox" element={<Sandbox />} /> {/* Add Sandbox route */}
       </Routes>
     </Router>
   );

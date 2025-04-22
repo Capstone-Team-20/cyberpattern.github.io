@@ -208,7 +208,8 @@ export const MainMenu = () => {
                       <li><NavLink to="/Lab2">Packet Sniffing & Spoofing</NavLink></li>
                     </ul>
                   </li>
-                  <li><a href="http://72.209.113.80:6081/vnc.html" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 'bold' }}>Sandbox</a></li>
+                  <li><NavLink to="/Sandbox"> Sandbox </NavLink> </li>
+                  {/* <li><a href="http://72.209.113.80:6081/vnc.html" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 'bold' }}>Sandbox</a></li> */}
                 </ul>
               </li>
               <li><NavLink to="/Profile" className={({ isActive }) => (isActive ? 'active-link' : '')}><FaUser className="nav-icon" /> Profile</NavLink></li>
@@ -254,7 +255,8 @@ export const MainMenu = () => {
         <div className="widget system-status">
           <h2>Sandbox Status:</h2>
           <p className="status-indicator"><span className="pulse-dot-online"></span> Kali : Online</p>
-          <button onClick={() => window.open('http://72.209.113.80:6081/vnc.html', '_blank')}>Launch Kali Sandbox</button>
+          <NavLink to= "/Sandbox" className="unstyled-link"><button>Launch Kali Sandbox</button></NavLink>
+          {/* <button onClick={() => window.open('http://72.209.113.80:6081/vnc.html', '_blank')}>Launch Kali Sandbox</button> */}
           <br /><br />
           <p className="status-indicator"><span className="pulse-dot-offline"></span> Ubuntu : Offline</p>
           <button onClick={() => window.open('http://72.209.113.80:6081/vnc.html', '_blank')}>Launch Ubuntu Sandbox</button>
