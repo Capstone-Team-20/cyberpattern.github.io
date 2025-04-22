@@ -42,9 +42,6 @@ The project aims to simulate real-world scenarios where users can:
 ├── src/
 │   ├── Assets/
 │   │   ├── Background.png
-│   │   ├── Background1.png
-│   │   ├── dummy.png
-│   │   ├── HomePage.png
 │   │   ├── LabWalkthrough1.mp4
 │   │   └── Logo.png
 │   ├── Components/
