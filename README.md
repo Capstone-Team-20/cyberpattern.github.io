@@ -1,4 +1,4 @@
-# Cyber PATTerN Labs: Front-End Development
+# Cyber PATTerN Labs
 
 ## Project Overview
 
